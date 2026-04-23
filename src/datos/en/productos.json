@@ -1,0 +1,143 @@
+{
+  "contaplex": {
+    "slug": "contaplex",
+    "name": "ContaPlex",
+    "tagline": "Cloud accounting integrated with SUNAT",
+    "icon": "calc",
+    "color": "#14B8A6",
+    "eyebrow": "Codeplex product",
+    "bullets": ["SIRE · PLE · electronic books", "Financial statements and analysis", "Multi-company and multi-user"],
+    "hero": "Your SMB accounting, tidy and up to date with SUNAT",
+    "heroDesc": "Automate entries, generate valid electronic books and file your reports without touching a spreadsheet. ContaPlex does the heavy lifting; you decide.",
+    "ctaPrimario": "Request ContaPlex demo",
+    "ctaSecundario": "See plans",
+    "features": [
+      { "icon": "sync", "title": "Income/expense automation", "desc": "Automatic bank reconciliation with Peruvian banks." },
+      { "icon": "chart", "title": "Real-time reports", "desc": "Financial KPIs updated to the second." },
+      { "icon": "shield", "title": "SUNAT integration", "desc": "SIRE, RCE and RVIE — one-click submissions and validations." },
+      { "icon": "book", "title": "Electronic books", "desc": "Purchases, Sales, Cash, Journal and Ledger ready." },
+      { "icon": "check", "title": "PLE validation", "desc": "Review and fix before filing with SUNAT." },
+      { "icon": "file", "title": "Financial statements", "desc": "Balance, P&L and cash flow automated." },
+      { "icon": "target", "title": "Profitability analysis", "desc": "By cost center, line or project." },
+      { "icon": "lock", "title": "Bank-grade encryption", "desc": "Your data protected with AES-256 encryption." }
+    ],
+    "featuresEyebrow": "Features",
+    "featuresTitulo": "Everything ContaPlex includes",
+    "plansEyebrow": "Plans and pricing",
+    "plansTitulo": "Pick the ContaPlex plan that fits",
+    "plansDesc": "All plans include unlimited users, parametrization and updates.",
+    "plans": [
+      { "name": "Standard", "price": 50, "empresas": "Up to 5 companies", "desc": "Basic records, PLE, journal generation", "features": ["Accounting voucher", "Purchase ledger", "Sales ledger", "Cash & bank ledger", "Journal generation", "PLE", "Expense reports", "Accounting books (Purchases, Sales, Cash, Journal, Ledger, Balance)"] },
+      { "name": "Business", "price": 100, "empresas": "Up to 15 companies", "desc": "PLE validation, opening balances, advanced queries", "popular": true, "features": ["Everything in Standard", "PLE validation", "Opening balances", "Annual account query", "DAOT", "Accounting annexes", "Income determination", "Liquidations (IGV)", "Accounts receivable"] },
+      { "name": "Gold", "price": 300, "empresas": "Up to 50 companies", "desc": "Fixed assets, withholdings, complete financial statements", "features": ["Everything in Business", "Bills of exchange", "FX entries", "Offsets", "Income statement (function & nature)", "Statement of changes in equity", "Fixed assets", "Withholdings book"] }
+    ],
+    "faqEyebrow": "FAQ",
+    "faqTitulo": "ContaPlex questions",
+    "faq": [
+      { "q": "Is ContaPlex authorized by SUNAT?", "a": "Yes. ContaPlex complies with all SUNAT specifications for electronic books, SIRE, RCE and RVIE. It's on the official approved software list." },
+      { "q": "Can I migrate my data from another system?", "a": "Yes. Our team handles the migration: balances, historical records, chart of accounts and configuration. No extra cost on Business and Gold." },
+      { "q": "Does it include training for my team?", "a": "Always. Every implementation includes 3 live training sessions with your accountant and admin staff, plus unlimited access to DGD Academy online." },
+      { "q": "What if SUNAT issues new rules?", "a": "Codeplex updates the system automatically. You don't have to do anything — updates are deployed in the cloud without disrupting operations." },
+      { "q": "How do you protect my accounting data?", "a": "AWS servers in Peru/Brazil region, AES-256 encryption in transit and at rest, automatic backups every 6 hours with 90-day retention." },
+      { "q": "Do you run automatic backups?", "a": "Yes. Backups every 6 hours with 90-day retention. You can download your backups anytime from your panel." },
+      { "q": "How are updates billed?", "a": "Included. All ContaPlex updates, including regulatory changes and new features, are covered by your monthly plan." },
+      { "q": "Can I cancel anytime?", "a": "Yes, no fine print. Cancel with 30 days' notice and export all your data in standard formats (Excel, XML, PDF)." }
+    ],
+    "cta": { "titulo": "Ready to start with ContaPlex?", "descripcion": "Implementation, migration and training included. We walk with you every step.", "primario": "Request ContaPlex demo", "secundario": "Compare with other products" }
+  },
+  "gestionplex": {
+    "slug": "gestionplex",
+    "name": "GestiónPlex",
+    "tagline": "Logistics, inventory, POS and restaurant",
+    "icon": "box",
+    "color": "#3B82F6",
+    "eyebrow": "Codeplex product",
+    "bullets": ["Multi-warehouse inventory", "POS and restaurant module", "Mobile app for salespeople"],
+    "hero": "Your entire operation, from warehouse to checkout",
+    "heroDesc": "Inventory, purchases, sales, production and restaurant on a single platform. From the manager's laptop to the salesperson's phone.",
+    "ctaPrimario": "Request GestiónPlex demo",
+    "ctaSecundario": "See plans",
+    "features": [
+      { "icon": "database", "title": "Multi-warehouse inventory", "desc": "Real-time stock per warehouse and branch." },
+      { "icon": "building", "title": "Warehouses and branches", "desc": "Control locations, bins and transfers." },
+      { "icon": "send", "title": "Real-time shipments", "desc": "Electronic delivery notes and tracking." },
+      { "icon": "shop", "title": "Purchases, sales, transfers", "desc": "Orders, receipts and integrated movements." },
+      { "icon": "users", "title": "Salespeople", "desc": "Targets, commissions and assigned routes." },
+      { "icon": "download", "title": "Bulk import", "desc": "Upload your catalog from Excel in minutes." },
+      { "icon": "utensils", "title": "Restaurant module", "desc": "Rooms, tables, kitchen and delivery integrated." },
+      { "icon": "wallet", "title": "Treasury and cash", "desc": "Cash counts, flow and reconciliation." },
+      { "icon": "settings", "title": "Production", "desc": "Recipes, production orders and costing." },
+      { "icon": "phoneSmall", "title": "Mobile app", "desc": "iOS and Android for salespeople and supervisors." }
+    ],
+    "featuresEyebrow": "Features",
+    "featuresTitulo": "Everything GestiónPlex includes",
+    "plansEyebrow": "Plans and pricing",
+    "plansTitulo": "Pick the GestiónPlex plan that fits",
+    "plansDesc": "Unlimited users · updates included · parametrization.",
+    "plans": [
+      { "name": "Standard", "price": 100, "empresas": "1 warehouse", "desc": "Base configuration, POS, salespeople", "features": ["Receipts with logo", "A4, A5, 80mm and 57mm printing", "Product import", "Price import", "Salespeople setup", "Inventory import"] },
+      { "name": "Business", "price": 150, "empresas": "1 warehouse", "desc": "Purchases, sales, transfers", "features": ["Everything in Standard", "Purchase ledger", "Sales ledger", "Electronic delivery note", "Multi-cash", "Valued kardex"] },
+      { "name": "Premium", "price": 200, "empresas": "2 warehouses", "desc": "Treasury, restaurant, reports", "popular": true, "features": ["Everything in Business", "Treasury", "Restaurant module", "Advanced reports", "Warehouse transfers", "Mobile app"] },
+      { "name": "Gold", "price": 300, "empresas": "4 warehouses", "desc": "Production, profitability, all in", "features": ["Everything in Premium", "Production", "Websites", "Profitability analysis", "API integrations"] }
+    ],
+    "faqEyebrow": "FAQ",
+    "faqTitulo": "GestiónPlex questions",
+    "faq": [
+      { "q": "Does it work for restaurants with multiple rooms?", "a": "Yes. GestiónPlex supports multiple rooms, table maps, kitchen dispatch per station and integrated delivery." },
+      { "q": "Can I use the POS offline?", "a": "The POS has offline sales mode. It syncs automatically when connection is restored." },
+      { "q": "How many users can I have?", "a": "All plans include unlimited users. You only pay for active warehouses." },
+      { "q": "Does it handle series and batches?", "a": "Yes, GestiónPlex handles series, batches, expiration dates and full traceability." },
+      { "q": "Does it integrate with my ContaPlex?", "a": "Native integration. Sales generate accounting entries automatically." },
+      { "q": "Does it work with barcodes?", "a": "Yes, USB, Bluetooth and mobile-app-integrated readers." },
+      { "q": "Do you handle migration from my current system?", "a": "Yes. Catalog, initial stock, customers and suppliers migrated at no cost on Premium and Gold." },
+      { "q": "Can I cancel anytime?", "a": "Yes, with 30 days' notice. We export all your data in Excel." }
+    ],
+    "cta": { "titulo": "Ready to start with GestiónPlex?", "descripcion": "Implementation, migration and training included.", "primario": "Request GestiónPlex demo", "secundario": "Compare with other products" }
+  },
+  "facturacion-sunat": {
+    "slug": "facturacion-sunat",
+    "name": "SUNAT Invoicing",
+    "tagline": "Valid receipts, invoices and delivery notes",
+    "icon": "receipt",
+    "color": "#8B5CF6",
+    "eyebrow": "Codeplex product",
+    "bullets": ["Digital certificate included", "Automatic XML/PDF/CDR delivery", "Integrates with ContaPlex and GestiónPlex"],
+    "hero": "SUNAT e-invoicing, no drama",
+    "heroDesc": "Issue, send and archive valid receipts, invoices and delivery notes. Digital certificate included and automatic client delivery by email or WhatsApp.",
+    "ctaPrimario": "Request Invoicing demo",
+    "ctaSecundario": "See plans",
+    "features": [
+      { "icon": "receipt", "title": "Receipts and invoices", "desc": "Electronic, valid with SUNAT instantly." },
+      { "icon": "send", "title": "Delivery notes", "desc": "Electronic, with tracking and auto-validation." },
+      { "icon": "file", "title": "Credit and debit notes", "desc": "Guided issuance and corrections." },
+      { "icon": "sync", "title": "Automatic SUNAT submission", "desc": "XML, PDF and CDR sent in seconds." },
+      { "icon": "shield", "title": "Digital certificate included", "desc": "No extra paperwork — we handle it for you." },
+      { "icon": "mail", "title": "Client distribution", "desc": "Email and WhatsApp with XML, PDF and CDR." },
+      { "icon": "link", "title": "Integrates with your stack", "desc": "ContaPlex, GestiónPlex or your ERP via API." },
+      { "icon": "bars", "title": "Reports and reconciliation", "desc": "Your whole sales book in real time." }
+    ],
+    "featuresEyebrow": "Features",
+    "featuresTitulo": "Everything SUNAT Invoicing includes",
+    "plansEyebrow": "Plans and pricing",
+    "plansTitulo": "Pick the Invoicing plan that fits",
+    "plansDesc": "Digital certificate included · unlimited users · updates.",
+    "plans": [
+      { "name": "Business", "price": 50, "empresas": "1 branch", "desc": "Base invoicing with digital certificate", "features": ["Receipts with logo", "A4, A5, 80mm and 57mm printing", "Product import", "Price import", "Salespeople setup", "Auto XML/PDF/CDR delivery"] },
+      { "name": "Premium", "price": 150, "empresas": "2 branches", "desc": "Advanced sales, extended support", "popular": true, "features": ["Everything in Business", "Receipts, invoices and notes", "Electronic delivery notes", "Multi-user", "Sales reports"] },
+      { "name": "Gold", "price": 200, "empresas": "4 branches", "desc": "All in, full sales and support", "features": ["Everything in Premium", "Unlimited users", "Multi-branch", "Full REST API", "Bulk issuance"] }
+    ],
+    "faqEyebrow": "FAQ",
+    "faqTitulo": "SUNAT Invoicing questions",
+    "faq": [
+      { "q": "How does the digital certificate work?", "a": "We handle it for you with an authorized certification entity. It's included in all plans at no additional cost." },
+      { "q": "What happens if SUNAT rejects a receipt?", "a": "The system notifies you immediately with the reason and guides you to fix and resend." },
+      { "q": "Can I send by WhatsApp?", "a": "Yes. Every issuance can trigger an automatic email and WhatsApp to the client with XML, PDF and CDR." },
+      { "q": "Does it integrate with my ERP?", "a": "We have a full REST API. Also native integration with ContaPlex and GestiónPlex." },
+      { "q": "Does it store receipts for 5 years?", "a": "Yes. Permanent storage of XML, PDF and CDR meeting tax requirements." },
+      { "q": "Do you have a high-volume plan?", "a": "Gold supports bulk issuance without limit. For special cases (over 500k/month) we offer enterprise plans." },
+      { "q": "Can I issue from mobile?", "a": "Yes, the mobile app allows issuance, lookup and resending from iOS and Android." },
+      { "q": "Can I cancel anytime?", "a": "Yes, with 30 days' notice. We export all your historical receipts." }
+    ],
+    "cta": { "titulo": "Ready to start with SUNAT Invoicing?", "descripcion": "Implementation, digital certificate and training included.", "primario": "Request Invoicing demo", "secundario": "Compare with other products" }
+  }
+}

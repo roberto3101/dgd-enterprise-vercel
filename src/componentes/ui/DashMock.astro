@@ -1,0 +1,147 @@
+---
+interface Props {
+  variant?: 'contaplex' | 'gestionplex' | 'facturacion';
+}
+const { variant = 'contaplex' } = Astro.props;
+---
+{variant === 'contaplex' && (
+  <div class="dash" style="font-family:var(--font);">
+    <div class="dash-chrome">
+      <div class="dash-dot r"></div><div class="dash-dot y"></div><div class="dash-dot g"></div>
+      <div class="dash-url">app.contaplex.pe/dashboard</div>
+    </div>
+    <div style="display:grid;grid-template-columns:180px 1fr;min-height:420px;background:var(--bg);">
+      <aside style="background:var(--ink-50);border-right:1px solid var(--ink-200);padding:16px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:24px;">
+          <div style="width:24px;height:24px;border-radius:6px;background:var(--brand-accent);display:grid;place-items:center;color:white;font-size:12px;font-weight:800;">C</div>
+          <span style="font-weight:700;font-size:14px;">ContaPlex</span>
+        </div>
+        {['Dashboard','Ingresos','Gastos','Libros electrónicos','SIRE','PLE','Reportes','Empresas'].map((x, i) => (
+          <div style={`padding:8px 10px;font-size:13px;border-radius:6px;margin-bottom:2px;background:${i===0?'var(--bg)':'transparent'};color:${i===0?'var(--ink-900)':'var(--ink-500)'};font-weight:${i===0?600:500};display:flex;align-items:center;gap:8px;`}>
+            <div style={`width:6px;height:6px;border-radius:2px;background:${i===0?'var(--brand-accent)':'var(--ink-300)'};`}></div>
+            {x}
+          </div>
+        ))}
+      </aside>
+      <main style="padding:20px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+          <div>
+            <div style="font-size:11px;color:var(--ink-500);text-transform:uppercase;letter-spacing:.08em;font-weight:600;">Vista demo · Panel contable</div>
+            <div style="font-size:18px;font-weight:700;margin-top:2px;">Panel contable</div>
+          </div>
+          <div style="display:flex;gap:6px;">
+            <div style="padding:5px 10px;background:color-mix(in srgb, var(--brand-accent) 15%, transparent);color:var(--brand-accent-2);border-radius:6px;font-size:11px;font-weight:600;">✓ PLE validado</div>
+            <div style="padding:5px 10px;background:var(--ink-100);color:var(--ink-700);border-radius:6px;font-size:11px;font-weight:600;">SIRE listo</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;">
+          {[{l:'Ingresos',v:'S/ 485,230',d:'+12.4%'},{l:'Gastos',v:'S/ 312,180',d:'-3.1%'},{l:'Utilidad',v:'S/ 173,050',d:'+28.7%'}].map(s => (
+            <div style="padding:12px;border:1px solid var(--ink-200);border-radius:8px;">
+              <div style="font-size:10px;color:var(--ink-500);text-transform:uppercase;font-weight:600;letter-spacing:.06em;">{s.l}</div>
+              <div style="font-size:18px;font-weight:700;margin:4px 0;">{s.v}</div>
+              <div style={`font-size:11px;color:${s.d.startsWith('+')?'var(--brand-accent-2)':'#EF4444'};font-weight:600;`}>{s.d} vs mes anterior</div>
+            </div>
+          ))}
+        </div>
+        <div style="padding:14px;border:1px solid var(--ink-200);border-radius:8px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:10px;">
+            <div style="font-size:12px;font-weight:600;">Flujo mensual · S/</div>
+            <div style="font-size:11px;color:var(--ink-500);">Últimos 6 meses</div>
+          </div>
+          <svg viewBox="0 0 300 90" style="width:100%;height:90px;">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#14B8A6" stop-opacity=".35"/>
+                <stop offset="1" stop-color="#14B8A6" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,70 L50,55 L100,60 L150,40 L200,45 L250,25 L300,30 L300,90 L0,90 Z" fill="url(#g1)"/>
+            <path d="M0,70 L50,55 L100,60 L150,40 L200,45 L250,25 L300,30" fill="none" stroke="#14B8A6" stroke-width="2"/>
+            {[70,55,60,40,45,25,30].map((y, i) => (<circle cx={i*50} cy={y} r="3" fill="white" stroke="#14B8A6" stroke-width="2"/>))}
+          </svg>
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--ink-500);margin-top:6px;">
+            <span>Nov</span><span>Dic</span><span>Ene</span><span>Feb</span><span>Mar</span><span>Abr</span>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+)}
+
+{variant === 'gestionplex' && (
+  <div class="dash" style="font-family:var(--font);">
+    <div class="dash-chrome">
+      <div class="dash-dot r"></div><div class="dash-dot y"></div><div class="dash-dot g"></div>
+      <div class="dash-url">app.gestionplex.pe/inventarios</div>
+    </div>
+    <div style="padding:24px;background:var(--bg);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+        <div>
+          <div style="font-size:11px;color:var(--ink-500);text-transform:uppercase;letter-spacing:.08em;font-weight:600;">Vista demo · Almacén Central</div>
+          <div style="font-size:18px;font-weight:700;margin-top:2px;">Inventario en tiempo real</div>
+        </div>
+        <div style="padding:6px 12px;background:color-mix(in srgb, #3B82F6 15%, transparent);color:#1D4ED8;border-radius:6px;font-size:12px;font-weight:600;">3 almacenes · 1,248 SKUs</div>
+      </div>
+      <div style="border:1px solid var(--ink-200);border-radius:8px;overflow:hidden;">
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:10px 14px;background:var(--ink-50);font-size:11px;font-weight:700;color:var(--ink-500);text-transform:uppercase;letter-spacing:.06em;">
+          <div>Producto</div><div>Stock</div><div>Mínimo</div><div>Estado</div>
+        </div>
+        {[{p:'Pescado fresco · kg',s:'48.2 kg',m:'20 kg',ok:true},{p:'Limón · cajas',s:'12 cajas',m:'8 cajas',ok:true},{p:'Cebolla roja · kg',s:'6.5 kg',m:'15 kg',ok:false},{p:'Camote · cajas',s:'9 cajas',m:'5 cajas',ok:true},{p:'Choclo · unid',s:'145 unid',m:'50 unid',ok:true},{p:'Ají limo · kg',s:'1.8 kg',m:'4 kg',ok:false}].map(r => (
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:10px 14px;border-top:1px solid var(--ink-100);font-size:13px;align-items:center;">
+            <div style="font-weight:500;">{r.p}</div>
+            <div class="mono">{r.s}</div>
+            <div class="mono" style="color:var(--ink-500);">{r.m}</div>
+            <div><span style={`padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:${r.ok?'color-mix(in srgb, var(--brand-accent) 15%, transparent)':'#FEE2E2'};color:${r.ok?'var(--brand-accent-2)':'#B91C1C'};`}>{r.ok?'OK':'Reponer'}</span></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+)}
+
+{variant === 'facturacion' && (
+  <div class="dash" style="font-family:var(--font);">
+    <div class="dash-chrome">
+      <div class="dash-dot r"></div><div class="dash-dot y"></div><div class="dash-dot g"></div>
+      <div class="dash-url">app.facturacion.pe/emitir</div>
+    </div>
+    <div style="padding:24px;background:var(--bg);display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <div>
+        <div style="font-size:11px;color:var(--ink-500);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:4px;">Nueva factura</div>
+        <div style="font-size:16px;font-weight:700;margin-bottom:14px;">F001-00284</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {[{l:'Cliente',v:'DEMO S.A.C.',s:'RUC 20XXXXXXXXX'},{l:'Fecha emisión',v:'14/04/2026',s:'Vence: 14/05/2026'},{l:'Moneda',v:'Soles · PEN',s:'Tipo cambio: 3.72'}].map(f => (
+            <div style="padding:10px;border:1px solid var(--ink-200);border-radius:6px;">
+              <div style="font-size:11px;color:var(--ink-500);font-weight:600;margin-bottom:2px;">{f.l}</div>
+              <div style="font-size:13px;font-weight:600;">{f.v}</div>
+              <div style="font-size:11px;color:var(--ink-500);">{f.s}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div>
+        <div style="padding:16px;border:2px solid var(--brand-accent);border-radius:8px;background:color-mix(in srgb, var(--brand-accent) 6%, transparent);">
+          <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+            <div>
+              <div style="font-size:10px;color:var(--ink-500);font-weight:600;text-transform:uppercase;">Total a facturar</div>
+              <div style="font-size:28px;font-weight:800;color:var(--brand-accent-2);">S/ 14,580.00</div>
+            </div>
+            <div style="padding:4px 10px;background:var(--brand-accent-2);color:white;border-radius:4px;font-size:11px;font-weight:700;height:fit-content;">✓ SUNAT OK</div>
+          </div>
+          <div style="border-top:1px dashed var(--ink-300);padding-top:10px;font-size:12px;color:var(--ink-500);">
+            <div style="display:flex;justify-content:space-between;margin-bottom:3px;"><span>Subtotal</span><span class="mono">S/ 12,355.93</span></div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:3px;"><span>IGV 18%</span><span class="mono">S/ 2,224.07</span></div>
+            <div style="display:flex;justify-content:space-between;font-weight:700;color:var(--ink-900);margin-top:6px;"><span>Total</span><span class="mono">S/ 14,580.00</span></div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px;">
+          {['XML','PDF','CDR'].map(x => (
+            <div style="padding:8px;border:1px solid var(--ink-200);border-radius:6px;text-align:center;font-size:11px;font-weight:600;color:var(--ink-700);">
+              <div style="font-size:16px;color:var(--brand-accent);">✓</div>{x} enviado
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+)}

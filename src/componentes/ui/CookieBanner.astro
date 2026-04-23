@@ -1,0 +1,37 @@
+---
+interface Props {
+  cookies: { titulo: string; descripcion: string; aceptar: string; esenciales: string };
+}
+const { cookies } = Astro.props;
+---
+<div class="cookies" id="cookie-banner">
+  <div style="display:flex; align-items:flex-start; gap:12px; margin-bottom:14px">
+    <div style="font-size:22px">🍪</div>
+    <div>
+      <div style="font-weight:700; font-size:14px; margin-bottom:4px">{cookies.titulo}</div>
+      <div style="font-size:13px; color:var(--ink-500); line-height:1.5">{cookies.descripcion}</div>
+    </div>
+  </div>
+  <div style="display:flex; gap:8px">
+    <button class="btn btn-dark btn-sm" id="cookie-accept" style="flex:1; justify-content:center">{cookies.aceptar}</button>
+    <button class="btn btn-outline btn-sm" id="cookie-essential" style="flex:1; justify-content:center">{cookies.esenciales}</button>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var banner = document.getElementById('cookie-banner');
+    if (!banner) return;
+    try {
+      if (!localStorage.getItem('dgd_cookies')) {
+        setTimeout(function () { banner.classList.add('visible'); }, 1200);
+      }
+    } catch (e) {}
+    function accept() {
+      try { localStorage.setItem('dgd_cookies', '1'); } catch (e) {}
+      banner.classList.remove('visible');
+    }
+    document.getElementById('cookie-accept').addEventListener('click', accept);
+    document.getElementById('cookie-essential').addEventListener('click', accept);
+  })();
+</script>

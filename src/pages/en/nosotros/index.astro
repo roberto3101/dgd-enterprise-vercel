@@ -1,0 +1,9 @@
+---
+import Principal from '@layout/Principal.astro';
+import PaginaNosotros from '@componentes/paginas/PaginaNosotros.astro';
+import { cargarDatos } from '@helpers/idiomas';
+const datos = await cargarDatos<any>('en', 'nosotros');
+---
+<Principal idioma="en">
+  <PaginaNosotros datos={datos} idioma="en" />
+</Principal>

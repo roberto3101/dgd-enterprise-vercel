@@ -1,0 +1,44 @@
+{
+  "descripcion": "Official partner of Codeplex Software in Peru. We implement and support SMBs on their SUNAT digitization journey.",
+  "redes": ["linkedin", "facebook", "instagram", "youtube"],
+  "columnas": [
+    {
+      "titulo": "Products",
+      "enlaces": [
+        { "texto": "ContaPlex", "href": "/en/productos/contaplex/" },
+        { "texto": "GestiónPlex", "href": "/en/productos/gestionplex/" },
+        { "texto": "SUNAT Invoicing", "href": "/en/productos/facturacion-sunat/" },
+        { "texto": "Compare plans", "href": "/en/planes/" }
+      ]
+    },
+    {
+      "titulo": "Company",
+      "enlaces": [
+        { "texto": "About", "href": "/en/nosotros/" },
+        { "texto": "Blog", "href": "/en/blog/" },
+        { "texto": "Case studies", "href": "/en/casos/" },
+        { "texto": "Contact", "href": "/en/contacto/" }
+      ]
+    },
+    {
+      "titulo": "Legal",
+      "enlaces": [
+        { "texto": "Terms & conditions", "href": "#" },
+        { "texto": "Privacy policy", "href": "#" },
+        { "texto": "Cookies", "href": "#" }
+      ],
+      "reclamaciones": "COMPLAINTS BOOK"
+    }
+  ],
+  "razonSocial": "Grupo Grupo DGDs & Systems Perú SAC",
+  "ruc": "RUC 20XXXXXXXXX",
+  "direccion": "Javier Prado Ave. East · San Isidro, Lima",
+  "copyright": "© 2026 Grupo DGD",
+  "badgePartner": "Official Codeplex Partner",
+  "cookies": {
+    "titulo": "We use cookies",
+    "descripcion": "To improve your experience and analyze site traffic.",
+    "aceptar": "Accept all",
+    "esenciales": "Essential only"
+  }
+}

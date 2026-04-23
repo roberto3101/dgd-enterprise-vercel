@@ -1,0 +1,135 @@
+---
+interface Props {
+  className?: string;
+  name: string;
+  description: string;
+  href?: string;
+  cta?: string;
+  style?: string;
+}
+const { className = '', name, description, href = '#', cta = 'Ver más', style = '' } = Astro.props;
+---
+<div class={`bento-card ${className}`} style={style}>
+  <!-- background slot (full-bleed media/decorativo) -->
+  <div class="bento-bg">
+    <slot name="background" />
+  </div>
+
+  <!-- contenido principal -->
+  <div class="bento-body">
+    <div class="bento-head">
+      <div class="bento-icon">
+        <slot name="icon" />
+      </div>
+      <h3 class="bento-title">{name}</h3>
+      <p class="bento-desc">{description}</p>
+    </div>
+  </div>
+
+  <!-- CTA que aparece en hover (desktop) -->
+  <div class="bento-cta">
+    <a href={href} class="bento-link">
+      {cta}
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- overlay sutil al hover -->
+  <div class="bento-overlay"></div>
+</div>
+
+<style>
+  .bento-card {
+    position: relative;
+    display: flex; flex-direction: column; justify-content: space-between;
+    overflow: hidden;
+    border-radius: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--ink-200);
+    box-shadow:
+      0 0 0 1px rgba(4,26,46,.02),
+      0 2px 6px rgba(4,26,46,.04),
+      0 14px 30px -15px rgba(4,26,46,.08);
+    transition: box-shadow .4s ease, border-color .4s ease;
+    transform: translateZ(0);
+  }
+  .bento-card:hover {
+    box-shadow:
+      0 0 0 1px rgba(212,175,55,.12),
+      0 2px 6px rgba(4,26,46,.05),
+      0 30px 60px -25px rgba(4,26,46,.18);
+    border-color: color-mix(in srgb, var(--gold-500) 22%, var(--ink-200));
+  }
+  .bento-bg {
+    position: absolute; inset: 0;
+    pointer-events: none;
+  }
+  .bento-body {
+    position: relative; z-index: 2;
+    padding: 28px;
+  }
+  .bento-head {
+    display: flex; flex-direction: column; gap: 8px;
+    transition: transform .4s var(--ease-smooth, cubic-bezier(.4,0,.2,1));
+    will-change: transform;
+  }
+  .bento-icon {
+    width: 46px; height: 46px;
+    display: grid; place-items: center;
+    color: var(--navy-700);
+    margin-bottom: 4px;
+    transform-origin: left center;
+    transition: transform .4s var(--ease-smooth, cubic-bezier(.4,0,.2,1));
+  }
+  .bento-title {
+    font-size: 20px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--ink-900); margin: 0;
+  }
+  .bento-desc {
+    font-size: 14.5px; line-height: 1.55;
+    color: var(--ink-500); margin: 0; max-width: 42ch;
+  }
+  .bento-cta {
+    position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+    padding: 20px 28px;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity .4s ease, transform .4s ease;
+    pointer-events: none;
+  }
+  .bento-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--navy-700); font-weight: 600; font-size: 14px;
+    text-decoration: none;
+    pointer-events: auto;
+  }
+  .bento-overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background: rgba(4,26,46,0);
+    transition: background .4s ease;
+    pointer-events: none;
+  }
+
+  /* Hover desktop */
+  @media (min-width: 900px) {
+    .bento-card:hover .bento-head { transform: translateY(-36px); }
+    .bento-card:hover .bento-icon { transform: scale(.82); }
+    .bento-card:hover .bento-cta { opacity: 1; transform: translateY(0); }
+    .bento-card:hover .bento-overlay { background: rgba(4,26,46,.015); }
+  }
+
+  /* Mobile: CTA siempre visible */
+  @media (max-width: 900px) {
+    .bento-cta { position: static; opacity: 1; transform: none; padding: 0 28px 24px; }
+  }
+
+  :global(html.dark) .bento-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,.08);
+    box-shadow: 0 -20px 80px -20px rgba(255,255,255,.06) inset;
+  }
+  :global(html.dark) .bento-title { color: rgba(255,255,255,.92); }
+  :global(html.dark) .bento-desc { color: rgba(255,255,255,.6); }
+</style>

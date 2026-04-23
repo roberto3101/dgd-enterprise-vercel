@@ -1,0 +1,64 @@
+{
+  "eyebrow": "Casos de éxito",
+  "titulo": "Transformación real con Codeplex",
+  "descripcion": "Resumen de los casos y resultados publicados por Codeplex Software. Grupo DGD es partner autorizado de implementación en Perú; estamos documentando casos propios con autorización escrita de cada cliente antes de publicarlos aquí.",
+  "filtros": {
+    "todos": "Todos",
+    "leerCaso": "Leer caso",
+    "verFuente": "Ver fuente pública",
+    "ubicacion": "Alcance",
+    "tamano": "Impacto",
+    "ctaModal": "Quiero un caso como este"
+  },
+  "items": [
+    {
+      "industry": "Contabilidad y finanzas",
+      "company": "Optimización de procesos financieros",
+      "metric": "40%",
+      "kpi": "Reducción del tiempo de gestión contable",
+      "desc": "Caso publicado por Codeplex: implementación de ContaPlex para automatizar registros, libros electrónicos y reportes. Impacto documentado: 40% menos tiempo en gestión contable y 50% menos errores en el cierre mensual.",
+      "size": "PYME",
+      "city": "Perú",
+      "tag": "Fuente: codeplex.pe",
+      "link": "https://codeplex.pe/"
+    },
+    {
+      "industry": "Logística y almacenes",
+      "company": "Gestión logística eficiente",
+      "metric": "35%",
+      "kpi": "Reducción de costos de almacén",
+      "desc": "Caso publicado por Codeplex: implementación de GestiónPlex para inventarios multi-almacén, kárdex valorizado y tesorería. Impacto documentado: 35% de reducción de costos operativos de almacén.",
+      "size": "Distribución",
+      "city": "Perú",
+      "tag": "Fuente: codeplex.pe",
+      "link": "https://codeplex.pe/"
+    },
+    {
+      "industry": "Facturación electrónica",
+      "company": "Implementación de facturación electrónica",
+      "metric": "70%",
+      "kpi": "Menos tiempo de procesamiento SUNAT",
+      "desc": "Caso publicado por Codeplex: despliegue de Facturación SUNAT con certificado digital incluido y envío automático XML/PDF/CDR. Impacto documentado: 70% de reducción en el tiempo de procesamiento de comprobantes.",
+      "size": "PYME",
+      "city": "Perú",
+      "tag": "Fuente: codeplex.pe",
+      "link": "https://codeplex.pe/"
+    },
+    {
+      "industry": "Programa de resellers",
+      "company": "Expansión con programa de resellers",
+      "metric": "60%",
+      "kpi": "Incremento de ingresos de partners",
+      "desc": "Caso publicado por Codeplex: programa de resellers oficiales — del que Grupo DGD forma parte. Impacto documentado por Codeplex: 60% de incremento de ingresos en los partners que escalan con la suite.",
+      "size": "Partners LATAM",
+      "city": "LATAM",
+      "tag": "Fuente: codeplex.pe",
+      "link": "https://codeplex.pe/"
+    }
+  ],
+  "cta": {
+    "titulo": "¿Quieres ser nuestro próximo caso documentado?",
+    "descripcion": "Agenda una sesión con nuestros consultores y diseñemos juntos tu plan de digitalización con la suite Codeplex.",
+    "primario": "Agendar reunión"
+  }
+}

@@ -1,0 +1,62 @@
+---
+import Icon from '@componentes/ui/Icon.astro';
+import { cargarDatos } from '@helpers/idiomas';
+import type { Idioma } from '@helpers/idiomas';
+interface Props { tabSlug: string; datos: any; idioma: Idioma; contactoHref: string; }
+const { tabSlug, datos, idioma, contactoHref } = Astro.props;
+const productos = await cargarDatos<any>(idioma, 'productos');
+const producto = productos[tabSlug];
+---
+{producto.plans.map((pl: any) => (
+  <div class={`plan-card ${pl.popular ? 'popular' : ''}`}>
+    {pl.popular && <span class="badge badge-pop plan-pop">{datos.popularBadge}</span>}
+    <div class="plan-producto">{producto.name}</div>
+    <h3 style="font-size:22px;margin-bottom:6px;">{pl.name}</h3>
+    <p class="plan-desc">{pl.desc}</p>
+    <div class="plan-price">
+      <span class="plan-cur">{datos.moneda}</span>
+      <span class="plan-num">{pl.price}</span>
+      <span class="plan-per">{datos.precioMes}</span>
+    </div>
+    <div class="plan-empresas">{pl.empresas}</div>
+    <ul class="plan-features">
+      {pl.features.slice(0, 5).map((f: string) => (
+        <li><Icon name="check" size={14} stroke={2.5} /><span>{f}</span></li>
+      ))}
+    </ul>
+    <a class={`btn ${pl.popular ? 'btn-primary' : 'btn-outline'}`} href={contactoHref} style="width:100%;justify-content:center;">{datos.ctaCotizar}</a>
+  </div>
+))}
+
+<style>
+  .plan-card {
+    padding:26px; border-radius:18px;
+    background:var(--bg); color:inherit;
+    border:1px solid var(--ink-200); position:relative; box-shadow:var(--shadow-sm);
+  }
+  .plan-card.popular {
+    background:linear-gradient(180deg,var(--brand-primary),#123558);
+    color:white; border:1px solid rgba(255,255,255,.15);
+    transform:scale(1.02); box-shadow:var(--shadow-xl);
+  }
+  .plan-pop { position:absolute; top:-12px; left:50%; transform:translateX(-50%); }
+  .plan-producto {
+    font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--brand-accent-2); margin-bottom:8px;
+  }
+  .plan-card.popular .plan-producto { color:var(--brand-accent); }
+  .plan-desc { font-size:13px; color:var(--ink-500); margin-bottom:16px; line-height:1.5; min-height:38px; }
+  .plan-card.popular .plan-desc { color:rgba(255,255,255,.7); }
+  .plan-price { display:flex; align-items:baseline; gap:4px; margin-bottom:4px; }
+  .plan-cur { font-size:16px; font-weight:600; opacity:.7; }
+  .plan-num { font-size:42px; font-weight:800; letter-spacing:-0.03em; }
+  .plan-per { font-size:13px; color:var(--ink-500); }
+  .plan-card.popular .plan-per { color:rgba(255,255,255,.7); }
+  .plan-empresas { font-size:12px; color:var(--ink-500); margin-bottom:18px; }
+  .plan-card.popular .plan-empresas { color:rgba(255,255,255,.65); }
+  .plan-features { list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:20px; }
+  .plan-features li { display:flex; gap:8px; font-size:13px; color:var(--ink-700); }
+  .plan-features svg { color:var(--brand-accent-2); flex-shrink:0; margin-top:3px; }
+  .plan-card.popular .plan-features li { color:rgba(255,255,255,.9); }
+  .plan-card.popular .plan-features svg { color:var(--brand-accent); }
+</style>

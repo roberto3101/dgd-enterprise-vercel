@@ -1,0 +1,50 @@
+{
+  "eyebrow": "Planes y servicios",
+  "titulo": "Los planes son de Codeplex. El servicio es de DGD.",
+  "descripcion": "La licencia del software la contratas según la lista oficial de Codeplex Software. Nosotros añadimos implementación, capacitación y soporte local en Perú.",
+  "tabsTitulo": "Planes oficiales Codeplex",
+  "ctaCotizar": "Cotizar implementación",
+  "precioMes": "/mes",
+  "moneda": "S/",
+  "tabs": [
+    { "slug": "contaplex", "name": "ContaPlex", "icon": "calc" },
+    { "slug": "gestionplex", "name": "GestiónPlex", "icon": "box" },
+    { "slug": "facturacion-sunat", "name": "Facturación SUNAT", "icon": "receipt" }
+  ],
+  "nota": "// Precios de la lista oficial de Codeplex Software. DGD cotiza aparte el servicio de implementación.",
+  "popularBadge": "MÁS POPULAR",
+  "featuredBadge": "MÁS ELEGIDO",
+  "servicios": {
+    "eyebrow": "Servicios DGD",
+    "titulo": "Lo que añadimos sobre tu licencia Codeplex",
+    "descripcion": "La licencia del software la contratas directo según el plan oficial de Codeplex. DGD se encarga de que funcione en tu empresa con estos paquetes.",
+    "nota": "// cotización según alcance",
+    "ctaSolicitar": "Solicitar cotización",
+    "items": [
+      {
+        "name": "Onboarding Esencial",
+        "icon": "compass",
+        "desc": "Instalación, parametrización base y 2 capacitaciones en vivo. Ideal si ya tienes tu data lista.",
+        "includes": ["Configuración inicial", "Plan de cuentas base", "2 sesiones · equipo", "Soporte WhatsApp 30 días"]
+      },
+      {
+        "name": "Implementación Completa",
+        "icon": "academy",
+        "desc": "Migración de data histórica, integración entre módulos y acompañamiento de 60 días.",
+        "includes": ["Todo lo de Esencial", "Migración de data", "Integración ContaPlex ↔ GestiónPlex", "5 sesiones · equipo", "Soporte 60 días"],
+        "featured": true
+      },
+      {
+        "name": "Acompañamiento Anual",
+        "icon": "headset",
+        "desc": "Soporte prioritario, capacitaciones trimestrales y revisión de procesos todo el año.",
+        "includes": ["Soporte prioritario 12 meses", "4 capacitaciones trimestrales", "Revisión de procesos", "Consultor asignado"]
+      }
+    ]
+  },
+  "cta": {
+    "titulo": "¿Ayuda eligiendo el plan correcto?",
+    "descripcion": "Un consultor de DGD te orienta sobre qué plan de Codeplex se ajusta a tu volumen y qué servicio de implementación necesitas.",
+    "primario": "Hablar con un consultor"
+  }
+}

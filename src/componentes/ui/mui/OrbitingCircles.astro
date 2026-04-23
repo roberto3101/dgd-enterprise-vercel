@@ -1,0 +1,101 @@
+---
+interface Props {
+  radius?: number;
+  duration?: number;
+  speed?: number;
+  iconSize?: number;
+  reverse?: boolean;
+  path?: boolean;
+  count: number;
+  className?: string;
+}
+const {
+  radius = 160,
+  duration = 20,
+  speed = 1,
+  iconSize = 44,
+  reverse = false,
+  path = true,
+  count,
+  className = '',
+} = Astro.props;
+
+const calcDur = duration / speed;
+const angles = Array.from({ length: count }, (_, i) => (360 / count) * i);
+---
+<div class={`mui-orbit-root ${className}`} style={`--orbit-radius:${radius}px`}>
+  {path && (
+    <svg class="mui-orbit-path" aria-hidden="true">
+      <circle cx="50%" cy="50%" r={radius} fill="none" />
+    </svg>
+  )}
+
+  {count > 0 && (
+    <div class="mui-orbit" data-reverse={reverse ? 'true' : 'false'}
+      style={`--duration:${calcDur};--radius:${radius};--angle:${angles[0]};--icon-size:${iconSize}px;`}>
+      <slot name="item-0" />
+    </div>
+  )}
+  {count > 1 && (
+    <div class="mui-orbit" data-reverse={reverse ? 'true' : 'false'}
+      style={`--duration:${calcDur};--radius:${radius};--angle:${angles[1]};--icon-size:${iconSize}px;`}>
+      <slot name="item-1" />
+    </div>
+  )}
+  {count > 2 && (
+    <div class="mui-orbit" data-reverse={reverse ? 'true' : 'false'}
+      style={`--duration:${calcDur};--radius:${radius};--angle:${angles[2]};--icon-size:${iconSize}px;`}>
+      <slot name="item-2" />
+    </div>
+  )}
+  {count > 3 && (
+    <div class="mui-orbit" data-reverse={reverse ? 'true' : 'false'}
+      style={`--duration:${calcDur};--radius:${radius};--angle:${angles[3]};--icon-size:${iconSize}px;`}>
+      <slot name="item-3" />
+    </div>
+  )}
+  {count > 4 && (
+    <div class="mui-orbit" data-reverse={reverse ? 'true' : 'false'}
+      style={`--duration:${calcDur};--radius:${radius};--angle:${angles[4]};--icon-size:${iconSize}px;`}>
+      <slot name="item-4" />
+    </div>
+  )}
+  {count > 5 && (
+    <div class="mui-orbit" data-reverse={reverse ? 'true' : 'false'}
+      style={`--duration:${calcDur};--radius:${radius};--angle:${angles[5]};--icon-size:${iconSize}px;`}>
+      <slot name="item-5" />
+    </div>
+  )}
+</div>
+
+<style>
+  .mui-orbit-root {
+    position: relative;
+    width: calc(var(--orbit-radius) * 2 + 80px);
+    height: calc(var(--orbit-radius) * 2 + 80px);
+    margin: 0 auto;
+    max-width: 100%;
+  }
+  .mui-orbit-path {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    pointer-events: none;
+  }
+  .mui-orbit-path circle {
+    stroke: color-mix(in srgb, var(--gold-500) 22%, transparent);
+    stroke-width: 1;
+    stroke-dasharray: 4 6;
+  }
+  .mui-orbit {
+    position: absolute;
+    top: 50%; left: 50%;
+    margin: calc(var(--icon-size) / -2) 0 0 calc(var(--icon-size) / -2);
+    width: var(--icon-size);
+    height: var(--icon-size);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 999px;
+    will-change: transform;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mui-orbit { animation: none !important; }
+  }
+</style>

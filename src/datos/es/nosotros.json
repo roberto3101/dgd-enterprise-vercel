@@ -1,0 +1,77 @@
+{
+  "eyebrow": "Nosotros",
+  "tituloPre": "Somos el brazo de implementación de ",
+  "tituloGradient": "Codeplex",
+  "tituloPost": " en Perú",
+  "descripcion": "Como partner autorizado de Codeplex en Perú, acompañamos a PYMEs peruanas en su camino hacia la digitalización contable, logística y tributaria. No escribimos el software — lo llevamos a tu empresa y nos aseguramos de que funcione.",
+  "historia": {
+    "eyebrow": "Nuestra historia",
+    "titulo": "De consultoría artesanal a ecosistema regional",
+    "parrafos": [
+      "Grupo DGD es partner comercial autorizado de Codeplex Software en Perú. Nuestra labor es la reventa e implementación de su suite cloud: ContaPlex, GestiónPlex y Facturación Electrónica SUNAT.",
+      "No desarrollamos el software: lo llevamos a tu empresa. Nos encargamos de la asesoría, la parametrización, la capacitación y el soporte en español, desde Perú.",
+      "Trabajamos con empresas PYME de retail, distribución, restauración, servicios y logística — rubros donde la suite Codeplex tiene mayor adopción en el país."
+    ],
+    "cards": [
+      { "y": "DGD", "t": "Partner autorizado", "d": "Brazo comercial y de implementación en Perú" },
+      { "y": "Codeplex", "t": "Software proveedor", "d": "Suite cloud SUNAT · LATAM · +50,000 empresas" },
+      { "y": "SUNAT", "t": "100% válido", "d": "SIRE · RCE · RVIE · PLE · facturación electrónica" },
+      { "y": "Perú", "t": "Soporte local", "d": "Lun–Sáb en español, zona horaria Lima" }
+    ]
+  },
+  "mvv": {
+    "eyebrow": "Cómo pensamos",
+    "titulo": "Misión, visión y valores",
+    "items": [
+      { "icon": "target", "title": "Misión", "desc": "Simplificar la gestión contable y tributaria de las PYMEs peruanas, con tecnología confiable y acompañamiento humano." },
+      { "icon": "eye", "title": "Visión", "desc": "Ser el partner de implementación líder en Perú para empresas que quieren crecer sin perder orden ni cumplimiento." },
+      { "icon": "heart", "title": "Valores", "desc": "Cercanía, claridad, cumplimiento y aprendizaje continuo. No vendemos software: resolvemos problemas." }
+    ]
+  },
+  "alianza": {
+    "badge": "Alianza estratégica",
+    "titulo": "Partner oficial de Codeplex Software",
+    "descripcion": "Codeplex construye la suite cloud de contabilidad, gestión y facturación líder en Latinoamérica. Grupo DGD es su brazo comercial y de implementación autorizado en Perú.",
+    "bullets": [
+      "Certificación oficial anual de partner",
+      "Acceso preferente a roadmap y nuevas features",
+      "Soporte técnico directo con el equipo de desarrollo"
+    ],
+    "cardTitulo": "Codeplex Software",
+    "cardDesc": "Suite cloud contable y tributaria · LATAM · Más de 50,000 empresas"
+  },
+  "equipo": {
+    "eyebrow": "Nuestro equipo",
+    "titulo": "Las personas detrás de DGD",
+    "descripcion": "Consultores contables, tecnológicos y de soporte. Personas reales, en tu zona horaria.",
+    "nota": "// perfiles detallados del equipo disponibles a solicitud",
+    "items": [
+      { "name": "Consultor Líder", "role": "CEO / Fundador", "init": "CL", "c": "#14B8A6" },
+      { "name": "Director Implementación", "role": "Dirección de operaciones", "init": "DI", "c": "#3B82F6" },
+      { "name": "Líder Contable", "role": "Senior accountant", "init": "LC", "c": "#8B5CF6" },
+      { "name": "Especialista GestiónPlex", "role": "Logística y POS", "init": "EG", "c": "#F59E0B" },
+      { "name": "Consultor SUNAT", "role": "Facturación electrónica", "init": "CS", "c": "#EC4899" },
+      { "name": "Head of Growth", "role": "Crecimiento comercial", "init": "HG", "c": "#10B981" },
+      { "name": "Soporte Nivel 2", "role": "Atención técnica", "init": "S2", "c": "#6366F1" },
+      { "name": "Academy Lead", "role": "Capacitación", "init": "AL", "c": "#EF4444" }
+    ]
+  },
+  "constitucion": {
+    "eyebrow": "Transparencia",
+    "titulo": "Datos de constitución",
+    "items": [
+      { "l": "Razón social", "v": "Grupo Grupo DGDs & Systems Perú SAC" },
+      { "l": "RUC", "v": "20XXXXXXXXX" },
+      { "l": "Partida registral", "v": "Disponible a solicitud" },
+      { "l": "Constitución", "v": "Disponible a solicitud" },
+      { "l": "Domicilio fiscal", "v": "Lima, Perú" },
+      { "l": "Representante legal", "v": "Disponible a solicitud" }
+    ],
+    "nota": "// para verificación formal, solicitamos datos completos al momento de firmar contrato"
+  },
+  "cta": {
+    "titulo": "¿Hablamos?",
+    "descripcion": "Conoce al equipo, entiende cómo trabajamos y decide si somos el partner correcto para tu empresa.",
+    "primario": "Agendar conversación"
+  }
+}

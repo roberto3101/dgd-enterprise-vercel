@@ -1,0 +1,46 @@
+---
+import Icon from './Icon.astro';
+interface Props {
+  items: { q: string; a: string }[];
+}
+const { items } = Astro.props;
+---
+<div class="faq-list">
+  {items.map((it, i) => (
+    <details class="faq-item" open={i === 0}>
+      <summary class="faq-summary">
+        <span>{it.q}</span>
+        <span class="faq-icon"><Icon name="plus" size={18} /></span>
+      </summary>
+      <div class="faq-body">{it.a}</div>
+    </details>
+  ))}
+</div>
+<style>
+  .faq-list { display: flex; flex-direction: column; gap: 10px; }
+  .faq-item {
+    background: var(--bg);
+    border: 1px solid var(--ink-200);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .faq-summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 20px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-weight: 600; font-size: 16px; color: var(--ink-900);
+  }
+  .faq-summary::-webkit-details-marker { display: none; }
+  .faq-icon {
+    color: var(--brand-accent);
+    transition: transform .2s ease;
+    display: inline-flex;
+  }
+  .faq-item[open] .faq-icon { transform: rotate(45deg); }
+  .faq-body {
+    padding: 0 24px 22px;
+    color: var(--ink-500);
+    font-size: 15px; line-height: 1.7;
+  }
+</style>

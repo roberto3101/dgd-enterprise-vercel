@@ -1,0 +1,168 @@
+{
+  "eyebrow": "DGD Blog",
+  "titulo": "Ideas to digitize your SMB",
+  "descripcion": "SUNAT guides, accounting tips, logistics and digitization for Peruvian SMBs. Written by our consultants.",
+  "buscarPlaceholder": "Search articles...",
+  "categorias": ["All", "SUNAT", "Accounting", "Logistics", "Invoicing", "SMBs", "Tech"],
+  "sidebar": {
+    "categorias": "Categories",
+    "populares": "Most popular",
+    "newsletter": {
+      "titulo": "DGD Newsletter",
+      "descripcion": "1 email a month with SUNAT news and practical tips.",
+      "emailPlaceholder": "you@company.pe",
+      "cta": "Subscribe"
+    }
+  },
+  "leerMas": "Read article",
+  "volver": "← Back to blog",
+  "enEstaPagina": "On this page",
+  "compartir": "Share",
+  "relacionados": {
+    "eyebrow": "Keep reading",
+    "titulo": "Related articles"
+  },
+  "cta": {
+    "titulo": "Want to go deeper on this topic?",
+    "descripcion": "Book 30 minutes with a DGD consultant — we review your specific case together.",
+    "primario": "Book a call"
+  },
+  "posts": [
+    {
+      "slug": "sire-guia-pyme-2026",
+      "cat": "SUNAT",
+      "title": "SIRE 2026: a practical guide for Peruvian SMBs",
+      "excerpt": "The Integrated Electronic Records System is no longer optional. We explain what changed in 2026, who's required and how to prepare without surprises.",
+      "author": "DGD Accounting Consultant",
+      "authorRole": "Senior accountant",
+      "date": "2026-04-15",
+      "read": "7 min",
+      "secciones": [
+        { "id": "intro", "title": "What is SIRE" },
+        { "id": "contexto", "title": "Who is required" },
+        { "id": "pasos", "title": "Critical steps" },
+        { "id": "errores", "title": "Mistakes to avoid" },
+        { "id": "cierre", "title": "Conclusion" }
+      ]
+    },
+    {
+      "slug": "ple-vs-sire-diferencias",
+      "cat": "SUNAT",
+      "title": "PLE vs SIRE: differences, deadlines and what to file",
+      "excerpt": "Confusion between PLE and SIRE is common. We clarify in simple terms with real examples so you make the right call.",
+      "author": "Accounting Lead",
+      "authorRole": "Senior accountant",
+      "date": "2026-04-10",
+      "read": "5 min",
+      "secciones": [
+        { "id": "intro", "title": "Context" },
+        { "id": "contexto", "title": "Technical differences" },
+        { "id": "pasos", "title": "When to use each" },
+        { "id": "errores", "title": "Common mistakes" },
+        { "id": "cierre", "title": "Wrap-up" }
+      ]
+    },
+    {
+      "slug": "facturacion-electronica-errores",
+      "cat": "Invoicing",
+      "title": "The 7 most common mistakes when migrating to e-invoicing",
+      "excerpt": "After 50+ implementations, we spotted recurring missteps. Avoid them and speed up your adoption without SUNAT issues.",
+      "author": "DGD SUNAT Consultant",
+      "authorRole": "E-invoicing",
+      "date": "2026-04-05",
+      "read": "6 min",
+      "secciones": [
+        { "id": "intro", "title": "Starting point" },
+        { "id": "contexto", "title": "Why migrations fail" },
+        { "id": "pasos", "title": "Pre-flight checklist" },
+        { "id": "errores", "title": "7 mistakes and how to avoid them" },
+        { "id": "cierre", "title": "Next steps" }
+      ]
+    },
+    {
+      "slug": "inventarios-multi-almacen",
+      "cat": "Logistics",
+      "title": "Multi-warehouse inventory: tidy your stock without going crazy",
+      "excerpt": "If your SMB has 2+ warehouses, poor stock control is expensive. We share how to structure it in GestiónPlex step by step.",
+      "author": "GestiónPlex Specialist",
+      "authorRole": "Logistics and POS",
+      "date": "2026-03-28",
+      "read": "8 min",
+      "secciones": [
+        { "id": "intro", "title": "Diagnosis" },
+        { "id": "contexto", "title": "How inventory breaks" },
+        { "id": "pasos", "title": "Tidy implementation" },
+        { "id": "errores", "title": "Mistakes to avoid" },
+        { "id": "cierre", "title": "Conclusion" }
+      ]
+    },
+    {
+      "slug": "contabilidad-cloud-ventajas",
+      "cat": "Accounting",
+      "title": "Cloud accounting: why leave Excel this year",
+      "excerpt": "Excel works until it doesn't. We review 6 signs that your accounting needs to move to a real cloud platform.",
+      "author": "Implementation Director",
+      "authorRole": "Operations",
+      "date": "2026-03-22",
+      "read": "5 min",
+      "secciones": [
+        { "id": "intro", "title": "Signals we see" },
+        { "id": "contexto", "title": "The hidden cost of Excel" },
+        { "id": "pasos", "title": "Orderly transition" },
+        { "id": "errores", "title": "Migration mistakes" },
+        { "id": "cierre", "title": "Conclusion" }
+      ]
+    },
+    {
+      "slug": "pyme-digitalizacion-ruta",
+      "cat": "SMBs",
+      "title": "A 4-stage digitization roadmap for a Peruvian SMB",
+      "excerpt": "Not everything digitizes at once. We propose a 4-stage roadmap prioritizing impact and cost — from invoicing to cost-center profitability.",
+      "author": "DGD CEO",
+      "authorRole": "Founder",
+      "date": "2026-03-15",
+      "read": "9 min",
+      "secciones": [
+        { "id": "intro", "title": "Why a roadmap" },
+        { "id": "contexto", "title": "Initial diagnosis" },
+        { "id": "pasos", "title": "The 4 stages" },
+        { "id": "errores", "title": "Mistakes to avoid" },
+        { "id": "cierre", "title": "Wrap-up" }
+      ]
+    },
+    {
+      "slug": "restaurante-pos-cloud",
+      "cat": "Tech",
+      "title": "Cloud POS in restaurants: what to ask before buying",
+      "excerpt": "A badly chosen POS slows your growth. Practical checklist to evaluate a cloud POS for Peruvian restaurants.",
+      "author": "GestiónPlex Specialist",
+      "authorRole": "Logistics and POS",
+      "date": "2026-03-08",
+      "read": "6 min",
+      "secciones": [
+        { "id": "intro", "title": "What to look for" },
+        { "id": "contexto", "title": "The POS in the real flow" },
+        { "id": "pasos", "title": "Buying checklist" },
+        { "id": "errores", "title": "Common mistakes" },
+        { "id": "cierre", "title": "Conclusion" }
+      ]
+    },
+    {
+      "slug": "integracion-contable-ventas",
+      "cat": "Accounting",
+      "title": "Integrate sales with accounting: stop pasting Excels",
+      "excerpt": "When sales live in one system and accounting in another, monthly close is hell. How we integrate ContaPlex with GestiónPlex in practice.",
+      "author": "Accounting Lead",
+      "authorRole": "Senior accountant",
+      "date": "2026-02-28",
+      "read": "7 min",
+      "secciones": [
+        { "id": "intro", "title": "The symptom" },
+        { "id": "contexto", "title": "How it's solved" },
+        { "id": "pasos", "title": "Step-by-step implementation" },
+        { "id": "errores", "title": "Integration mistakes" },
+        { "id": "cierre", "title": "Conclusion" }
+      ]
+    }
+  ]
+}

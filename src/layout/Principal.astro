@@ -1,0 +1,126 @@
+---
+import '@estilos/global.css';
+import { ClientRouter } from 'astro:transitions';
+import BarraNavegacion from '@componentes/navegacion/BarraNavegacion.astro';
+import PieDePagina from '@componentes/navegacion/PieDePagina.astro';
+import CookieBanner from '@componentes/ui/CookieBanner.astro';
+import WhatsAppFloat from '@componentes/ui/WhatsAppFloat.astro';
+import { cargarDatos, LOCALES_HTML, type Idioma } from '@helpers/idiomas';
+
+interface Props {
+  idioma: Idioma;
+}
+const { idioma } = Astro.props;
+
+const [navegacion, footerData, seoData] = await Promise.all([
+  cargarDatos<any>(idioma, 'navegacion'),
+  cargarDatos<any>(idioma, 'footer'),
+  cargarDatos<{ titulo: string; descripcion: string }>(idioma, 'seo'),
+]);
+---
+<!DOCTYPE html>
+<html lang={LOCALES_HTML[idioma]}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#0E3A5F" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#041A2E" media="(prefers-color-scheme: dark)" />
+    <title>{seoData.titulo}</title>
+    <meta name="description" content={seoData.descripcion} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:ital,wght@0,500;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <ClientRouter />
+    <script is:inline>
+      // JS flag (habilita estilos que dependen de JS, p.ej. reveal)
+      document.documentElement.classList.add('js');
+
+      // Theme: aplicar antes de renderizar (sin flash)
+      function applyTheme(doc) {
+        try {
+          const stored = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const theme = stored || (prefersDark ? 'dark' : 'light');
+          (doc || document).documentElement.classList.toggle('dark', theme === 'dark');
+        } catch (e) {}
+      }
+      applyTheme();
+
+      // Persistir tema entre View Transitions: el <html> entrante se reemplaza,
+      // así que volvemos a aplicar la clase ANTES del swap (no flash).
+      document.addEventListener('astro:before-swap', (ev) => {
+        applyTheme(ev.newDocument);
+      });
+    </script>
+  </head>
+  <body>
+    <BarraNavegacion navegacion={navegacion} idioma={idioma} />
+    <main>
+      <slot />
+    </main>
+    <PieDePagina footer={footerData} />
+    <WhatsAppFloat />
+    <CookieBanner cookies={footerData.cookies} />
+
+    <!-- Reveal legacy (data-reveal): mantener por compatibilidad mientras migramos a data-anim -->
+    <script is:inline>
+      (function () {
+        const runReveal = () => {
+          if (!('IntersectionObserver' in window)) {
+            document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('revealed'));
+            return;
+          }
+          const io = new IntersectionObserver((entries) => {
+            for (const e of entries) if (e.isIntersecting) {
+              e.target.classList.add('revealed');
+              io.unobserve(e.target);
+            }
+          }, { rootMargin: '0px 0px -60px 0px', threshold: 0.05 });
+          document.querySelectorAll('[data-reveal]:not(.revealed)').forEach(el => io.observe(el));
+        };
+        setTimeout(() => {
+          document.querySelectorAll('[data-reveal]:not(.revealed)').forEach(el => el.classList.add('revealed'));
+        }, 1500);
+        if (document.readyState !== 'loading') runReveal();
+        else document.addEventListener('DOMContentLoaded', runReveal);
+        document.addEventListener('astro:page-load', runReveal);
+      })();
+    </script>
+
+    <!-- Sistema de animaciones: GSAP + ScrollTrigger + SplitType + CountUp + vanilla-tilt -->
+    <script src="/scripts/animations.js" defer></script>
+
+    <!-- Lenis smooth scroll (opcional, aislado para no tumbar el reveal si el CDN falla) -->
+    <script type="module">
+      const bootLenis = async () => {
+        if (window.__lenis) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        try {
+          const mod = await import('https://esm.sh/lenis@1.1.20');
+          const Lenis = mod.default;
+          const lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+          function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+          requestAnimationFrame(raf);
+          window.__lenis = lenis;
+        } catch (e) { /* fallback: scroll nativo */ }
+      };
+      bootLenis();
+      document.addEventListener('astro:page-load', bootLenis);
+    </script>
+
+    <!-- Spotlight cursor (efecto tipo Aceternity / Vercel) -->
+    <script is:inline>
+      (function () {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (window.matchMedia('(pointer: coarse)').matches) return;
+        const root = document.documentElement;
+        window.addEventListener('pointermove', (e) => {
+          root.style.setProperty('--mx', e.clientX + 'px');
+          root.style.setProperty('--my', e.clientY + 'px');
+        }, { passive: true });
+      })();
+    </script>
+  </body>
+</html>

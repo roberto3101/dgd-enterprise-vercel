@@ -1,0 +1,12 @@
+{
+  "marca": "DGD.enterprise",
+  "enlaces": [
+    { "id": "productos", "texto": "Productos", "href": "/es/productos/contaplex/" },
+    { "id": "planes", "texto": "Planes", "href": "/es/planes/" },
+    { "id": "casos", "texto": "Casos de éxito", "href": "/es/casos/" },
+    { "id": "blog", "texto": "Blog", "href": "/es/blog/" },
+    { "id": "nosotros", "texto": "Nosotros", "href": "/es/nosotros/" },
+    { "id": "contacto", "texto": "Contacto", "href": "/es/contacto/" }
+  ],
+  "cta": { "texto": "Solicitar demo", "href": "/es/contacto/" }
+}

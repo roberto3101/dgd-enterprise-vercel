@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DGD Enterprise — Versión imprimible</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=4">
+<style>
+  /* Print-specific */
+  @page { size: A4; margin: 14mm 12mm; }
+
+  html, body {
+    background: white !important;
+    overflow-x: visible !important;
+    max-width: none !important;
+  }
+
+  /* Section dividers for printed output */
+  .print-section {
+    break-before: page;
+    page-break-before: always;
+  }
+  .print-section:first-of-type {
+    break-before: auto;
+    page-break-before: auto;
+  }
+
+  .print-section-header {
+    padding: 10mm 0 6mm;
+    border-bottom: 2px solid #0A2540;
+    margin-bottom: 8mm;
+    font-family: 'Inter', sans-serif;
+  }
+  .print-section-header .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: #14B8A6;
+    margin-bottom: 4px;
+  }
+  .print-section-header h1.title {
+    font-size: 28px;
+    letter-spacing: -0.02em;
+    color: #0A2540;
+    font-weight: 800;
+  }
+
+  /* Hide interactive UI that doesn't make sense in print */
+  .wa-float, .stt, .cookies, .tweaks-panel, .tweaks-toggle,
+  .mobile-drawer, .nav-mobile-toggle,
+  [class*="tweak"] {
+    display: none !important;
+  }
+
+  /* Keep nav but simplify */
+  .nav {
+    position: static !important;
+    background: white !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    backdrop-filter: none !important;
+  }
+  .nav-cta { display: none !important; }
+
+  /* Avoid breaking cards/sections awkwardly */
+  .card, section > .container > *, article {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Make sure colors print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Remove all hover transforms, animations */
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* On-screen styling of the print doc */
+  body {
+    background: #f1f5f9;
+  }
+  .print-shell {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+  }
+  .print-page-mount {
+    padding: 0 0 20mm;
+  }
+  .print-intro {
+    padding: 20mm 16mm;
+    background: linear-gradient(135deg, #0A2540, #14B8A6);
+    color: white;
+    margin-bottom: 8mm;
+  }
+  .print-intro h1 {
+    color: white;
+    font-size: 36px;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+  .print-intro p { color: rgba(255,255,255,.85); font-size: 15px; max-width: 520px; }
+  .print-intro .logo-row { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+  .print-intro .logo-mark { background: white; color: #0A2540; }
+
+  @media screen {
+    .print-shell { box-shadow: 0 8px 40px rgba(0,0,0,.12); margin: 24px auto; }
+  }
+  @media print {
+    body { background: white; }
+    .print-shell { box-shadow: none; margin: 0; max-width: none; }
+    .print-intro { break-after: page; page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+
+<div class="print-shell">
+  <div class="print-intro print-section">
+    <div class="logo-row">
+      <div class="logo-mark" style="width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-weight:800;font-size:18px;">D</div>
+      <div style="font-weight:700;font-size:22px;letter-spacing:-0.02em;">DGD Enterprise</div>
+    </div>
+    <h1>Partner oficial de Codeplex en Perú</h1>
+    <p>Propuesta comercial y portafolio completo — ContaPlex, GestiónPlex y Facturación Electrónica SUNAT. Implementación, capacitación y soporte local.</p>
+    <div style="margin-top: 24px; font-size: 13px; color: rgba(255,255,255,.7); font-family: 'JetBrains Mono', monospace;">
+      dgdenterprise.pe · Impreso <span id="print-date"></span>
+    </div>
+  </div>
+
+  <div id="print-content"></div>
+</div>
+
+<!-- Tweak defaults (kept to avoid undefined refs) -->
+<script>
+const TWEAK_DEFAULTS = {
+  "primaryColor": "#0A2540",
+  "accentColor": "#F59E0B",
+  "fontFamily": "Inter",
+  "radius": 14,
+  "heroVariant": "dashboard",
+  "dark": false,
+  "density": "comfortable"
+};
+document.getElementById('print-date').textContent = new Date().toLocaleDateString('es-PE', {year:'numeric', month:'long', day:'numeric'});
+</script>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="src/icons.jsx"></script>
+<script type="text/babel" src="src/ui.jsx"></script>
+<script type="text/babel" src="src/mocks.jsx"></script>
+<script type="text/babel" src="src/nav.jsx"></script>
+<script type="text/babel" src="src/footer.jsx"></script>
+<script type="text/babel" src="src/pages/home.jsx"></script>
+<script type="text/babel" src="src/pages/product.jsx"></script>
+<script type="text/babel" src="src/pages/planes.jsx"></script>
+<script type="text/babel" src="src/pages/casos.jsx"></script>
+<script type="text/babel" src="src/pages/blog.jsx"></script>
+<script type="text/babel" src="src/pages/post.jsx"></script>
+<script type="text/babel" src="src/pages/nosotros.jsx"></script>
+<script type="text/babel" src="src/pages/contacto.jsx"></script>
+
+<script type="text/babel">
+  // Mount every page sequentially, each in its own section with a heading
+  const PAGES = [
+    {title: 'Home', eyebrow: '01 · Landing', Comp: window.HomePage},
+    {title: 'ContaPlex', eyebrow: '02 · Producto', Comp: (props) => <window.ProductPage {...props} slug="contaplex"/>},
+    {title: 'GestiónPlex', eyebrow: '03 · Producto', Comp: (props) => <window.ProductPage {...props} slug="gestionplex"/>},
+    {title: 'Facturación Electrónica', eyebrow: '04 · Producto', Comp: (props) => <window.ProductPage {...props} slug="facturacion"/>},
+    {title: 'Planes y precios', eyebrow: '05 · Planes', Comp: window.PlanesPage},
+    {title: 'Casos de éxito', eyebrow: '06 · Casos', Comp: window.CasosPage},
+    {title: 'Blog', eyebrow: '07 · Blog', Comp: window.BlogPage},
+    {title: 'Nosotros', eyebrow: '08 · Nosotros', Comp: window.NosotrosPage},
+    {title: 'Contacto', eyebrow: '09 · Contacto', Comp: window.ContactoPage},
+  ];
+
+  const noop = () => {};
+
+  const PrintDoc = () => (
+    <>
+      {PAGES.map((p, i) => p.Comp ? (
+        <section key={i} className="print-section print-page-mount">
+          <div className="print-section-header" style={{padding:'0 24px'}}>
+            <div className="eyebrow">{p.eyebrow}</div>
+            <h1 className="title">{p.title}</h1>
+          </div>
+          <p.Comp nav={noop} route=""/>
+        </section>
+      ) : null)}
+    </>
+  );
+
+  const mount = document.getElementById('print-content');
+  ReactDOM.createRoot(mount).render(<PrintDoc/>);
+
+  // Auto-print after fonts + render settle
+  (async () => {
+    try { if (document.fonts && document.fonts.ready) await document.fonts.ready; } catch(e){}
+    await new Promise(r => setTimeout(r, 1200));
+    window.print();
+  })();
+</script>
+
+</body>
+</html>

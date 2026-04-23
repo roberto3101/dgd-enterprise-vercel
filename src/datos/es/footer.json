@@ -1,0 +1,44 @@
+{
+  "descripcion": "Partner oficial de Codeplex Software en Perú. Implementamos y acompañamos a PYMEs en su digitalización SUNAT.",
+  "redes": ["linkedin", "facebook", "instagram", "youtube"],
+  "columnas": [
+    {
+      "titulo": "Productos",
+      "enlaces": [
+        { "texto": "ContaPlex", "href": "/es/productos/contaplex/" },
+        { "texto": "GestiónPlex", "href": "/es/productos/gestionplex/" },
+        { "texto": "Facturación SUNAT", "href": "/es/productos/facturacion-sunat/" },
+        { "texto": "Comparar planes", "href": "/es/planes/" }
+      ]
+    },
+    {
+      "titulo": "Empresa",
+      "enlaces": [
+        { "texto": "Nosotros", "href": "/es/nosotros/" },
+        { "texto": "Blog", "href": "/es/blog/" },
+        { "texto": "Casos de éxito", "href": "/es/casos/" },
+        { "texto": "Contacto", "href": "/es/contacto/" }
+      ]
+    },
+    {
+      "titulo": "Legal",
+      "enlaces": [
+        { "texto": "Términos y condiciones", "href": "#" },
+        { "texto": "Política de privacidad", "href": "#" },
+        { "texto": "Cookies", "href": "#" }
+      ],
+      "reclamaciones": "LIBRO DE RECLAMACIONES"
+    }
+  ],
+  "razonSocial": "Grupo Grupo DGDs & Systems Perú SAC",
+  "ruc": "RUC 20XXXXXXXXX",
+  "direccion": "Av. Javier Prado Este · San Isidro, Lima",
+  "copyright": "© 2026 Grupo DGD",
+  "badgePartner": "Partner oficial Codeplex",
+  "cookies": {
+    "titulo": "Usamos cookies",
+    "descripcion": "Para mejorar tu experiencia y analizar el tráfico de nuestro sitio.",
+    "aceptar": "Aceptar todas",
+    "esenciales": "Solo esenciales"
+  }
+}

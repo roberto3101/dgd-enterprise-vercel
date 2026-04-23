@@ -1,0 +1,30 @@
+---
+interface Props {
+  size?: number;
+  duration?: number;
+  delay?: number;
+  colorFrom?: string;
+  colorTo?: string;
+  borderWidth?: number;
+}
+const {
+  size = 80,
+  duration = 6,
+  delay = 0,
+  colorFrom = '#D4AF37',
+  colorTo = '#0E3A5F',
+  borderWidth = 1.5,
+} = Astro.props;
+---
+<div
+  class="border-beam-wrap"
+  style={`
+    --border-beam-size:${size}px;
+    --border-beam-dur:${duration}s;
+    --border-beam-w:${borderWidth}px;
+    --border-beam-from:${colorFrom};
+    --border-beam-to:${colorTo};
+  `}
+>
+  <div class="border-beam" style={`animation-delay:-${delay}s`}></div>
+</div>

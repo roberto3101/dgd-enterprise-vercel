@@ -1,0 +1,21 @@
+---
+import Principal from '@layout/Principal.astro';
+import PaginaPost from '@componentes/paginas/PaginaPost.astro';
+import { cargarDatos } from '@helpers/idiomas';
+
+export async function getStaticPaths() {
+  const modulos = import.meta.glob<{ default: any }>('../../../datos/en/blog.json', { eager: true });
+  const datos = Object.values(modulos)[0].default;
+  return datos.posts.map((p: any) => ({
+    params: { slug: p.slug },
+    props: { post: p },
+  }));
+}
+
+const { post } = Astro.props;
+const datos = await cargarDatos<any>('en', 'blog');
+const related = datos.posts.filter((p: any) => p.slug !== post.slug).slice(0, 3);
+---
+<Principal idioma="en">
+  <PaginaPost post={post} datos={datos} idioma="en" related={related} />
+</Principal>

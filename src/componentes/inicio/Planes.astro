@@ -1,0 +1,45 @@
+---
+interface Props {
+  planes: any;
+}
+const { planes } = Astro.props;
+---
+<section id="planes" class="section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">{planes.eyebrow}</div>
+      <h2>{planes.titulo}</h2>
+      <p>{planes.descripcion}</p>
+    </div>
+    <div style="display:flex; justify-content:center; margin-bottom:32px">
+      <span class="badge badge-primary">{planes.producto}</span>
+    </div>
+    <div class="grid-3" style="align-items:stretch">
+      {planes.items.map((pl: any) => (
+        <div style={`padding:28px; border-radius:18px; background:${pl.popular?'linear-gradient(180deg, var(--brand-primary), #123558)':'var(--bg)'}; color:${pl.popular?'white':'inherit'}; border:${pl.popular?'1px solid rgba(255,255,255,.15)':'1px solid var(--ink-200)'}; position:relative; box-shadow:${pl.popular?'var(--shadow-xl)':'var(--shadow-sm)'}; display:flex; flex-direction:column`}>
+          {pl.popular && (
+            <span class="badge badge-pop" style="position:absolute; top:-12px; left:50%; transform:translateX(-50%)">MÁS POPULAR</span>
+          )}
+          <div style={`font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:${pl.popular?'var(--brand-accent)':'var(--brand-accent-2)'}; margin-bottom:8px`}>{planes.producto}</div>
+          <h3 style="font-size:22px; margin-bottom:6px">{pl.nombre}</h3>
+          <p style={`font-size:13px; color:${pl.popular?'rgba(255,255,255,.7)':'var(--ink-500)'}; margin-bottom:16px; line-height:1.5; min-height:38px`}>{pl.desc}</p>
+          <div style="display:flex; align-items:baseline; gap:4px; margin-bottom:4px">
+            <span style="font-size:16px; font-weight:600; opacity:.7">S/</span>
+            <span style="font-size:42px; font-weight:800; letter-spacing:-0.03em">{pl.precio}</span>
+            <span style={`font-size:13px; color:${pl.popular?'rgba(255,255,255,.7)':'var(--ink-500)'}`}>/mes</span>
+          </div>
+          <div style={`font-size:12px; color:${pl.popular?'rgba(255,255,255,.7)':'var(--ink-500)'}; margin-bottom:20px`}>{pl.empresas}</div>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:24px; flex:1">
+            {pl.features.map((f: string) => (
+              <li style={`display:flex; gap:10px; font-size:14px; color:${pl.popular?'rgba(255,255,255,.85)':'var(--ink-700)'}`}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={pl.popular ? '#14B8A6' : 'var(--brand-accent)'} stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
+          <a href="#contacto" class={pl.popular ? 'btn btn-primary' : 'btn btn-outline'} style="justify-content:center; width:100%">Solicitar {pl.nombre}</a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

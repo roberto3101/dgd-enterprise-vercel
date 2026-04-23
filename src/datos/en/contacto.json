@@ -1,0 +1,47 @@
+{
+  "eyebrow": "Contact",
+  "titulo": "Let's talk about your project",
+  "descripcion": "Fill in the form or message us on WhatsApp. A consultant will reach out in under 24 hours.",
+  "form": {
+    "titulo": "Tell us about your company",
+    "nombre": "First and last name *",
+    "empresa": "Company *",
+    "ruc": "Tax ID (RUC)",
+    "rucPlaceholder": "20XXXXXXXXX",
+    "telefono": "Phone",
+    "telefonoPlaceholder": "+51 9XX XXX XXX",
+    "email": "Corporate email *",
+    "producto": "Product of interest",
+    "productos": ["ContaPlex", "GestiónPlex", "SUNAT Invoicing", "All three integrated", "Not sure yet"],
+    "usuarios": "Estimated users",
+    "rangos": ["1-5", "6-15", "16-50", "51-200", "More than 200"],
+    "mensaje": "Message (optional)",
+    "mensajePlaceholder": "Briefly tell us what you need...",
+    "politica": "I accept the privacy policy and data processing to be contacted.",
+    "submit": "Send request",
+    "enviando": "Sending...",
+    "exito": "Thank you! We'll be in touch soon."
+  },
+  "sidebar": {
+    "titulo": "Direct contact",
+    "telefono": { "label": "Sales", "valor": "+51 936 343 607" },
+    "whatsapp": { "label": "Support", "valor": "+51 905 463 261" },
+    "email": { "label": "Email", "valor": "ventas@codeplex.pe" },
+    "oficina": { "label": "Office", "valor": "Av. Los Próceres Mza. G3 Lote 11 · Los Olivos, Lima" }
+  },
+  "horarios": {
+    "titulo": "Hours",
+    "items": [
+      { "d": "Monday - Friday", "h": "8:00 AM — 6:00 PM" },
+      { "d": "Saturday", "h": "8:00 AM — 2:00 PM" },
+      { "d": "Sunday", "h": "Closed" }
+    ]
+  },
+  "whatsappCta": "Message on WhatsApp",
+  "mapa": {
+    "titulo": "Grupo DGD · Los Olivos office",
+    "direccion": "Av. Los Próceres Mza. G3 Lote 11 · Los Olivos, Lima",
+    "calleH": "Av. Los Próceres",
+    "calleV": "Av. Alfredo Mendiola"
+  }
+}

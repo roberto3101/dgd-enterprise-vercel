@@ -1,0 +1,109 @@
+{
+  "hero": {
+    "badgePartner": "★ Partner oficial Codeplex",
+    "badgeSunat": "Autorizado SUNAT",
+    "tituloPre": "Cumple con ",
+    "tituloGradient": "SUNAT",
+    "tituloPost": " sin complicarte la vida.",
+    "descripcion": "Implementamos y acompañamos tu empresa con <b>ContaPlex</b>, <b>GestiónPlex</b> y <b>Facturación Electrónica</b> — los sistemas cloud de Codeplex, 100% válidos ante SUNAT.",
+    "ctaPrimario": "Solicitar demo gratis",
+    "ctaSecundario": "Ver planes",
+    "bullets": ["Setup en 7 días", "Capacitación incluida", "Soporte en Perú"],
+    "dashboard": {
+      "url": "app.contaplex.pe/dashboard",
+      "eyebrow": "Vista demo · Panel contable",
+      "titulo": "Panel contable",
+      "tags": ["✓ PLE validado", "SIRE listo"],
+      "sidebar": ["Dashboard", "Ingresos", "Gastos", "Libros electrónicos", "SIRE", "PLE", "Reportes", "Empresas"],
+      "metricas": [
+        { "label": "Ingresos", "valor": "S/ 485,230", "delta": "+12.4%" },
+        { "label": "Gastos", "valor": "S/ 312,180", "delta": "-3.1%" },
+        { "label": "Utilidad", "valor": "S/ 173,050", "delta": "+28.7%" }
+      ],
+      "chart": { "titulo": "Flujo mensual · S/", "subtitulo": "Últimos 6 meses", "meses": ["Nov","Dic","Ene","Feb","Mar","Abr"] },
+      "floatingTop": { "titulo": "SUNAT presentó", "subtitulo": "Libro de Ventas · OK" },
+      "floatingBottom": { "eyebrow": "Facturación hoy", "monto": "S/ 48,230", "delta": "↑ 18% vs ayer" }
+    },
+    "metricsStrip": [
+      { "text": "Partner", "label": "autorizado Codeplex Software · Perú" },
+      { "text": "SUNAT", "label": "100% válido: SIRE, PLE, facturación electrónica" },
+      { "text": "Cloud", "label": "multi-empresa, multi-usuario, multi-almacén" },
+      { "text": "Lun · Sáb", "label": "soporte en Perú, en español" }
+    ]
+  },
+  "productos": {
+    "eyebrow": "Nuestra suite",
+    "titulo": "Tres productos, una sola plataforma",
+    "descripcion": "Implementamos cada uno por separado o todo integrado. Tú eliges por dónde empezar.",
+    "items": [
+      {
+        "slug": "contaplex",
+        "nombre": "ContaPlex",
+        "tagline": "Contabilidad cloud integrada con SUNAT",
+        "color": "#14B8A6",
+        "bullets": ["SIRE · PLE · libros electrónicos", "Estados financieros y análisis", "Multi-empresa y multi-usuario"],
+        "cta": "Conocer más"
+      },
+      {
+        "slug": "gestionplex",
+        "nombre": "GestiónPlex",
+        "tagline": "Logística, inventarios, POS y restaurante",
+        "color": "#3B82F6",
+        "bullets": ["Inventarios multi-almacén", "POS y módulo restaurante", "App móvil para vendedores"],
+        "cta": "Conocer más"
+      },
+      {
+        "slug": "facturacion-sunat",
+        "nombre": "Facturación SUNAT",
+        "tagline": "Boletas, facturas y guías válidas",
+        "color": "#8B5CF6",
+        "bullets": ["Certificado digital incluido", "Envío automático XML/PDF/CDR", "Integra con ContaPlex y GestiónPlex"],
+        "cta": "Conocer más"
+      }
+    ]
+  },
+  "planes": {
+    "eyebrow": "Planes y servicios",
+    "titulo": "Los planes son de Codeplex. El servicio es de DGD.",
+    "descripcion": "La licencia del software la contratas según la lista oficial de Codeplex. Nosotros añadimos implementación, capacitación y soporte local.",
+    "producto": "ContaPlex",
+    "items": [
+      { "nombre": "Estándar", "precio": 50, "empresas": "5 empresas", "desc": "Registros básicos, PLE, generación de diario", "features": ["Voucher contable", "Registro de compras y ventas", "Caja y bancos", "PLE", "Libros contables"] },
+      { "nombre": "Business", "precio": 100, "empresas": "15 empresas", "desc": "Validación PLE, saldos iniciales, consultas avanzadas", "popular": true, "features": ["Todo lo de Estándar", "Validación PLE", "Saldos iniciales", "DAOT", "Cuentas por cobrar"] },
+      { "nombre": "Gold", "precio": 300, "empresas": "50 empresas", "desc": "Activos fijos, retenciones, EE.FF. completos", "features": ["Todo lo de Business", "Activos fijos", "Retenciones", "EE.FF. función y naturaleza"] }
+    ],
+    "ctaVerTodos": "Ver todos los planes"
+  },
+  "casos": {
+    "eyebrow": "Casos de éxito",
+    "titulo": "Resultados publicados por Codeplex",
+    "descripcion": "Impacto documentado por Codeplex Software en implementaciones de su suite. Grupo DGD es partner autorizado en Perú.",
+    "items": [
+      { "industria": "Contabilidad y finanzas", "empresa": "Optimización de procesos financieros", "kpi": "40% menos tiempo en gestión contable", "desc": "Caso publicado por Codeplex sobre la implementación de ContaPlex para automatizar registros y reportes.", "tag": "Fuente: codeplex.pe", "color": "#14B8A6" },
+      { "industria": "Logística y almacenes", "empresa": "Gestión logística eficiente", "kpi": "35% de reducción de costos de almacén", "desc": "Caso publicado por Codeplex sobre la implementación de GestiónPlex para inventarios multi-almacén y kárdex valorizado.", "tag": "Fuente: codeplex.pe", "color": "#3B82F6" },
+      { "industria": "Facturación electrónica", "empresa": "Implementación de facturación electrónica", "kpi": "70% menos tiempo de procesamiento SUNAT", "desc": "Caso publicado por Codeplex sobre el despliegue de Facturación SUNAT con envío automático XML/PDF/CDR.", "tag": "Fuente: codeplex.pe", "color": "#8B5CF6" }
+    ]
+  },
+  "blog": {
+    "eyebrow": "Blog DGD",
+    "titulo": "Ideas para digitalizar tu PYME",
+    "descripcion": "Guías SUNAT, tips contables, logística y casos reales escritos por nuestros consultores.",
+    "placeholder": "Próximos artículos en camino. Suscríbete para no perdértelos.",
+    "emailPlaceholder": "tu-email@empresa.com",
+    "ctaSuscribir": "Suscribirme"
+  },
+  "cta": {
+    "titulo": "¿Listo para digitalizar tu empresa?",
+    "descripcion": "Déjanos tus datos y un consultor te contacta en menos de 24 horas. Sin compromiso.",
+    "bullets": ["Demo personalizada según tu industria", "Propuesta de implementación a medida", "Sin letra chica, sin compromiso"],
+    "formulario": {
+      "titulo": "Agenda tu demo",
+      "nombre": "Nombre y apellido *",
+      "email": "Email corporativo *",
+      "whatsapp": "WhatsApp (opcional)",
+      "producto": "Producto de interés",
+      "productos": ["ContaPlex", "GestiónPlex", "Facturación SUNAT", "Los tres integrados", "No estoy seguro"],
+      "cta": "Agendar demo"
+    }
+  }
+}

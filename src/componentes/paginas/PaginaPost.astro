@@ -1,0 +1,259 @@
+---
+import Icon from '@componentes/ui/Icon.astro';
+import SectionHeader from '@componentes/ui/SectionHeader.astro';
+import type { Idioma } from '@helpers/idiomas';
+interface Props { post: any; datos: any; idioma: Idioma; related: any[]; }
+const { post, datos, idioma, related } = Astro.props;
+const blogHref = `/${idioma}/blog/`;
+const contactoHref = `/${idioma}/contacto/`;
+
+const catColor: Record<string, string> = {
+  SUNAT: '#14B8A6', Contabilidad: '#3B82F6', Accounting: '#3B82F6',
+  Logística: '#F59E0B', Logistics: '#F59E0B', Facturación: '#8B5CF6', Invoicing: '#8B5CF6',
+  PYMEs: '#EC4899', SMBs: '#EC4899', Tecnología: '#6366F1', Tech: '#6366F1',
+};
+const color = catColor[post.cat] || '#14B8A6';
+const initials = post.author.split(' ').map((w: string) => w[0]).slice(0, 2).join('');
+
+const bodyParagraphs: Record<string, string[]> = idioma === 'es' ? {
+  intro: [
+    post.excerpt,
+    'En Grupo DGD acompañamos a PYMEs peruanas que intentan ordenar su operación tributaria y contable con la suite de Codeplex. Hay patrones que se repiten — y aprendizajes concretos que vale la pena compartir.',
+    'Este artículo busca ser práctico: nada de teoría abstracta, sí pasos claros que puedes aplicar esta semana en tu empresa.',
+  ],
+  contexto: [
+    'La normativa SUNAT se ha movido aceleradamente en los últimos dos años. Lo que antes era opcional hoy es obligatorio, y los plazos de adecuación cada vez son más cortos.',
+    'Las PYMEs que se anticipan se ahorran multas y, sobre todo, dolores de cabeza operativos.',
+  ],
+  pasos: [
+    'En nuestra experiencia, una implementación ordenada sigue este orden:',
+  ],
+  errores: [
+    'Los tropiezos más comunes que vemos mes a mes:',
+  ],
+  cierre: [
+    'Digitalizarse no es un proyecto de tecnología; es un proyecto de procesos con una herramienta debajo. Cuando lo ves así, las decisiones se ordenan solas.',
+    'Si tienes dudas sobre por dónde empezar, agenda una llamada gratuita — hablamos en concreto sobre tu caso, sin guion de venta.',
+  ],
+} : {
+  intro: [
+    post.excerpt,
+    'At Grupo DGD we support Peruvian SMBs trying to tidy their tax and accounting operations with the Codeplex suite. Some patterns repeat — and concrete lessons worth sharing emerge.',
+    'This article aims to be practical: no abstract theory, just clear steps you can apply this week at your company.',
+  ],
+  contexto: [
+    'SUNAT regulation has moved fast in the last two years. What was optional is now mandatory, and compliance windows keep shrinking.',
+    'SMBs that move early avoid fines and — above all — operational headaches.',
+  ],
+  pasos: [
+    'In our experience, an orderly implementation follows this order:',
+  ],
+  errores: [
+    'The most common stumbles we see month after month:',
+  ],
+  cierre: [
+    'Digitizing is not a technology project; it\'s a process project with a tool underneath. Once you see it that way, decisions fall into place.',
+    'If you have doubts about where to start, book a free call — we talk concretely about your case, no sales script.',
+  ],
+};
+
+const pasosItems = idioma === 'es' ? [
+  ['Diagnóstico inicial', 'inventario de procesos, fuentes de datos y accesos a SUNAT.'],
+  ['Limpieza maestra', 'plan de cuentas, maestro de clientes y proveedores depurado.'],
+  ['Migración piloto', 'un período completo de prueba antes del go-live oficial.'],
+  ['Capacitación en vivo', 'tu equipo necesita ver el sistema funcionando con tu data.'],
+  ['Go-live y acompañamiento', 'los primeros 30 días son clave para cerrar bien.'],
+] : [
+  ['Initial diagnosis', 'inventory of processes, data sources and SUNAT accesses.'],
+  ['Master cleanup', 'chart of accounts, customer and supplier master cleaned up.'],
+  ['Pilot migration', 'a full test period before official go-live.'],
+  ['Live training', 'your team needs to see the system running on your data.'],
+  ['Go-live and support', 'the first 30 days are key to closing well.'],
+];
+
+const erroresItems = idioma === 'es' ? [
+  'Cambiar todo el mismo día sin piloto',
+  'No involucrar al contador desde el inicio',
+  'Saltarse la capacitación formal',
+  'Dejar la migración al final del proceso',
+] : [
+  'Changing everything the same day without a pilot',
+  'Not involving the accountant from the start',
+  'Skipping formal training',
+  'Leaving migration to the end of the process',
+];
+
+const quoteTexto = idioma === 'es'
+  ? '«El 80% de los problemas con SUNAT no son técnicos: son de procesos internos mal diseñados.»'
+  : '«80% of SUNAT problems aren\'t technical: they\'re poorly designed internal processes.»';
+const ctaTitulo = idioma === 'es' ? '¿Quieres profundizar en este tema?' : 'Want to go deeper on this topic?';
+const ctaDesc = idioma === 'es' ? 'Agenda 30 minutos con un consultor DGD — revisamos juntos tu caso específico.' : 'Book 30 minutes with a DGD consultant — we review your specific case together.';
+const ctaBtn = idioma === 'es' ? 'Agendar llamada' : 'Book a call';
+---
+<article>
+  <header style="padding:56px 0 32px;background:var(--bg-alt);">
+    <div class="container" style="max-width:820px;">
+      <div style="margin-bottom:20px;font-size:14px;">
+        <a href={blogHref} style="color:var(--brand-accent-2);font-weight:600;">{datos.volver}</a>
+      </div>
+      <div style="display:flex;gap:10px;margin-bottom:18px;align-items:center;flex-wrap:wrap;">
+        <span class="badge" style={`background:color-mix(in srgb, ${color} 12%, transparent);color:${color};`}>{post.cat}</span>
+        <span style="font-size:13px;color:var(--ink-500);">{post.date} · {post.read}</span>
+      </div>
+      <h1 style="font-size:clamp(2rem, 4vw, 3rem);line-height:1.15;">{post.title}</h1>
+      <div class="post-author">
+        <div class="post-avatar" style={`background:linear-gradient(135deg, ${color}, color-mix(in srgb, ${color} 60%, black));`}>{initials}</div>
+        <div>
+          <div style="font-weight:700;font-size:15px;">{post.author}</div>
+          <div style="font-size:13px;color:var(--ink-500);">{post.authorRole} · Grupo DGD</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container" style="padding:56px 0;">
+    <div class="post-layout">
+      <aside class="post-toc">
+        <div class="post-toc-head">{datos.enEstaPagina}</div>
+        <nav class="post-toc-nav" style={`--toc-accent:${color};`}>
+          {post.secciones.map((s: any, i: number) => (
+            <a href={`#${s.id}`} class={`post-toc-link ${i === 0 ? 'active' : ''}`} data-toc-target={s.id}>{s.title}</a>
+          ))}
+        </nav>
+        <div class="post-share">
+          <div class="post-toc-head">{datos.compartir}</div>
+          <div style="display:flex;gap:6px;">
+            {['in', 'X', 'WA', 'URL'].map(s => (<button type="button" class="post-share-btn">{s}</button>))}
+          </div>
+        </div>
+      </aside>
+
+      <div class="post-body">
+        <div id="intro" data-toc-section>
+          {bodyParagraphs.intro.map((p, i) => (<p class={i === 0 ? 'post-lead' : ''}>{p}</p>))}
+        </div>
+
+        <div id="contexto" data-toc-section>
+          <h2>{post.secciones.find((s: any) => s.id === 'contexto')?.title || 'Contexto'}</h2>
+          {bodyParagraphs.contexto.map(p => <p>{p}</p>)}
+          <blockquote style={`border-left:4px solid ${color};`}>{quoteTexto}</blockquote>
+        </div>
+
+        <div id="pasos" data-toc-section>
+          <h2>{post.secciones.find((s: any) => s.id === 'pasos')?.title || 'Pasos'}</h2>
+          {bodyParagraphs.pasos.map(p => <p>{p}</p>)}
+          <ol class="post-steps">
+            {pasosItems.map(([title, desc]) => (
+              <li><b>{title}</b> — {desc}</li>
+            ))}
+          </ol>
+        </div>
+
+        <div id="errores" data-toc-section>
+          <h2>{post.secciones.find((s: any) => s.id === 'errores')?.title || 'Errores'}</h2>
+          {bodyParagraphs.errores.map(p => <p>{p}</p>)}
+          <div class="post-errors">
+            {erroresItems.map((e, i) => (
+              <div class="post-error-item"><b>#{i + 1}</b> {e}</div>
+            ))}
+          </div>
+        </div>
+
+        <div id="cierre" data-toc-section>
+          <h2>{post.secciones.find((s: any) => s.id === 'cierre')?.title || 'Cierre'}</h2>
+          {bodyParagraphs.cierre.map(p => <p>{p}</p>)}
+          <div class="post-cta" style={`background:linear-gradient(135deg, ${color}, color-mix(in srgb, ${color} 50%, black));`}>
+            <h3 style="color:white;font-size:20px;margin-bottom:8px;">{ctaTitulo}</h3>
+            <p style="color:rgba(255,255,255,.85);margin-bottom:18px;font-size:15px;">{ctaDesc}</p>
+            <a class="btn" href={contactoHref} style={`background:white;color:${color};`}>{ctaBtn} <Icon name="arrow" size={16} /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+{related.length > 0 && (
+  <section class="section-alt">
+    <div class="container">
+      <SectionHeader eyebrow={datos.relacionados.eyebrow} titulo={datos.relacionados.titulo} align="left" />
+      <div class="grid-3">
+        {related.map(p => (
+          <a href={`${blogHref}${p.slug}/`} class="post-card" style="text-decoration:none;color:inherit;">
+            <div class="post-cover" style={`background:linear-gradient(135deg, ${catColor[p.cat] || '#14B8A6'}, color-mix(in srgb, ${catColor[p.cat] || '#14B8A6'} 50%, black));height:120px;`}></div>
+            <div style="padding:20px;">
+              <span class="badge" style={`background:color-mix(in srgb, ${catColor[p.cat] || '#14B8A6'} 12%, transparent);color:${catColor[p.cat] || '#14B8A6'};margin-bottom:10px;display:inline-block;`}>{p.cat}</span>
+              <h3 style="font-size:16px;line-height:1.35;margin-bottom:10px;">{p.title}</h3>
+              <div style="font-size:12px;color:var(--ink-500);">{p.author} · {p.date}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<script is:inline>
+  const onScroll = () => {
+    const secs = document.querySelectorAll('[data-toc-section]');
+    let cur = 0;
+    secs.forEach((s, i) => { if (s.getBoundingClientRect().top < 200) cur = i; });
+    document.querySelectorAll('.post-toc-link').forEach((a, i) => a.classList.toggle('active', i === cur));
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  document.querySelectorAll('.post-toc-link').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = a.getAttribute('data-toc-target');
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
+<style>
+  .post-author {
+    display:flex; align-items:center; gap:14px; margin-top:28px;
+    padding-top:24px; border-top:1px solid var(--ink-200);
+  }
+  .post-avatar {
+    width:48px; height:48px; border-radius:50%; color:white;
+    display:grid; place-items:center; font-weight:700; font-size:16px;
+  }
+  .post-layout { display:grid; grid-template-columns:240px 1fr; gap:56px; max-width:1060px; margin:0 auto; }
+  @media (max-width:900px) { .post-layout { grid-template-columns:1fr; } .post-toc { position:static !important; } }
+  .post-toc { position:sticky; top:96px; height:fit-content; align-self:start; }
+  .post-toc-head {
+    font-size:11px; font-weight:700; text-transform:uppercase;
+    letter-spacing:.08em; color:var(--ink-500); margin-bottom:14px;
+  }
+  .post-toc-nav { display:flex; flex-direction:column; gap:2px; border-left:2px solid var(--ink-200); }
+  .post-toc-link {
+    padding:8px 14px; font-size:13.5px; color:var(--ink-500); font-weight:500;
+    border-left:2px solid transparent; margin-left:-2px; transition:all .15s; text-decoration:none;
+  }
+  .post-toc-link.active { color:var(--ink-900); font-weight:600; border-left-color:var(--toc-accent); }
+  .post-share { margin-top:28px; padding-top:20px; border-top:1px solid var(--ink-200); }
+  .post-share-btn {
+    width:36px; height:36px; border-radius:8px; background:var(--ink-100);
+    font-size:11px; font-weight:700; color:var(--ink-700); border:none; cursor:pointer;
+  }
+  .post-body { font-size:18px; line-height:1.75; color:var(--ink-700); }
+  .post-body > div { margin-bottom:40px; }
+  .post-body h2 { font-size:28px; margin-bottom:18px; color:var(--ink-900); }
+  .post-body p { margin-bottom:14px; }
+  .post-lead { font-size:20px !important; color:var(--ink-900) !important; font-weight:500; line-height:1.55 !important; margin-bottom:24px !important; }
+  .post-body blockquote {
+    padding:16px 24px; background:var(--bg-alt); border-radius:8px;
+    margin:24px 0; font-style:italic; color:var(--ink-900);
+  }
+  .post-steps { margin-top:20px; padding-left:24px; display:flex; flex-direction:column; gap:12px; }
+  .post-steps li b { color:var(--ink-900); }
+  .post-errors { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:20px; }
+  @media (max-width:600px) { .post-errors { grid-template-columns:1fr; } }
+  .post-error-item {
+    padding:16px; background:var(--bg-alt); border-radius:10px;
+    border-left:3px solid #EF4444; font-size:14px; color:var(--ink-700);
+  }
+  .post-error-item b { color:var(--ink-900); margin-right:6px; }
+  .post-cta { margin-top:32px; padding:28px; border-radius:16px; color:white; }
+</style>

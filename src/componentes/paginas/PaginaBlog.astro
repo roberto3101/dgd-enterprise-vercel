@@ -1,0 +1,219 @@
+---
+import Icon from '@componentes/ui/Icon.astro';
+import type { Idioma } from '@helpers/idiomas';
+interface Props { datos: any; idioma: Idioma; }
+const { datos, idioma } = Astro.props;
+const blogHref = `/${idioma}/blog`;
+
+const catColor: Record<string, string> = {
+  SUNAT: '#14B8A6',
+  Contabilidad: '#3B82F6',
+  Accounting: '#3B82F6',
+  Logística: '#F59E0B',
+  Logistics: '#F59E0B',
+  Facturación: '#8B5CF6',
+  Invoicing: '#8B5CF6',
+  PYMEs: '#EC4899',
+  SMBs: '#EC4899',
+  Tecnología: '#6366F1',
+  Tech: '#6366F1',
+};
+const catCount = (c: string) => datos.posts.filter((p: any) => p.cat === c).length;
+---
+<section style="padding:72px 0 40px;background:linear-gradient(180deg, var(--bg-alt), var(--bg));">
+  <div class="container" style="text-align:center;max-width:760px;">
+    <div class="eyebrow">{datos.eyebrow}</div>
+    <h1 style="margin-top:8px;">{datos.titulo}</h1>
+    <p style="font-size:18px;color:var(--ink-500);margin-top:18px;">{datos.descripcion}</p>
+    <div style="margin:32px auto 0;position:relative;max-width:480px;">
+      <span style="position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--ink-500);"><Icon name="search" size={18} /></span>
+      <input id="blog-search" class="input" placeholder={datos.buscarPlaceholder} style="padding-left:46px;height:52px;border-radius:999px;font-size:15px;" />
+    </div>
+  </div>
+</section>
+
+<section style="padding:32px 0 0;">
+  <div class="container">
+    <div class="cat-filters">
+      {datos.categorias.map((c: string, i: number) => (
+        <button type="button" class={`cat-filter ${i === 0 ? 'active' : ''}`} data-cat={c}>{c}</button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 0 64px;">
+  <div class="container">
+    <div class="blog-grid">
+      <div>
+        <div class="posts-grid" id="posts-grid">
+          {datos.posts.map((p: any) => (
+            <a href={`${blogHref}/${p.slug}/`} class="post-card" data-cat={p.cat} data-title={p.title.toLowerCase()} data-excerpt={p.excerpt.toLowerCase()}>
+              <div class="post-cover" style={`background:linear-gradient(135deg, ${catColor[p.cat] || '#14B8A6'}, color-mix(in srgb, ${catColor[p.cat] || '#14B8A6'} 50%, black));`}>
+                <div class="post-cover-pattern"></div>
+                <span class="badge badge-pop post-cat">{p.cat}</span>
+                <span class="post-read">{p.read}</span>
+              </div>
+              <div class="post-body">
+                <h3 style="font-size:17px;line-height:1.35;margin-bottom:10px;">{p.title}</h3>
+                <p class="post-excerpt">{p.excerpt}</p>
+                <div class="post-foot">
+                  <span>{p.author}</span>
+                  <span>{p.date}</span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+        <div id="posts-empty" class="posts-empty" hidden>
+          <div style="font-size:34px;margin-bottom:12px;">🔍</div>
+          <div style="font-size:17px;font-weight:600;color:var(--ink-900);margin-bottom:6px;">
+            {idioma === 'es' ? 'Sin resultados' : 'No results'}
+          </div>
+          <div style="font-size:14px;max-width:380px;margin:0 auto;">
+            {idioma === 'es' ? 'Prueba con otra categoría o palabra clave.' : 'Try another category or keyword.'}
+          </div>
+        </div>
+      </div>
+
+      <aside class="blog-side">
+        <div class="card" style="padding:22px;border-radius:16px;">
+          <h4 class="side-head">{datos.sidebar.categorias}</h4>
+          <ul class="side-cat-list">
+            {datos.categorias.slice(1).map((c: string) => (
+              <li>
+                <button type="button" class="cat-filter-mini" data-cat={c}>
+                  <span>{c}</span><span style="color:var(--ink-500);font-size:12px;">{catCount(c)}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="card" style="padding:22px;border-radius:16px;">
+          <h4 class="side-head">{datos.sidebar.populares}</h4>
+          <ul class="side-pop-list">
+            {datos.posts.slice(0, 4).map((p: any, i: number) => (
+              <li>
+                <a href={`${blogHref}/${p.slug}/`} class="side-pop-item">
+                  <div class="side-pop-num">0{i + 1}</div>
+                  <div class="side-pop-title">{p.title}</div>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="newsletter-card">
+          <h4 style="color:white;margin-bottom:8px;font-size:15px;">{datos.sidebar.newsletter.titulo}</h4>
+          <p style="font-size:13px;color:rgba(255,255,255,.8);margin-bottom:16px;line-height:1.5;">{datos.sidebar.newsletter.descripcion}</p>
+          <form id="nl-form" style="display:flex;flex-direction:column;gap:8px;">
+            <input type="email" required placeholder={datos.sidebar.newsletter.emailPlaceholder} class="input" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:white;" />
+            <button type="submit" class="btn btn-primary btn-sm" style="justify-content:center;">{datos.sidebar.newsletter.cta}</button>
+          </form>
+          <div id="nl-ok" class="nl-ok" hidden>✓ {idioma === 'es' ? '¡Suscrito!' : 'Subscribed!'}</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  const cards = Array.from(document.querySelectorAll('.post-card'));
+  const emptyEl = document.getElementById('posts-empty');
+  const searchEl = document.getElementById('blog-search');
+  let activeCat = null;
+  let q = '';
+
+  const applyFilters = () => {
+    let shown = 0;
+    cards.forEach(c => {
+      const cat = c.getAttribute('data-cat');
+      const title = c.getAttribute('data-title');
+      const exc = c.getAttribute('data-excerpt');
+      const matchCat = !activeCat || cat === activeCat;
+      const matchQ = !q || title.includes(q) || exc.includes(q);
+      const show = matchCat && matchQ;
+      c.style.display = show ? '' : 'none';
+      if (show) shown++;
+    });
+    emptyEl.hidden = shown > 0;
+  };
+
+  const setCat = (cat, all) => {
+    activeCat = all ? null : cat;
+    document.querySelectorAll('.cat-filter').forEach(b => {
+      b.classList.toggle('active', (all && b.getAttribute('data-cat') === cat) || (!all && b.getAttribute('data-cat') === cat));
+    });
+    applyFilters();
+  };
+
+  document.querySelectorAll('.cat-filter').forEach((btn, i) => {
+    btn.addEventListener('click', () => setCat(btn.getAttribute('data-cat'), i === 0));
+  });
+  document.querySelectorAll('.cat-filter-mini').forEach(btn => {
+    btn.addEventListener('click', () => setCat(btn.getAttribute('data-cat'), false));
+  });
+  searchEl.addEventListener('input', () => { q = searchEl.value.trim().toLowerCase(); applyFilters(); });
+
+  const nlForm = document.getElementById('nl-form');
+  nlForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    nlForm.reset();
+    document.getElementById('nl-ok').hidden = false;
+    setTimeout(() => { document.getElementById('nl-ok').hidden = true; }, 4000);
+  });
+</script>
+
+<style>
+  .cat-filters { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-bottom:48px; }
+  .cat-filter {
+    padding:8px 16px; border-radius:999px; border:1px solid var(--ink-200);
+    background:var(--bg); color:var(--ink-700); font-size:13.5px; font-weight:600; cursor:pointer;
+    transition:all .15s;
+  }
+  .cat-filter.active { background:var(--ink-900); color:var(--bg); border-color:transparent; }
+  .blog-grid { display:grid; grid-template-columns:1fr 280px; gap:40px; }
+  @media (max-width:900px) { .blog-grid { grid-template-columns:1fr; } }
+  .posts-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+  @media (max-width:600px) { .posts-grid { grid-template-columns:1fr; } }
+  .post-card {
+    padding:0; cursor:pointer; overflow:hidden; border-radius:16px;
+    display:flex; flex-direction:column;
+    background:var(--bg); border:1px solid var(--ink-200);
+    box-shadow:var(--shadow-sm); text-decoration:none; color:inherit;
+    transition:transform .15s, box-shadow .15s;
+  }
+  .post-card:hover { transform:translateY(-3px); box-shadow:var(--shadow); }
+  .post-cover { height:160px; position:relative; overflow:hidden; }
+  .post-cover-pattern { position:absolute; inset:0; background:repeating-linear-gradient(45deg, transparent 0 20px, rgba(255,255,255,.07) 20px 40px); }
+  .post-cat { position:absolute; top:14px; left:14px; background:rgba(255,255,255,.22); backdrop-filter:blur(8px); color:white; }
+  .post-read {
+    position:absolute; bottom:14px; right:14px; padding:4px 10px; border-radius:6px;
+    background:rgba(0,0,0,.3); color:white; font-size:11px; font-weight:600;
+  }
+  .post-body { padding:20px; flex:1; display:flex; flex-direction:column; }
+  .post-excerpt { font-size:13.5px; color:var(--ink-500); line-height:1.55; margin-bottom:16px; flex:1; }
+  .post-foot {
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:12px; color:var(--ink-500); padding-top:14px; border-top:1px solid var(--ink-100);
+  }
+  .posts-empty { padding:64px; text-align:center; color:var(--ink-500); border:1px dashed var(--ink-200); border-radius:18px; }
+  .blog-side { display:flex; flex-direction:column; gap:28px; }
+  .side-head {
+    font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--ink-500); margin-bottom:14px;
+  }
+  .side-cat-list { list-style:none; display:flex; flex-direction:column; gap:8px; }
+  .cat-filter-mini {
+    width:100%; display:flex; justify-content:space-between; padding:6px 0;
+    font-size:14px; color:var(--ink-700); background:transparent; border:none; cursor:pointer;
+  }
+  .side-pop-list { list-style:none; display:flex; flex-direction:column; gap:14px; }
+  .side-pop-item { display:flex; gap:12px; text-decoration:none; color:inherit; }
+  .side-pop-num { font-size:22px; font-weight:800; color:var(--ink-300); line-height:1; min-width:24px; }
+  .side-pop-title { font-size:13px; line-height:1.4; font-weight:500; color:var(--ink-900); }
+  .newsletter-card {
+    padding:22px; border-radius:16px;
+    background:linear-gradient(135deg,var(--brand-primary),#123558); color:white;
+  }
+  .nl-ok { margin-top:10px; color:var(--brand-accent); font-size:13px; font-weight:600; }
+</style>

@@ -1,0 +1,122 @@
+---
+interface Props {
+  productos: any;
+}
+const { productos } = Astro.props;
+---
+<section class="producto-accion">
+  <div class="producto-accion-bg"></div>
+  <div class="container">
+    <div class="producto-accion-grid">
+      <div data-anim="reveal-left">
+        <div class="eyebrow" style="color:var(--gold-400);">Producto en acción</div>
+        <h2 style="color:white;margin-top:10px;" data-anim="reveal-up">
+          Tu operación contable<br/>
+          <span class="gradient-text">en tiempo real</span>
+        </h2>
+        <p style="color:rgba(255,255,255,.78);font-size:17px;margin-top:18px;line-height:1.65;max-width:480px;">
+          Desde el escritorio o desde el celular: ContaPlex y GestiónPlex te dan
+          una sola vista del flujo de caja, KPIs y movimientos de tu negocio —
+          sincronizado con SUNAT.
+        </p>
+
+        <div class="producto-accion-features" data-anim="stagger">
+          <div class="paf-item">
+            <div class="paf-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div>
+              <div class="paf-title">Flujo de caja consolidado</div>
+              <div class="paf-desc">Vista mensual con desglose por sede, módulo y centro de costo</div>
+            </div>
+          </div>
+          <div class="paf-item">
+            <div class="paf-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+            </div>
+            <div>
+              <div class="paf-title">KPIs en vivo</div>
+              <div class="paf-desc">Rendimiento YTD, activos, ingresos — actualizados al momento</div>
+            </div>
+          </div>
+          <div class="paf-item">
+            <div class="paf-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            </div>
+            <div>
+              <div class="paf-title">Móvil + escritorio</div>
+              <div class="paf-desc">Sincronización nativa para que el contador y el dueño vean lo mismo</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:32px;">
+          <a class="btn btn-gold btn-lg btn-shine" href="#contacto">
+            Ver demo en vivo
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="producto-accion-img-wrap" data-anim="img-zoom">
+        <div class="paw-glow"></div>
+        <img src="/imagenes/dashboard-mockup.webp" alt="Dashboard ContaPlex en laptop y móvil" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .producto-accion {
+    position:relative; padding:96px 0; overflow:hidden;
+    background:linear-gradient(180deg, var(--navy-900) 0%, var(--navy-800) 100%);
+  }
+  .producto-accion-bg {
+    position:absolute; inset:0; opacity:.4; pointer-events:none;
+    background:radial-gradient(ellipse 70% 60% at 70% 50%, rgba(23,80,130,.35), transparent 70%);
+  }
+  .producto-accion-grid {
+    position:relative; display:grid; grid-template-columns:1fr 1.05fr;
+    gap:64px; align-items:center;
+  }
+  @media (max-width:980px) {
+    .producto-accion-grid { grid-template-columns:1fr; gap:48px; }
+    .producto-accion { padding:72px 0; }
+  }
+  .producto-accion-features {
+    display:flex; flex-direction:column; gap:16px; margin-top:32px;
+  }
+  .paf-item {
+    display:flex; gap:14px; align-items:flex-start;
+    padding:14px 16px; border-radius:12px;
+    background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06);
+    transition:border-color .4s ease, background .4s ease;
+  }
+  .paf-item:hover {
+    background:rgba(255,255,255,.05); border-color:rgba(212,175,55,.18);
+  }
+  .paf-icon {
+    width:36px; height:36px; flex-shrink:0; border-radius:9px;
+    background:linear-gradient(135deg,var(--gold-500),var(--gold-700));
+    color:var(--navy-900); display:grid; place-items:center;
+  }
+  .paf-title { font-weight:700; color:white; font-size:15px; }
+  .paf-desc { font-size:13px; color:rgba(255,255,255,.65); margin-top:2px; line-height:1.45; }
+  .producto-accion-img-wrap {
+    position:relative; display:flex; justify-content:center; align-items:center;
+    min-height:480px;
+  }
+  .paw-glow {
+    position:absolute; inset:0;
+    background:radial-gradient(ellipse 65% 55% at center, rgba(23,80,130,.35), transparent 75%);
+    filter:blur(60px); pointer-events:none;
+  }
+  .producto-accion-img-wrap img {
+    position:relative; width:100%; max-width:560px; height:auto; display:block;
+    filter:drop-shadow(0 30px 50px rgba(0,0,0,.45));
+  }
+  @media (max-width:980px) {
+    .producto-accion-img-wrap { min-height:auto; padding:32px 0; }
+    .producto-accion-img-wrap img { max-width:420px; }
+  }
+</style>

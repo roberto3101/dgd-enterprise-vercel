@@ -1,0 +1,183 @@
+---
+import Icon from '@componentes/ui/Icon.astro';
+import CTAPanel from '@componentes/ui/CTAPanel.astro';
+import type { Idioma } from '@helpers/idiomas';
+interface Props { datos: any; idioma: Idioma; }
+const { datos, idioma } = Astro.props;
+const contactoHref = `/${idioma}/contacto/`;
+
+const tagColor: Record<string, string> = {
+  'Testimonio público': '#14B8A6',
+  'Public testimonial': '#14B8A6',
+  'Investigación': '#3B82F6',
+  'Research': '#3B82F6',
+  'Próximamente': '#8B5CF6',
+  'Coming soon': '#8B5CF6',
+};
+const tags = [datos.filtros.todos, ...Array.from(new Set(datos.items.map((c: any) => c.tag)))] as string[];
+---
+<section style="padding:72px 0 48px;">
+  <div class="container" style="text-align:center;max-width:760px;">
+    <div class="eyebrow">{datos.eyebrow}</div>
+    <h1 style="margin-top:8px;">{datos.titulo}</h1>
+    <p style="font-size:18px;color:var(--ink-500);margin-top:18px;">{datos.descripcion}</p>
+  </div>
+</section>
+
+<section style="padding:0 0 32px;">
+  <div class="container">
+    <div class="caso-filters">
+      {tags.map((t, i) => (
+        <button type="button" class={`caso-filter ${i === 0 ? 'active' : ''}`} data-filter={t}>{t}</button>
+      ))}
+    </div>
+    <div class="casos-grid">
+      {datos.items.map((c: any, i: number) => {
+        const color = tagColor[c.tag] || '#14B8A6';
+        return (
+          <article class="caso-card" data-tag={c.tag} data-index={i}>
+            <div class="caso-header" style={`background:linear-gradient(135deg, ${color}, color-mix(in srgb, ${color} 50%, black));`}>
+              <div class="caso-circle"></div>
+              <span class="badge badge-pop caso-badge">{c.tag}</span>
+              <div>
+                <div class="caso-metric">{c.metric}</div>
+                <div class="caso-kpi">{c.kpi}</div>
+              </div>
+            </div>
+            <div class="caso-body">
+              <div class="caso-industry">{c.industry}</div>
+              <h3 style="font-size:18px;margin-bottom:10px;">{c.company}</h3>
+              <p class="caso-desc">{c.desc}</p>
+              <div class="caso-foot">
+                <span>{c.city} · {c.size}</span>
+                <span class="caso-link">{datos.filtros.leerCaso} <Icon name="arrow" size={12} /></span>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<div id="caso-modal" class="caso-modal" hidden>
+  <div class="caso-modal-bg" data-close></div>
+  <div class="caso-modal-inner">
+    <div class="caso-modal-head">
+      <span class="badge badge-primary" id="m-tag"></span>
+      <button type="button" class="caso-modal-x" data-close><Icon name="x" size={18} /></button>
+    </div>
+    <div class="caso-modal-industry" id="m-industry"></div>
+    <h2 id="m-company" style="margin:8px 0 18px;"></h2>
+    <div class="caso-modal-metric">
+      <div class="caso-modal-num" id="m-metric"></div>
+      <div id="m-kpi"></div>
+    </div>
+    <p id="m-desc" style="color:var(--ink-700);line-height:1.7;font-size:15px;margin-bottom:20px;"></p>
+    <a id="m-link" href="#" target="_blank" rel="noopener" style="display:none;" class="caso-modal-link">{datos.filtros.verFuente} <Icon name="arrow" size={14} /></a>
+    <div class="caso-modal-meta">
+      <span><b id="m-city-label">{datos.filtros.ubicacion}:</b> <span id="m-city"></span></span>
+      <span><b>{datos.filtros.tamano}:</b> <span id="m-size"></span></span>
+    </div>
+    <a class="btn btn-primary btn-lg" href={contactoHref} style="margin-top:16px;width:100%;justify-content:center;">{datos.filtros.ctaModal} <Icon name="arrow" size={18} /></a>
+  </div>
+</div>
+
+<CTAPanel titulo={datos.cta.titulo} descripcion={datos.cta.descripcion} ctaPrimario={datos.cta.primario} hrefPrimario={contactoHref} />
+
+<script is:inline define:vars={{ items: datos.items }}>
+  const cards = document.querySelectorAll('.caso-card');
+  document.querySelectorAll('.caso-filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const f = btn.getAttribute('data-filter');
+      document.querySelectorAll('.caso-filter').forEach(b => b.classList.toggle('active', b === btn));
+      cards.forEach(c => {
+        const show = f === btn.parentElement.querySelector('.caso-filter').textContent || c.getAttribute('data-tag') === f;
+        c.style.display = (btn === btn.parentElement.firstElementChild || c.getAttribute('data-tag') === f) ? '' : 'none';
+      });
+    });
+  });
+
+  const modal = document.getElementById('caso-modal');
+  const openModal = (i) => {
+    const it = items[i];
+    document.getElementById('m-tag').textContent = it.tag;
+    document.getElementById('m-industry').textContent = it.industry;
+    document.getElementById('m-company').textContent = it.company;
+    document.getElementById('m-metric').textContent = it.metric;
+    document.getElementById('m-kpi').textContent = it.kpi;
+    document.getElementById('m-desc').textContent = it.desc;
+    document.getElementById('m-city').textContent = it.city;
+    document.getElementById('m-size').textContent = it.size;
+    const link = document.getElementById('m-link');
+    if (it.link) { link.href = it.link; link.style.display = 'inline-flex'; } else { link.style.display = 'none'; }
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+  };
+  cards.forEach(c => c.addEventListener('click', () => openModal(+c.getAttribute('data-index'))));
+  modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', () => {
+    modal.hidden = true;
+    document.body.style.overflow = '';
+  }));
+</script>
+
+<style>
+  .caso-filters { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-bottom:32px; }
+  .caso-filter {
+    padding:8px 16px; border-radius:999px; border:1px solid var(--ink-200);
+    background:var(--bg); color:var(--ink-700); font-size:13.5px; font-weight:600;
+    cursor:pointer; transition:all .15s;
+  }
+  .caso-filter.active { background:var(--ink-900); color:var(--bg); border-color:transparent; }
+  .casos-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; }
+  .caso-card {
+    padding:0; cursor:pointer; overflow:hidden; border-radius:18px;
+    background:var(--bg); border:1px solid var(--ink-200); box-shadow:var(--shadow-sm);
+    transition:transform .15s, box-shadow .15s;
+  }
+  .caso-card:hover { transform:translateY(-3px); box-shadow:var(--shadow); }
+  .caso-header {
+    height:140px; padding:22px; color:white;
+    display:flex; flex-direction:column; justify-content:space-between;
+    position:relative; overflow:hidden;
+  }
+  .caso-circle {
+    position:absolute; right:-40px; bottom:-40px; width:180px; height:180px;
+    border-radius:50%; border:1px solid rgba(255,255,255,.15);
+  }
+  .caso-badge { background:rgba(255,255,255,.18); color:white; align-self:flex-start; position:relative; z-index:1; }
+  .caso-metric { font-size:38px; font-weight:800; letter-spacing:-0.03em; position:relative; z-index:1; }
+  .caso-kpi { font-size:13px; opacity:.85; position:relative; z-index:1; }
+  .caso-body { padding:22px; }
+  .caso-industry {
+    font-size:11px; color:var(--ink-500); font-weight:600;
+    text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px;
+  }
+  .caso-desc { font-size:13.5px; color:var(--ink-500); line-height:1.55; margin-bottom:16px; }
+  .caso-foot { display:flex; justify-content:space-between; align-items:center; font-size:12px; color:var(--ink-500); }
+  .caso-link { color:var(--brand-accent-2); font-weight:600; display:inline-flex; align-items:center; gap:4px; }
+
+  .caso-modal { position:fixed; inset:0; z-index:200; display:grid; place-items:center; padding:24px; }
+  .caso-modal[hidden] { display:none; }
+  .caso-modal-bg { position:absolute; inset:0; background:rgba(10,22,40,.75); backdrop-filter:blur(6px); }
+  .caso-modal-inner {
+    position:relative; background:var(--bg); border-radius:20px; padding:40px;
+    max-width:640px; width:100%; max-height:88vh; overflow:auto; box-shadow:var(--shadow-xl);
+  }
+  .caso-modal-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+  .caso-modal-x { width:36px; height:36px; border-radius:50%; background:var(--ink-100); display:grid; place-items:center; cursor:pointer; border:none; }
+  .caso-modal-industry {
+    font-size:12px; color:var(--ink-500); text-transform:uppercase;
+    font-weight:600; letter-spacing:.06em;
+  }
+  .caso-modal-metric { padding:24px; background:var(--bg-alt); border-radius:14px; margin-bottom:20px; }
+  .caso-modal-num { font-size:52px; font-weight:800; color:var(--brand-accent-2); letter-spacing:-0.03em; }
+  .caso-modal-link {
+    display:inline-flex; align-items:center; gap:6px;
+    color:var(--brand-accent-2); font-weight:600; font-size:13.5px; margin-bottom:16px;
+  }
+  .caso-modal-meta {
+    display:flex; gap:20px; padding:16px 0; border-top:1px solid var(--ink-200);
+    font-size:13px; color:var(--ink-500); flex-wrap:wrap;
+  }
+</style>

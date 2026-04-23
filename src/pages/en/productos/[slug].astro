@@ -1,0 +1,18 @@
+---
+import Principal from '@layout/Principal.astro';
+import PaginaProducto from '@componentes/paginas/PaginaProducto.astro';
+
+export async function getStaticPaths() {
+  const modulos = import.meta.glob<{ default: any }>('../../../datos/en/productos.json', { eager: true });
+  const productos = Object.values(modulos)[0].default;
+  return Object.values(productos).map((p: any) => ({
+    params: { slug: p.slug },
+    props: { producto: p },
+  }));
+}
+
+const { producto } = Astro.props;
+---
+<Principal idioma="en">
+  <PaginaProducto producto={producto} idioma="en" />
+</Principal>

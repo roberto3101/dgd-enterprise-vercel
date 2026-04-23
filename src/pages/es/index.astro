@@ -1,0 +1,24 @@
+---
+import Principal from '@layout/Principal.astro';
+import Hero from '@componentes/inicio/Hero.astro';
+import ProductosDestacados from '@componentes/inicio/ProductosDestacados.astro';
+import EcosistemaOrbit from '@componentes/inicio/EcosistemaOrbit.astro';
+import ProductoEnAccion from '@componentes/inicio/ProductoEnAccion.astro';
+import Planes from '@componentes/inicio/Planes.astro';
+import CasosExito from '@componentes/inicio/CasosExito.astro';
+import Blog from '@componentes/inicio/Blog.astro';
+import CtaCierre from '@componentes/inicio/CtaCierre.astro';
+import { cargarDatos } from '@helpers/idiomas';
+
+const datos = await cargarDatos<any>('es', 'inicio');
+---
+<Principal idioma="es">
+  <Hero hero={datos.hero} />
+  <ProductosDestacados productos={datos.productos} />
+  <EcosistemaOrbit />
+  <ProductoEnAccion productos={datos.productos} />
+  <Planes planes={datos.planes} />
+  <CasosExito casos={datos.casos} />
+  <Blog blog={datos.blog} />
+  <CtaCierre cta={datos.cta} />
+</Principal>

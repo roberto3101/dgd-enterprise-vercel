@@ -1,0 +1,136 @@
+{
+  "contaplex": {
+    "slug": "contaplex",
+    "name": "ContaPlex",
+    "tagline": "Contabilidad cloud integrada con SUNAT",
+    "icon": "calc",
+    "color": "#14B8A6",
+    "eyebrow": "Producto Codeplex",
+    "bullets": ["SIRE · PLE · libros electrónicos", "Estados financieros y análisis", "Multi-empresa y multi-usuario"],
+    "hero": "La contabilidad de tu PYME, ordenada y al día con SUNAT",
+    "heroDesc": "Automatiza registros, genera libros electrónicos válidos y presenta tus reportes sin tocar un Excel. ContaPlex hace el trabajo pesado; tú decides.",
+    "ctaPrimario": "Solicitar demo de ContaPlex",
+    "ctaSecundario": "Ver planes",
+    "features": [
+      { "icon": "sync", "title": "Automatización ingresos/gastos", "desc": "Conciliación bancaria automática con bancos peruanos." },
+      { "icon": "chart", "title": "Reportes en tiempo real", "desc": "KPIs financieros actualizados al segundo." },
+      { "icon": "shield", "title": "Integración SUNAT", "desc": "SIRE, RCE y RVIE — envíos y validaciones en un clic." },
+      { "icon": "book", "title": "Libros electrónicos", "desc": "Compras, Ventas, Caja, Diario y Mayor listos." },
+      { "icon": "check", "title": "Validación PLE", "desc": "Revisa y corrige antes de presentar a SUNAT." },
+      { "icon": "file", "title": "Estados financieros", "desc": "Balance, EE.RR. y flujo de caja automáticos." },
+      { "icon": "target", "title": "Análisis de rentabilidad", "desc": "Por centro de costo, línea o proyecto." },
+      { "icon": "lock", "title": "Cifrado bancario", "desc": "Tu data protegida con cifrado AES-256." }
+    ],
+    "featuresEyebrow": "Funcionalidades",
+    "featuresTitulo": "Todo lo que ContaPlex incluye",
+    "plansEyebrow": "Planes y precios",
+    "plansTitulo": "Escoge el plan de ContaPlex que te calce",
+    "plansDesc": "Todos los planes incluyen usuarios ilimitados, parametrización y actualizaciones.",
+    "plans": [
+      { "name": "Estándar", "price": 50, "empresas": "Hasta 5 empresas", "desc": "Registros básicos, PLE, generación de diario", "features": ["Voucher contable", "Registro de compras", "Registro de ventas", "Registro de caja y bancos", "Generar diario", "PLE", "Rendiciones", "Libros contables (Compras, Ventas, Caja, Diario, Mayor, Balance)"] },
+      { "name": "Business", "price": 100, "empresas": "Hasta 15 empresas", "desc": "Validación PLE, saldos iniciales, consultas avanzadas", "popular": true, "features": ["Todo lo de Estándar", "Validación PLE", "Saldos iniciales", "Consulta anual de cuentas", "DAOT", "Anexos contables", "Determinación de renta", "Liquidaciones (IGV)", "Cuentas por cobrar"] },
+      { "name": "Gold", "price": 300, "empresas": "Hasta 50 empresas", "desc": "Activos fijos, retenciones, estados financieros completos", "features": ["Todo lo de Business", "Registro de letras", "Asientos por tipo de cambio", "Compensaciones", "Estado financiero función y naturaleza", "Estado cambios patrimonio", "Activos fijos", "Libro de retenciones"] }
+    ],
+    "faqEyebrow": "Preguntas frecuentes",
+    "faqTitulo": "Dudas sobre ContaPlex",
+    "faq": [
+      { "q": "¿Qué es la contabilidad en la nube y cuáles son sus beneficios?", "a": "La contabilidad en la nube permite gestionar las finanzas de tu empresa desde cualquier lugar, sin necesidad de instalar programas ni preocuparte por copias de seguridad. Con ContaPlex, puedes automatizar ingresos y gastos, generar reportes en tiempo real y cumplir con la normativa tributaria sin complicaciones." },
+      { "q": "¿Es seguro utilizar ContaPlex en la nube?", "a": "Sí. Nuestro sistema en la nube cuenta con cifrado de datos de nivel bancario, copias de seguridad automáticas y acceso controlado para garantizar la protección de tu información. Además, nos mantenemos actualizados con las normativas de seguridad de SUNAT y otras entidades regulatorias." },
+      { "q": "¿Cómo puedo asegurarme de que mi empresa cumple con las normativas de la SUNAT?", "a": "Nuestra plataforma está 100% alineada con las regulaciones de SUNAT, incluyendo facturación electrónica, libros contables electrónicos y el SIRE. Actualizamos automáticamente nuestras herramientas para cumplir con cualquier nueva normativa y evitar sanciones o retrasos en la gestión contable." },
+      { "q": "¿Qué es el Sistema Integrado de Registros Electrónicos (SIRE) de la SUNAT y cómo lo manejamos?", "a": "El SIRE permite a las empresas generar automáticamente el Registro de Compras Electrónico (RCE) y el Registro de Ventas e Ingresos Electrónico (RVIE), facilitando la declaración del IGV. Con ContaPlex, puedes sincronizar estos registros con la SUNAT en un solo clic, eliminando la necesidad de trabajar con Excel y reduciendo errores humanos." },
+      { "q": "¿Cuánto tiempo debo conservar las facturas electrónicas y otros documentos tributarios?", "a": "La SUNAT exige que las facturas electrónicas sean conservadas por al menos 5 años para auditorías o revisiones fiscales. ContaPlex almacena automáticamente todos tus documentos electrónicos, asegurando que siempre tengas acceso a ellos en caso de una inspección." },
+      { "q": "¿La implementación y capacitación están incluidas con DGD?", "a": "Sí. Como partner autorizado de Codeplex en Perú, DGD Enterprise se encarga de la parametrización inicial, migración de tus saldos y registros previos, y sesiones de capacitación con tu contador y personal administrativo." }
+    ],
+    "cta": { "titulo": "¿Listo para empezar con ContaPlex?", "descripcion": "Implementación, migración y capacitación incluidas. Te acompañamos en cada paso.", "primario": "Solicitar demo de ContaPlex", "secundario": "Comparar con otros productos" }
+  },
+  "gestionplex": {
+    "slug": "gestionplex",
+    "name": "GestiónPlex",
+    "tagline": "Logística, inventarios, POS y restaurante",
+    "icon": "box",
+    "color": "#3B82F6",
+    "eyebrow": "Producto Codeplex",
+    "bullets": ["Inventarios multi-almacén", "POS y módulo restaurante", "App móvil para vendedores"],
+    "hero": "Tu operación entera, desde el almacén hasta la caja",
+    "heroDesc": "Inventarios, compras, ventas, producción y restaurante en una sola plataforma. Desde la laptop del gerente hasta el celular del vendedor.",
+    "ctaPrimario": "Solicitar demo de GestiónPlex",
+    "ctaSecundario": "Ver planes",
+    "features": [
+      { "icon": "database", "title": "Inventarios multi-almacén", "desc": "Stock en tiempo real por almacén y sucursal." },
+      { "icon": "building", "title": "Almacenes y sucursales", "desc": "Controla ubicaciones, bins y transferencias." },
+      { "icon": "send", "title": "Envíos en tiempo real", "desc": "Guías de remisión electrónicas y tracking." },
+      { "icon": "shop", "title": "Compras, ventas, transferencias", "desc": "Órdenes, recepciones y movimientos integrados." },
+      { "icon": "users", "title": "Vendedores", "desc": "Metas, comisiones y rutas asignadas." },
+      { "icon": "download", "title": "Importación masiva", "desc": "Sube tu catálogo desde Excel en minutos." },
+      { "icon": "utensils", "title": "Módulo restaurante", "desc": "Salones, mesas, cocina y delivery integrados." },
+      { "icon": "wallet", "title": "Tesorería y cajas", "desc": "Arqueos, flujo de caja y conciliación." },
+      { "icon": "settings", "title": "Producción", "desc": "Recetas, órdenes de producción y costeo." },
+      { "icon": "phoneSmall", "title": "App móvil", "desc": "iOS y Android para vendedores y supervisores." }
+    ],
+    "featuresEyebrow": "Funcionalidades",
+    "featuresTitulo": "Todo lo que GestiónPlex incluye",
+    "plansEyebrow": "Planes y precios",
+    "plansTitulo": "Escoge el plan de GestiónPlex que te calce",
+    "plansDesc": "Usuarios ilimitados · actualizaciones incluidas · parametrización.",
+    "plans": [
+      { "name": "Estándar", "price": 100, "empresas": "1 almacén", "desc": "Configuración base, POS, vendedores", "features": ["Comprobantes con logo", "Impresiones A4, A5, 80mm y 57mm", "Importación de productos", "Importación de precios", "Registro de vendedores", "Importación de inventarios"] },
+      { "name": "Business", "price": 150, "empresas": "1 almacén", "desc": "Compras, ventas, transferencias", "features": ["Todo lo de Estándar", "Registro de compras", "Registro de ventas", "Guía de remisión electrónica", "Multi-caja", "Kárdex valorizado"] },
+      { "name": "Premium", "price": 200, "empresas": "2 almacenes", "desc": "Tesorería, restaurante, reportes", "popular": true, "features": ["Todo lo de Business", "Tesorería", "Módulo restaurante", "Reportes avanzados", "Transferencias entre almacenes", "App móvil"] },
+      { "name": "Gold", "price": 300, "empresas": "4 almacenes", "desc": "Producción, rentabilidad, todo incluido", "features": ["Todo lo de Premium", "Producción", "Websites", "Análisis de rentabilidad", "Integraciones API"] }
+    ],
+    "faqEyebrow": "Preguntas frecuentes",
+    "faqTitulo": "Dudas sobre GestiónPlex",
+    "faq": [
+      { "q": "¿Es seguro utilizar GestiónPlex en la nube?", "a": "Sí. Nuestro sistema en la nube cuenta con cifrado de datos de nivel bancario, copias de seguridad automáticas y acceso controlado para garantizar la protección de tu información. Además, nos mantenemos actualizados con las normativas de seguridad de SUNAT y otras entidades regulatorias." },
+      { "q": "¿Cómo se integra GestiónPlex con mi contabilidad y facturación?", "a": "Nuestra plataforma permite una integración total entre Facturación Electrónica, ContaPlex y GestiónPlex. Toda la información de ventas, compras y logística se sincroniza automáticamente para que no tengas que ingresar datos manualmente, evitando errores y agilizando la gestión de tu empresa." },
+      { "q": "¿Qué debo considerar al elegir un software de gestión empresarial en la nube?", "a": "Al elegir un software de gestión, debes considerar: facilidad de uso (una plataforma intuitiva que optimice el trabajo diario), automatización (reducción del trabajo manual con generación automática de reportes), integración total (conexión entre contabilidad, facturación y logística en un solo sistema), cumplimiento normativo (adaptación a las exigencias de la SUNAT) y seguridad y soporte (protección de datos y asistencia técnica en todo momento)." },
+      { "q": "¿Qué ventajas ofrece el programa de resellers de Codeplex?", "a": "El Programa de Resellers de Codeplex permite ofrecer ContaPlex, GestiónPlex y Facturación Electrónica a tus clientes con acceso a descuentos exclusivos, material promocional y soporte técnico especializado. Codeplex no vende el código fuente; DGD Enterprise opera como reseller oficial autorizado en Perú." },
+      { "q": "¿DGD se encarga de la implementación y migración?", "a": "Sí. Como partner autorizado, DGD Enterprise hace la parametrización del sistema, migración de tu catálogo, stock inicial, clientes y proveedores, y capacitación de tu equipo durante el arranque." }
+    ],
+    "cta": { "titulo": "¿Listo para empezar con GestiónPlex?", "descripcion": "Implementación, migración y capacitación incluidas. Te acompañamos en cada paso.", "primario": "Solicitar demo de GestiónPlex", "secundario": "Comparar con otros productos" }
+  },
+  "facturacion-sunat": {
+    "slug": "facturacion-sunat",
+    "name": "Facturación SUNAT",
+    "tagline": "Boletas, facturas y guías válidas",
+    "icon": "receipt",
+    "color": "#8B5CF6",
+    "eyebrow": "Producto Codeplex",
+    "bullets": ["Certificado digital incluido", "Envío automático XML/PDF/CDR", "Integra con ContaPlex y GestiónPlex"],
+    "hero": "Facturación electrónica SUNAT, sin dramas",
+    "heroDesc": "Emite, envía y archiva boletas, facturas y guías válidas. Con certificado digital incluido y envío automático al cliente por email o WhatsApp.",
+    "ctaPrimario": "Solicitar demo de Facturación",
+    "ctaSecundario": "Ver planes",
+    "features": [
+      { "icon": "receipt", "title": "Boletas y facturas", "desc": "Electrónicas, válidas ante SUNAT al instante." },
+      { "icon": "send", "title": "Guías de remisión", "desc": "Electrónicas, con tracking y validación automática." },
+      { "icon": "file", "title": "Notas de crédito y débito", "desc": "Emisión y rectificativas guiadas." },
+      { "icon": "sync", "title": "Envío automático SUNAT", "desc": "XML, PDF y CDR enviados en segundos." },
+      { "icon": "shield", "title": "Certificado digital incluido", "desc": "Sin trámites extra — lo gestionamos por ti." },
+      { "icon": "mail", "title": "Distribución al cliente", "desc": "Email y WhatsApp con XML, PDF y CDR." },
+      { "icon": "link", "title": "Integra con tu stack", "desc": "ContaPlex, GestiónPlex o tu ERP por API." },
+      { "icon": "bars", "title": "Reportes y conciliación", "desc": "Todo tu libro de ventas en tiempo real." }
+    ],
+    "featuresEyebrow": "Funcionalidades",
+    "featuresTitulo": "Todo lo que Facturación SUNAT incluye",
+    "plansEyebrow": "Planes y precios",
+    "plansTitulo": "Escoge el plan de Facturación que te calce",
+    "plansDesc": "Certificado digital incluido · usuarios ilimitados · actualizaciones.",
+    "plans": [
+      { "name": "Business", "price": 50, "empresas": "1 sucursal", "desc": "Facturación base con certificado digital", "features": ["Comprobantes con logo", "Impresiones A4, A5, 80mm y 57mm", "Importación de productos", "Importación de precios", "Registro de vendedores", "Envío automático XML/PDF/CDR"] },
+      { "name": "Premium", "price": 150, "empresas": "2 sucursales", "desc": "Ventas avanzadas, soporte extendido", "popular": true, "features": ["Todo lo de Business", "Boletas, facturas y notas", "Guías de remisión electrónicas", "Multi-usuario", "Reportes de ventas"] },
+      { "name": "Gold", "price": 200, "empresas": "4 sucursales", "desc": "Todo incluido, ventas y soporte completos", "features": ["Todo lo de Premium", "Usuarios ilimitados", "Multi-sucursal", "API REST completa", "Emisión masiva"] }
+    ],
+    "faqEyebrow": "Preguntas frecuentes",
+    "faqTitulo": "Dudas sobre Facturación",
+    "faq": [
+      { "q": "¿Cómo funciona la facturación electrónica?", "a": "La facturación electrónica permite emitir y gestionar boletas y facturas de forma digital, eliminando los documentos físicos y asegurando un mejor control fiscal. Nuestra plataforma de Facturación Electrónica está certificada por SUNAT y se integra fácilmente con ContaPlex, permitiéndote emitir comprobantes de manera rápida y segura." },
+      { "q": "¿Cómo puedo integrar la facturación electrónica con mi contabilidad y logística?", "a": "Nuestra plataforma permite una integración total entre Facturación Electrónica, ContaPlex y GestiónPlex. Toda la información de ventas, compras y logística se sincroniza automáticamente para que no tengas que ingresar datos manualmente, evitando errores y agilizando la gestión de tu empresa." },
+      { "q": "¿Qué debo hacer si encuentro errores en una factura electrónica emitida o recibida?", "a": "Si detectas un error en una factura, puedes generar una Nota de Crédito Electrónica o Factura Rectificativa directamente desde nuestra plataforma, sin necesidad de hacer trámites manuales. Además, nuestro soporte técnico te guiará en todo el proceso." },
+      { "q": "¿Cuánto tiempo debo conservar las facturas electrónicas y otros documentos tributarios?", "a": "La SUNAT exige que las facturas electrónicas sean conservadas por al menos 5 años para auditorías o revisiones fiscales. Nuestra plataforma almacena automáticamente todos tus documentos electrónicos, asegurando que siempre tengas acceso a ellos en caso de una inspección." },
+      { "q": "¿Es seguro emitir comprobantes en la nube?", "a": "Sí. Nuestro sistema en la nube cuenta con cifrado de datos de nivel bancario, copias de seguridad automáticas y acceso controlado para garantizar la protección de tu información. Además, nos mantenemos actualizados con las normativas de seguridad de SUNAT y otras entidades regulatorias." },
+      { "q": "¿DGD me ayuda con el certificado digital y el arranque?", "a": "Sí. Como partner autorizado de Codeplex en Perú, DGD Enterprise gestiona el certificado digital ante la entidad certificadora autorizada, parametriza tus series y comprobantes, y capacita a tu equipo en el uso de la plataforma." }
+    ],
+    "cta": { "titulo": "¿Listo para empezar con Facturación SUNAT?", "descripcion": "Implementación, certificado digital y capacitación incluidos.", "primario": "Solicitar demo de Facturación", "secundario": "Comparar con otros productos" }
+  }
+}

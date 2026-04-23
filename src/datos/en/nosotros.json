@@ -1,0 +1,77 @@
+{
+  "eyebrow": "About",
+  "tituloPre": "We are the implementation arm of ",
+  "tituloGradient": "Codeplex",
+  "tituloPost": " in Peru",
+  "descripcion": "As authorized Codeplex partner in Peru, we support Peruvian SMBs on their path to accounting, logistics and tax digitization. We don't write the software — we bring it into your company and make sure it works.",
+  "historia": {
+    "eyebrow": "Our history",
+    "titulo": "From artisanal consulting to a regional ecosystem",
+    "parrafos": [
+      "Grupo DGD is the authorized commercial partner of Codeplex Software in Peru. We handle resale and implementation of their cloud suite: ContaPlex, GestiónPlex and SUNAT Electronic Invoicing.",
+      "We don't develop the software: we bring it to your company. We handle consulting, parametrization, training and Spanish-language support from Peru.",
+      "We work with SMBs in retail, distribution, restaurants, services and logistics — industries where the Codeplex suite has broadest adoption in the country."
+    ],
+    "cards": [
+      { "y": "DGD", "t": "Authorized partner", "d": "Commercial and implementation arm in Peru" },
+      { "y": "Codeplex", "t": "Software provider", "d": "Cloud SUNAT suite · LATAM · 50k+ companies" },
+      { "y": "SUNAT", "t": "100% valid", "d": "SIRE · RCE · RVIE · PLE · e-invoicing" },
+      { "y": "Peru", "t": "Local support", "d": "Mon–Sat in Spanish, Lima timezone" }
+    ]
+  },
+  "mvv": {
+    "eyebrow": "How we think",
+    "titulo": "Mission, vision and values",
+    "items": [
+      { "icon": "target", "title": "Mission", "desc": "Simplify accounting and tax management for Peruvian SMBs, with reliable tech and human support." },
+      { "icon": "eye", "title": "Vision", "desc": "Be Peru's leading implementation partner for companies that want to grow without losing order or compliance." },
+      { "icon": "heart", "title": "Values", "desc": "Closeness, clarity, compliance and continuous learning. We don't sell software: we solve problems." }
+    ]
+  },
+  "alianza": {
+    "badge": "Strategic alliance",
+    "titulo": "Official Codeplex Software partner",
+    "descripcion": "Codeplex builds LATAM's leading cloud accounting, management and invoicing suite. Grupo DGD is their authorized commercial and implementation arm in Peru.",
+    "bullets": [
+      "Annual official partner certification",
+      "Priority access to roadmap and new features",
+      "Direct technical support from the dev team"
+    ],
+    "cardTitulo": "Codeplex Software",
+    "cardDesc": "Cloud accounting and tax suite · LATAM · Over 50,000 companies"
+  },
+  "equipo": {
+    "eyebrow": "Our team",
+    "titulo": "The people behind DGD",
+    "descripcion": "Accounting, technology and support consultants. Real people in your timezone.",
+    "nota": "// detailed team profiles available on request",
+    "items": [
+      { "name": "Lead Consultant", "role": "CEO / Founder", "init": "CL", "c": "#14B8A6" },
+      { "name": "Implementation Director", "role": "Operations", "init": "ID", "c": "#3B82F6" },
+      { "name": "Accounting Lead", "role": "Senior accountant", "init": "AL", "c": "#8B5CF6" },
+      { "name": "GestiónPlex Specialist", "role": "Logistics and POS", "init": "GS", "c": "#F59E0B" },
+      { "name": "SUNAT Consultant", "role": "E-invoicing", "init": "SC", "c": "#EC4899" },
+      { "name": "Head of Growth", "role": "Commercial growth", "init": "HG", "c": "#10B981" },
+      { "name": "Tier 2 Support", "role": "Technical support", "init": "T2", "c": "#6366F1" },
+      { "name": "Academy Lead", "role": "Training", "init": "AC", "c": "#EF4444" }
+    ]
+  },
+  "constitucion": {
+    "eyebrow": "Transparency",
+    "titulo": "Registration data",
+    "items": [
+      { "l": "Legal name", "v": "Grupo Grupo DGDs & Systems Perú SAC" },
+      { "l": "Tax ID (RUC)", "v": "20XXXXXXXXX" },
+      { "l": "Registry entry", "v": "Available on request" },
+      { "l": "Founded", "v": "Available on request" },
+      { "l": "Tax address", "v": "Lima, Peru" },
+      { "l": "Legal representative", "v": "Available on request" }
+    ],
+    "nota": "// for formal verification we provide full data upon contract signing"
+  },
+  "cta": {
+    "titulo": "Shall we talk?",
+    "descripcion": "Meet the team, understand how we work and decide if we're the right partner for your company.",
+    "primario": "Book a chat"
+  }
+}

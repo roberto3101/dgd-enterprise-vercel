@@ -1,0 +1,115 @@
+---
+import Icon from '@componentes/ui/Icon.astro';
+import SectionHeader from '@componentes/ui/SectionHeader.astro';
+import CTAPanel from '@componentes/ui/CTAPanel.astro';
+import PlanCards from '@componentes/paginas/PlanCards.astro';
+import type { Idioma } from '@helpers/idiomas';
+interface Props { datos: any; idioma: Idioma; }
+const { datos, idioma } = Astro.props;
+const contactoHref = `/${idioma}/contacto/`;
+---
+<section style="padding:72px 0 32px;">
+  <div class="container" style="text-align:center;max-width:780px;">
+    <div class="eyebrow">{datos.eyebrow}</div>
+    <h1 style="margin-top:8px;">{datos.titulo}</h1>
+    <p style="font-size:17px;color:var(--ink-500);margin-top:18px;line-height:1.6;">{datos.descripcion}</p>
+  </div>
+</section>
+
+<section style="padding:16px 0 56px;">
+  <div class="container">
+    <div class="planes-tabs">
+      {datos.tabs.map((t: any, i: number) => (
+        <button type="button" class={`plan-tab ${i === 0 ? 'active' : ''}`} data-tab={t.slug}>
+          <Icon name={t.icon} size={14} />{t.name}
+        </button>
+      ))}
+    </div>
+
+    {datos.tabs.map((t: any, ti: number) => (
+      <div class={`plan-grid ${ti === 0 ? 'active' : ''}`} data-panel={t.slug}>
+        <PlanCards tabSlug={t.slug} datos={datos} idioma={idioma} contactoHref={contactoHref} />
+      </div>
+    ))}
+
+    <div class="mono" style="text-align:center;margin-top:24px;font-size:12px;color:var(--ink-500);">{datos.nota}</div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <SectionHeader eyebrow={datos.servicios.eyebrow} titulo={datos.servicios.titulo} descripcion={datos.servicios.descripcion} />
+    <div class="servicios-grid">
+      {datos.servicios.items.map((s: any) => (
+        <div class={`servicio-card ${s.featured ? 'featured' : ''}`}>
+          {s.featured && <span class="badge badge-pop servicio-badge">{datos.servicios.featuredBadge || datos.featuredBadge}</span>}
+          <div class="servicio-icon"><Icon name={s.icon} size={22} /></div>
+          <h3 style="font-size:20px;margin-bottom:10px;">{s.name}</h3>
+          <p class="servicio-desc">{s.desc}</p>
+          <ul class="servicio-list">
+            {s.includes.map((f: string) => (
+              <li><Icon name="check" size={16} stroke={2.5} /><span>{f}</span></li>
+            ))}
+          </ul>
+          <div class="mono servicio-nota">{datos.servicios.nota}</div>
+          <a class={`btn ${s.featured ? 'btn-primary' : 'btn-outline'}`} href={contactoHref} style="width:100%;justify-content:center;">{datos.servicios.ctaSolicitar}</a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<CTAPanel titulo={datos.cta.titulo} descripcion={datos.cta.descripcion} ctaPrimario={datos.cta.primario} hrefPrimario={contactoHref} />
+
+<script is:inline>
+  document.querySelectorAll('.plan-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const slug = btn.getAttribute('data-tab');
+      document.querySelectorAll('.plan-tab').forEach(b => b.classList.toggle('active', b.getAttribute('data-tab') === slug));
+      document.querySelectorAll('.plan-grid').forEach(p => p.classList.toggle('active', p.getAttribute('data-panel') === slug));
+    });
+  });
+</script>
+
+<style>
+  .planes-tabs { display:flex; justify-content:center; gap:8px; margin-bottom:32px; flex-wrap:wrap; }
+  .plan-tab {
+    padding:10px 18px; border-radius:999px;
+    border:1px solid var(--ink-200); background:var(--bg); color:var(--ink-700);
+    font-size:14px; font-weight:600; cursor:pointer;
+    display:inline-flex; align-items:center; gap:8px; transition:all .15s;
+  }
+  .plan-tab.active { background:var(--ink-900); color:var(--bg); border-color:transparent; }
+  .plan-grid { display:none; gap:16px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+  .plan-grid.active { display:grid; }
+  .servicios-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media (max-width:1024px) { .servicios-grid { grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:640px) { .servicios-grid { grid-template-columns:1fr; } }
+  @media (max-width:640px) { .servicio-card.featured { transform: none; } }
+  .servicio-card {
+    padding:28px; border-radius:20px; background:var(--bg); border:1px solid var(--ink-200);
+    position:relative; box-shadow:var(--shadow-sm);
+  }
+  .servicio-card.featured {
+    background:linear-gradient(180deg,var(--brand-primary),#123558);
+    color:white; border:1px solid rgba(255,255,255,.15);
+    transform:scale(1.02); box-shadow:var(--shadow-xl);
+  }
+  .servicio-badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); }
+  .servicio-icon {
+    width:48px;height:48px;border-radius:12px;
+    background:color-mix(in srgb,var(--brand-accent) 12%,transparent);
+    color:var(--brand-accent-2);
+    display:grid;place-items:center;margin-bottom:16px;
+  }
+  .servicio-card.featured .servicio-icon { background:rgba(255,255,255,.12); color:var(--brand-accent); }
+  .servicio-desc { font-size:13.5px; color:var(--ink-500); margin-bottom:20px; line-height:1.55; }
+  .servicio-card.featured .servicio-desc { color:rgba(255,255,255,.8); }
+  .servicio-list { list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:22px; }
+  .servicio-list li { display:flex; gap:10px; font-size:13.5px; color:var(--ink-700); align-items:flex-start; }
+  .servicio-list svg { color:var(--brand-accent-2); flex-shrink:0; margin-top:2px; }
+  .servicio-card.featured .servicio-list li { color:rgba(255,255,255,.9); }
+  .servicio-card.featured .servicio-list svg { color:var(--brand-accent); }
+  .servicio-nota { font-size:12px; color:var(--ink-500); margin-bottom:14px; }
+  .servicio-card.featured .servicio-nota { color:rgba(255,255,255,.6); }
+</style>

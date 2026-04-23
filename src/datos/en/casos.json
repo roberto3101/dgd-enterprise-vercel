@@ -1,0 +1,64 @@
+{
+  "eyebrow": "Case studies",
+  "titulo": "Real transformation with Codeplex",
+  "descripcion": "Summary of the cases and results published by Codeplex Software. Grupo DGD is an authorized implementation partner in Peru; we are documenting our own cases with written client authorization before publishing them here.",
+  "filtros": {
+    "todos": "All",
+    "leerCaso": "Read case",
+    "verFuente": "See public source",
+    "ubicacion": "Scope",
+    "tamano": "Impact",
+    "ctaModal": "I want a case like this"
+  },
+  "items": [
+    {
+      "industry": "Accounting & finance",
+      "company": "Financial process optimization",
+      "metric": "40%",
+      "kpi": "Less time on accounting management",
+      "desc": "Case published by Codeplex: ContaPlex rollout to automate records, electronic books and reports. Documented impact: 40% less time on accounting management and 50% fewer errors at month-end close.",
+      "size": "SMB",
+      "city": "Peru",
+      "tag": "Source: codeplex.pe",
+      "link": "https://codeplex.pe/"
+    },
+    {
+      "industry": "Logistics & warehousing",
+      "company": "Efficient logistics management",
+      "metric": "35%",
+      "kpi": "Warehouse cost reduction",
+      "desc": "Case published by Codeplex: GestiónPlex rollout for multi-warehouse inventory, valued kardex and treasury. Documented impact: 35% reduction in warehouse operating costs.",
+      "size": "Distribution",
+      "city": "Peru",
+      "tag": "Source: codeplex.pe",
+      "link": "https://codeplex.pe/"
+    },
+    {
+      "industry": "Electronic invoicing",
+      "company": "E-invoicing implementation",
+      "metric": "70%",
+      "kpi": "Less time processing SUNAT documents",
+      "desc": "Case published by Codeplex: SUNAT Invoicing deployment with included digital certificate and automatic XML/PDF/CDR delivery. Documented impact: 70% reduction in document processing time.",
+      "size": "SMB",
+      "city": "Peru",
+      "tag": "Source: codeplex.pe",
+      "link": "https://codeplex.pe/"
+    },
+    {
+      "industry": "Reseller program",
+      "company": "Growth via reseller program",
+      "metric": "60%",
+      "kpi": "Partner revenue uplift",
+      "desc": "Case published by Codeplex: official reseller program — which Grupo DGD is part of. Documented impact by Codeplex: 60% revenue uplift for partners scaling with the suite.",
+      "size": "LATAM partners",
+      "city": "LATAM",
+      "tag": "Source: codeplex.pe",
+      "link": "https://codeplex.pe/"
+    }
+  ],
+  "cta": {
+    "titulo": "Want to be our next documented case?",
+    "descripcion": "Book a session with our consultants and let's design your digitalization plan with the Codeplex suite.",
+    "primario": "Book a meeting"
+  }
+}

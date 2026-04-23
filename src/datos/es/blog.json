@@ -1,0 +1,168 @@
+{
+  "eyebrow": "Blog DGD",
+  "titulo": "Ideas para digitalizar tu PYME",
+  "descripcion": "Guías SUNAT, tips contables, logística y digitalización para PYMEs peruanas. Escrito por nuestros consultores.",
+  "buscarPlaceholder": "Buscar artículos...",
+  "categorias": ["Todos", "SUNAT", "Contabilidad", "Logística", "Facturación", "PYMEs", "Tecnología"],
+  "sidebar": {
+    "categorias": "Categorías",
+    "populares": "Más populares",
+    "newsletter": {
+      "titulo": "Newsletter DGD",
+      "descripcion": "1 email al mes con lo nuevo de SUNAT y tips prácticos.",
+      "emailPlaceholder": "tu@empresa.pe",
+      "cta": "Suscribirme"
+    }
+  },
+  "leerMas": "Leer artículo",
+  "volver": "← Volver al blog",
+  "enEstaPagina": "En esta página",
+  "compartir": "Compartir",
+  "relacionados": {
+    "eyebrow": "Sigue leyendo",
+    "titulo": "Artículos relacionados"
+  },
+  "cta": {
+    "titulo": "¿Quieres profundizar en este tema?",
+    "descripcion": "Agenda 30 minutos con un consultor DGD — revisamos juntos tu caso específico.",
+    "primario": "Agendar llamada"
+  },
+  "posts": [
+    {
+      "slug": "sire-guia-pyme-2026",
+      "cat": "SUNAT",
+      "title": "SIRE 2026: guía práctica para la PYME peruana",
+      "excerpt": "El Sistema Integrado de Registros Electrónicos ya no es opcional. Te explicamos qué cambió en 2026, quiénes están obligados y cómo prepararte sin sustos.",
+      "author": "Consultor Contable DGD",
+      "authorRole": "Senior accountant",
+      "date": "2026-04-15",
+      "read": "7 min",
+      "secciones": [
+        { "id": "intro", "title": "Qué es SIRE" },
+        { "id": "contexto", "title": "Quiénes están obligados" },
+        { "id": "pasos", "title": "Pasos críticos" },
+        { "id": "errores", "title": "Errores que evitar" },
+        { "id": "cierre", "title": "Conclusión" }
+      ]
+    },
+    {
+      "slug": "ple-vs-sire-diferencias",
+      "cat": "SUNAT",
+      "title": "PLE vs SIRE: diferencias, plazos y qué te conviene presentar",
+      "excerpt": "La confusión entre PLE y SIRE es común. Aclaramos la diferencia en palabras simples y con ejemplos reales para que tomes la decisión correcta.",
+      "author": "Líder Contable",
+      "authorRole": "Senior accountant",
+      "date": "2026-04-10",
+      "read": "5 min",
+      "secciones": [
+        { "id": "intro", "title": "Contexto" },
+        { "id": "contexto", "title": "Diferencias técnicas" },
+        { "id": "pasos", "title": "Cuándo usar cada uno" },
+        { "id": "errores", "title": "Errores comunes" },
+        { "id": "cierre", "title": "Cierre" }
+      ]
+    },
+    {
+      "slug": "facturacion-electronica-errores",
+      "cat": "Facturación",
+      "title": "Los 7 errores más comunes al migrar a facturación electrónica",
+      "excerpt": "Después de 50+ implementaciones, identificamos los tropiezos que se repiten. Evítalos y acelera tu adopción sin contratiempos con SUNAT.",
+      "author": "Consultor SUNAT DGD",
+      "authorRole": "Facturación electrónica",
+      "date": "2026-04-05",
+      "read": "6 min",
+      "secciones": [
+        { "id": "intro", "title": "Punto de partida" },
+        { "id": "contexto", "title": "Por qué fallan las migraciones" },
+        { "id": "pasos", "title": "Checklist previo" },
+        { "id": "errores", "title": "7 errores y cómo evitarlos" },
+        { "id": "cierre", "title": "Siguientes pasos" }
+      ]
+    },
+    {
+      "slug": "inventarios-multi-almacen",
+      "cat": "Logística",
+      "title": "Inventarios multi-almacén: cómo ordenar el stock sin volverte loco",
+      "excerpt": "Si tu PYME tiene 2 o más almacenes, un mal control de stock se paga caro. Te compartimos cómo estructurarlo en GestiónPlex paso a paso.",
+      "author": "Especialista GestiónPlex",
+      "authorRole": "Logística y POS",
+      "date": "2026-03-28",
+      "read": "8 min",
+      "secciones": [
+        { "id": "intro", "title": "Diagnóstico" },
+        { "id": "contexto", "title": "Cómo se rompe un inventario" },
+        { "id": "pasos", "title": "Implementación ordenada" },
+        { "id": "errores", "title": "Errores que evitar" },
+        { "id": "cierre", "title": "Conclusión" }
+      ]
+    },
+    {
+      "slug": "contabilidad-cloud-ventajas",
+      "cat": "Contabilidad",
+      "title": "Contabilidad en la nube: por qué dejar Excel este año",
+      "excerpt": "Excel funciona hasta que deja de funcionar. Revisamos 6 señales de que tu contabilidad ya necesita moverse a una plataforma cloud real.",
+      "author": "Director Implementación",
+      "authorRole": "Dirección de operaciones",
+      "date": "2026-03-22",
+      "read": "5 min",
+      "secciones": [
+        { "id": "intro", "title": "Señales que vemos" },
+        { "id": "contexto", "title": "El costo oculto de Excel" },
+        { "id": "pasos", "title": "Transición ordenada" },
+        { "id": "errores", "title": "Errores al migrar" },
+        { "id": "cierre", "title": "Conclusión" }
+      ]
+    },
+    {
+      "slug": "pyme-digitalizacion-ruta",
+      "cat": "PYMEs",
+      "title": "La ruta de digitalización para una PYME peruana, en 4 etapas",
+      "excerpt": "No todo se digitaliza de golpe. Te proponemos una ruta de 4 etapas priorizando impacto y costo — desde facturación hasta rentabilidad por centro de costo.",
+      "author": "CEO DGD",
+      "authorRole": "Fundador",
+      "date": "2026-03-15",
+      "read": "9 min",
+      "secciones": [
+        { "id": "intro", "title": "Por qué una ruta" },
+        { "id": "contexto", "title": "Diagnóstico inicial" },
+        { "id": "pasos", "title": "Las 4 etapas" },
+        { "id": "errores", "title": "Errores que evitar" },
+        { "id": "cierre", "title": "Cierre" }
+      ]
+    },
+    {
+      "slug": "restaurante-pos-cloud",
+      "cat": "Tecnología",
+      "title": "POS cloud en restaurantes: qué pedir antes de comprar",
+      "excerpt": "Un POS mal elegido frena tu crecimiento. Checklist práctico para evaluar un sistema de punto de venta cloud adaptado a restaurantes peruanos.",
+      "author": "Especialista GestiónPlex",
+      "authorRole": "Logística y POS",
+      "date": "2026-03-08",
+      "read": "6 min",
+      "secciones": [
+        { "id": "intro", "title": "Qué buscar" },
+        { "id": "contexto", "title": "El POS en el flujo real" },
+        { "id": "pasos", "title": "Checklist de compra" },
+        { "id": "errores", "title": "Errores comunes" },
+        { "id": "cierre", "title": "Conclusión" }
+      ]
+    },
+    {
+      "slug": "integracion-contable-ventas",
+      "cat": "Contabilidad",
+      "title": "Integrar ventas con contabilidad: cómo dejar de pegar Excels",
+      "excerpt": "Cuando tus ventas viven en un sistema y la contabilidad en otro, el cierre mensual es un infierno. Así integramos ContaPlex con GestiónPlex en la práctica.",
+      "author": "Líder Contable",
+      "authorRole": "Senior accountant",
+      "date": "2026-02-28",
+      "read": "7 min",
+      "secciones": [
+        { "id": "intro", "title": "El síntoma" },
+        { "id": "contexto", "title": "Cómo se resuelve" },
+        { "id": "pasos", "title": "Implementación paso a paso" },
+        { "id": "errores", "title": "Errores al integrar" },
+        { "id": "cierre", "title": "Conclusión" }
+      ]
+    }
+  ]
+}

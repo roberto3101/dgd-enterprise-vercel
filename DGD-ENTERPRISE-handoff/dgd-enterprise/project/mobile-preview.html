@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Prueba móvil · DGD</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #1a1d24; color: #eee; font-family: -apple-system, sans-serif; padding: 24px 16px 48px; }
+  .header { text-align: center; margin-bottom: 28px; }
+  .header h1 { margin: 0 0 6px; font-size: 18px; }
+  .header p { margin: 0; opacity: .6; font-size: 13px; }
+  .controls { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+  .controls button { background: #2a2f3a; border: 1px solid #3d4452; color: #eee; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 500; }
+  .controls button:hover { background: #3d4452; }
+  .controls button.active { background: #14B8A6; border-color: #14B8A6; color: white; }
+  .controls input { background: #2a2f3a; border: 1px solid #3d4452; color: #eee; padding: 8px 12px; border-radius: 8px; font-size: 13px; width: 90px; text-align: center; }
+  .grid { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; }
+  .phone { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .phone-label { font-size: 12px; opacity: .7; font-weight: 500; }
+  .phone-frame {
+    border: 10px solid #000;
+    border-radius: 32px;
+    background: #000;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,.6);
+    position: relative;
+  }
+  .phone-frame::before {
+    content: ''; position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+    width: 60px; height: 6px; background: #333; border-radius: 4px; z-index: 2;
+  }
+  iframe { border: 0; background: #fff; display: block; width: 100%; height: 100%; }
+  .nav-phone { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-bottom: 16px; }
+  .nav-phone button { background: #2a2f3a; border: 1px solid #3d4452; color: #eee; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; }
+  .nav-phone button.active { background: #14B8A6; border-color: #14B8A6; color: white; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h1>Prueba móvil — DGD Enterprise</h1>
+    <p>Vista previa a tamaños reales de teléfono. Scrollea dentro de cada frame.</p>
+  </div>
+
+  <div class="nav-phone" id="routes"></div>
+
+  <div class="grid" id="frames"></div>
+
+<script>
+  const routes = [
+    {label: 'Home', hash: ''},
+    {label: 'Planes', hash: 'planes'},
+    {label: 'ContaPlex', hash: 'productos/contaplex'},
+    {label: 'GestiónPlex', hash: 'productos/gestionplex'},
+    {label: 'Contacto', hash: 'contacto'},
+    {label: 'Casos', hash: 'casos-de-exito'},
+    {label: 'Nosotros', hash: 'nosotros'},
+    {label: 'Blog', hash: 'blog'},
+  ];
+  const sizes = [
+    {label: 'iPhone SE · 320', w: 320, h: 568},
+    {label: 'iPhone 13 mini · 375', w: 375, h: 720},
+    {label: 'iPhone 14 · 390', w: 390, h: 740},
+  ];
+  let currentRoute = '';
+
+  const routesEl = document.getElementById('routes');
+  routes.forEach(r => {
+    const b = document.createElement('button');
+    b.textContent = r.label;
+    if (r.hash === currentRoute) b.classList.add('active');
+    b.onclick = () => {
+      currentRoute = r.hash;
+      render();
+    };
+    routesEl.appendChild(b);
+  });
+
+  function render() {
+    const grid = document.getElementById('frames');
+    grid.innerHTML = '';
+    sizes.forEach(s => {
+      const wrap = document.createElement('div');
+      wrap.className = 'phone';
+      wrap.innerHTML = `
+        <div class="phone-label">${s.label}×${s.h}</div>
+        <div class="phone-frame" style="width:${s.w}px; height:${s.h}px;">
+          <iframe src="index.html#/${currentRoute}"></iframe>
+        </div>
+      `;
+      grid.appendChild(wrap);
+    });
+    // update active button
+    [...routesEl.querySelectorAll('button')].forEach((b, i) => {
+      b.classList.toggle('active', routes[i].hash === currentRoute);
+    });
+  }
+  render();
+</script>
+</body>
+</html>

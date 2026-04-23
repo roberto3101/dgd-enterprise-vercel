@@ -1,0 +1,50 @@
+{
+  "eyebrow": "Plans and services",
+  "titulo": "Plans come from Codeplex. The service comes from DGD.",
+  "descripcion": "Software licenses are contracted from Codeplex's official list. We add implementation, training and local support in Peru.",
+  "tabsTitulo": "Official Codeplex plans",
+  "ctaCotizar": "Request implementation quote",
+  "precioMes": "/mo",
+  "moneda": "S/",
+  "tabs": [
+    { "slug": "contaplex", "name": "ContaPlex", "icon": "calc" },
+    { "slug": "gestionplex", "name": "GestiónPlex", "icon": "box" },
+    { "slug": "facturacion-sunat", "name": "SUNAT Invoicing", "icon": "receipt" }
+  ],
+  "nota": "// Prices from Codeplex Software's official list. DGD quotes implementation separately.",
+  "popularBadge": "MOST POPULAR",
+  "featuredBadge": "MOST CHOSEN",
+  "servicios": {
+    "eyebrow": "DGD services",
+    "titulo": "What we add on top of your Codeplex license",
+    "descripcion": "You contract the software license directly on Codeplex's official plan. DGD makes sure it works in your company with these packages.",
+    "nota": "// quote depends on scope",
+    "ctaSolicitar": "Request quote",
+    "items": [
+      {
+        "name": "Essential Onboarding",
+        "icon": "compass",
+        "desc": "Installation, base parametrization and 2 live training sessions. Ideal if your data is already clean.",
+        "includes": ["Initial setup", "Base chart of accounts", "2 team sessions", "WhatsApp support 30 days"]
+      },
+      {
+        "name": "Full Implementation",
+        "icon": "academy",
+        "desc": "Historical data migration, module integration and 60 days of accompaniment.",
+        "includes": ["Everything in Essential", "Data migration", "ContaPlex ↔ GestiónPlex integration", "5 team sessions", "60-day support"],
+        "featured": true
+      },
+      {
+        "name": "Annual Support",
+        "icon": "headset",
+        "desc": "Priority support, quarterly training and process review all year.",
+        "includes": ["Priority support 12 months", "4 quarterly trainings", "Process review", "Assigned consultant"]
+      }
+    ]
+  },
+  "cta": {
+    "titulo": "Need help choosing the right plan?",
+    "descripcion": "A DGD consultant helps you pick the Codeplex plan that fits your volume and the implementation service you need.",
+    "primario": "Talk to a consultant"
+  }
+}
