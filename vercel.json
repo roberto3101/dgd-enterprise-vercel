@@ -1,0 +1,4 @@
+{
+  "buildCommand": "node node_modules/astro/dist/cli/index.js build",
+  "outputDirectory": "dist"
+}

@@ -5,11 +5,11 @@
   "private": true,
   "description": "DGD Enterprise — Partner oficial Codeplex en Perú",
   "scripts": {
-    "dev": "node node_modules/astro/dist/cli/index.js dev",
-    "start": "node node_modules/astro/dist/cli/index.js dev",
-    "build": "node node_modules/astro/dist/cli/index.js build",
-    "preview": "node node_modules/astro/dist/cli/index.js preview",
-    "astro": "node node_modules/astro/dist/cli/index.js"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.16",
