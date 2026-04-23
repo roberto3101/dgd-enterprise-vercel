@@ -5,11 +5,11 @@
   "private": true,
   "description": "DGD Enterprise — Partner oficial Codeplex en Perú",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "dev": "npx astro dev",
+    "start": "npx astro dev",
+    "build": "npx astro build",
+    "preview": "npx astro preview",
+    "astro": "npx astro"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.16",
