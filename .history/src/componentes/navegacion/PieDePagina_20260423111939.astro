@@ -1,0 +1,56 @@
+---
+interface Props {
+  footer: any;
+}
+const { footer } = Astro.props;
+---
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px; color:white">
+          <div style="width:32px; height:32px; border-radius:8px; background:linear-gradient(135deg, #14B8A6, #0D9488); display:grid; place-items:center; color:white; font-weight:800">D</div>
+          <span style="color:white; font-weight:700; font-size:18px">DGD<span style="color:var(--brand-accent)">.</span>enterprise</span>
+        </div>
+        <p style="font-size:14px; line-height:1.65; color:var(--ink-400); margin-bottom:20px; max-width:320px">
+          {footer.descripcion}
+        </p>
+        <div style="display:flex; gap:10px">
+          {footer.redes.map((s: string) => (
+            <a href="#" aria-label={s} style="width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,.08); display:grid; place-items:center">
+              <span style="font-size:11px; font-weight:700; color:white; text-transform:uppercase">{s[0]}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+      {footer.columnas.map((col: any) => (
+        <div class="footer-col">
+          <h4>{col.titulo}</h4>
+          <ul>
+            {col.enlaces.map((l: any) => (
+              <li><a href={l.href}>{l.texto}</a></li>
+            ))}
+            {col.reclamaciones && (
+              <li style="margin-top:6px">
+                <a href="222." class="reclamaciones">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                  {col.reclamaciones}
+                </a>
+              </li>
+            )}
+          </ul>
+        </div>
+      ))}
+    </div>
+    <div class="footer-bottom">
+      <div>
+        <div>{footer.razonSocial} · <span style="font-family:var(--font-mono); opacity:.7">{footer.ruc}</span></div>
+        <div style="margin-top:3px; color:var(--ink-500); font-family:var(--font-mono); font-size:12px">{footer.direccion}</div>
+      </div>
+      <div style="display:flex; gap:18px; align-items:center">
+        <span>{footer.copyright}</span>
+        <span class="badge" style="background:rgba(20,184,166,.15); color:var(--brand-accent)">{footer.badgePartner}</span>
+      </div>
+    </div>
+  </div>
+</footer>
