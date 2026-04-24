@@ -2,6 +2,7 @@
 import OrbitingCircles from '@componentes/ui/mui/OrbitingCircles.astro';
 ---
 <section class="eco-orbit">
+  <div class="eco-ambient" aria-hidden="true"></div>
   <div class="container">
     <div class="eco-grid">
       <div class="eco-text" data-anim="reveal-up">
@@ -29,7 +30,59 @@ import OrbitingCircles from '@componentes/ui/mui/OrbitingCircles.astro';
       </div>
 
       <div class="eco-visual" data-anim="reveal-scale">
-        <OrbitingCircles radius={150} duration={28} iconSize={56} count={4}>
+        <!-- Halo radial ambiente -->
+        <div class="eco-halo" aria-hidden="true"></div>
+
+        <!-- Anillos SVG con beams rotantes -->
+        <svg class="eco-rings" viewBox="-220 -220 440 440" aria-hidden="true">
+          <defs>
+            <linearGradient id="beamOuter" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#D4AF37" stop-opacity="0"/>
+              <stop offset="50%" stop-color="#D4AF37" stop-opacity="1"/>
+              <stop offset="100%" stop-color="#F0D98C" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="beamInner" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#2E6BA5" stop-opacity="0"/>
+              <stop offset="50%" stop-color="#175082" stop-opacity="1"/>
+              <stop offset="100%" stop-color="#2E6BA5" stop-opacity="0"/>
+            </linearGradient>
+            <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Glow radial detrás del centro -->
+          <circle r="70" fill="url(#centerGlow)" class="eco-center-glow" />
+
+          <!-- Anillo decorativo exterior (puntitos) -->
+          <circle r="195" fill="none" stroke="currentColor" class="eco-ring-decor" />
+
+          <!-- Anillo órbita externa: punteado estático + beam rotante -->
+          <circle r="150" fill="none" stroke="currentColor" class="eco-ring-dashed" />
+          <circle r="150" fill="none" stroke="url(#beamOuter)" class="eco-ring-beam eco-ring-beam--outer" />
+
+          <!-- Anillo órbita interna: sutil + beam inverso -->
+          <circle r="80" fill="none" stroke="currentColor" class="eco-ring-soft" />
+          <circle r="80" fill="none" stroke="url(#beamInner)" class="eco-ring-beam eco-ring-beam--inner" />
+        </svg>
+
+        <!-- Partículas en órbita exterior (decorativas) -->
+        <div class="eco-particles" aria-hidden="true">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <span class="eco-dot" style={`--i:${i};--dot-angle:${i * 45}deg`}></span>
+          ))}
+        </div>
+
+        <!-- Ripples expansivos desde el centro -->
+        <div class="eco-ripples" aria-hidden="true">
+          <span class="eco-ripple"></span>
+          <span class="eco-ripple" style="animation-delay:1.2s"></span>
+          <span class="eco-ripple" style="animation-delay:2.4s"></span>
+        </div>
+
+        <!-- Órbita externa (módulos principales) -->
+        <OrbitingCircles radius={150} duration={32} iconSize={56} count={4} path={false}>
           <div slot="item-0" class="eco-chip eco-chip--primary" title="ContaPlex">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="9" y1="4" x2="9" y2="20"/></svg>
           </div>
@@ -46,7 +99,7 @@ import OrbitingCircles from '@componentes/ui/mui/OrbitingCircles.astro';
 
         <!-- Órbita interna más pequeña (reverse) -->
         <div class="eco-inner-orbit">
-          <OrbitingCircles radius={80} duration={18} iconSize={36} reverse={true} count={3} path={false}>
+          <OrbitingCircles radius={80} duration={20} iconSize={36} reverse={true} count={3} path={false}>
             <div slot="item-0" class="eco-chip eco-chip--small">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.7-4 3-9 3s-9-1.3-9-3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/></svg>
             </div>
@@ -59,11 +112,15 @@ import OrbitingCircles from '@componentes/ui/mui/OrbitingCircles.astro';
           </OrbitingCircles>
         </div>
 
-        <!-- Centro: logo DGD -->
+        <!-- Centro: logo DGD con halo cónico + aura -->
         <div class="eco-center">
-          <div class="eco-center-inner">
-            <div class="eco-center-mark">DGD</div>
-            <div class="eco-center-sub">Partner</div>
+          <div class="eco-center-conic" aria-hidden="true"></div>
+          <div class="eco-center-aura" aria-hidden="true"></div>
+          <div class="eco-center-core">
+            <div class="eco-center-inner">
+              <div class="eco-center-mark">DGD</div>
+              <div class="eco-center-sub">Partner</div>
+            </div>
           </div>
         </div>
       </div>
@@ -77,11 +134,18 @@ import OrbitingCircles from '@componentes/ui/mui/OrbitingCircles.astro';
     background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
     position: relative; overflow: hidden;
   }
+  .eco-ambient {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(600px circle at 80% 50%, color-mix(in srgb, var(--gold-500) 10%, transparent), transparent 60%),
+      radial-gradient(400px circle at 75% 30%, color-mix(in srgb, var(--navy-700) 6%, transparent), transparent 70%);
+  }
   .eco-grid {
     display: grid;
     grid-template-columns: 1fr 1.1fr;
     gap: 64px;
     align-items: center;
+    position: relative; z-index: 1;
   }
   @media (max-width: 980px) {
     .eco-grid { grid-template-columns: 1fr; gap: 48px; }
@@ -104,17 +168,133 @@ import OrbitingCircles from '@componentes/ui/mui/OrbitingCircles.astro';
   }
   .eco-bullets li { display: flex; align-items: center; gap: 10px; }
 
+  /* ============ VISUAL ============ */
   .eco-visual {
     position: relative;
     display: grid; place-items: center;
-    min-height: 460px;
+    min-height: 480px;
+    isolation: isolate;
   }
-  .eco-inner-orbit {
+
+  /* Halo radial detrás de toda la composición */
+  .eco-halo {
+    position: absolute; inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(closest-side, color-mix(in srgb, var(--gold-500) 18%, transparent), transparent 70%);
+    animation: haloBreath 6s ease-in-out infinite;
+    z-index: 0;
+  }
+  @keyframes haloBreath {
+    0%, 100% { transform: scale(1); opacity: .85; }
+    50% { transform: scale(1.06); opacity: 1; }
+  }
+
+  /* ============ ANILLOS SVG ============ */
+  .eco-rings {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: visible;
+    z-index: 1;
+  }
+  .eco-ring-dashed {
+    stroke: color-mix(in srgb, var(--gold-500) 26%, transparent);
+    stroke-width: 1;
+    stroke-dasharray: 3 7;
+  }
+  .eco-ring-soft {
+    stroke: color-mix(in srgb, var(--navy-600) 20%, transparent);
+    stroke-width: 1;
+    stroke-dasharray: 2 6;
+  }
+  .eco-ring-decor {
+    stroke: color-mix(in srgb, var(--gold-500) 14%, transparent);
+    stroke-width: 1;
+    stroke-dasharray: 1 11;
+    transform-origin: center;
+    animation: ringSpin 80s linear infinite;
+  }
+  @keyframes ringSpin { to { transform: rotate(360deg); } }
+
+  /* Beams: arcos cortos que recorren el path */
+  .eco-ring-beam {
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    transform-origin: center;
+    filter: drop-shadow(0 0 6px color-mix(in srgb, var(--gold-500) 60%, transparent));
+  }
+  .eco-ring-beam--outer {
+    /* 2*PI*150 ≈ 942. Arc ~100 unidades + gap 842 = trail corta */
+    stroke-dasharray: 100 842;
+    animation: beamSpin 5.5s linear infinite;
+  }
+  .eco-ring-beam--inner {
+    /* 2*PI*80 ≈ 503. Arc 60 + gap 443 */
+    stroke-dasharray: 60 443;
+    animation: beamSpinReverse 4s linear infinite;
+    filter: drop-shadow(0 0 5px color-mix(in srgb, var(--navy-500) 70%, transparent));
+  }
+  @keyframes beamSpin { to { transform: rotate(360deg); } }
+  @keyframes beamSpinReverse { to { transform: rotate(-360deg); } }
+
+  .eco-center-glow {
+    transform-origin: center;
+    animation: centerGlowPulse 4s ease-in-out infinite;
+  }
+  @keyframes centerGlowPulse {
+    0%, 100% { opacity: .85; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.15); }
+  }
+
+  /* ============ PARTÍCULAS EXTERIORES ============ */
+  .eco-particles {
     position: absolute; inset: 0;
     display: grid; place-items: center;
     pointer-events: none;
+    z-index: 2;
+    animation: ringSpin 60s linear infinite;
+  }
+  .eco-dot {
+    position: absolute;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--gold-500);
+    box-shadow: 0 0 6px color-mix(in srgb, var(--gold-500) 80%, transparent);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(var(--dot-angle)) translateY(-195px);
+    opacity: .7;
+    animation: dotPulse 3s ease-in-out infinite;
+    animation-delay: calc(var(--i) * .2s);
+  }
+  @keyframes dotPulse {
+    0%, 100% { opacity: .4; }
+    50% { opacity: 1; }
   }
 
+  /* ============ RIPPLES EXPANSIVOS ============ */
+  .eco-ripples {
+    position: absolute; inset: 0;
+    display: grid; place-items: center;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .eco-ripple {
+    position: absolute;
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    border: 1.5px solid color-mix(in srgb, var(--gold-500) 45%, transparent);
+    opacity: 0;
+    animation: rippleOut 3.6s ease-out infinite;
+  }
+  @keyframes rippleOut {
+    0% { transform: scale(1); opacity: .7; border-width: 2px; }
+    70% { opacity: .2; }
+    100% { transform: scale(2.6); opacity: 0; border-width: 0.5px; }
+  }
+
+  /* ============ CHIPS ============ */
   .eco-chip {
     width: 100%; height: 100%;
     display: grid; place-items: center;
@@ -123,12 +303,14 @@ import OrbitingCircles from '@componentes/ui/mui/OrbitingCircles.astro';
     border: 1px solid var(--ink-200);
     color: var(--navy-700);
     box-shadow: 0 6px 20px -8px rgba(4,26,46,.15);
+    transition: transform .3s var(--ease-smooth), box-shadow .3s var(--ease-smooth), border-color .3s;
+    position: relative;
   }
   .eco-chip--primary {
     background: linear-gradient(135deg, var(--navy-800), var(--navy-700));
     color: var(--gold-400);
     border-color: color-mix(in srgb, var(--gold-500) 30%, transparent);
-    box-shadow: 0 10px 30px -12px rgba(4,26,46,.35);
+    box-shadow: 0 10px 30px -12px rgba(4,26,46,.35), inset 0 1px 0 color-mix(in srgb, var(--gold-500) 18%, transparent);
   }
   .eco-chip--small {
     border-radius: 10px;
@@ -136,30 +318,98 @@ import OrbitingCircles from '@componentes/ui/mui/OrbitingCircles.astro';
     color: var(--ink-500);
     box-shadow: 0 2px 8px -4px rgba(4,26,46,.1);
   }
+  /* Hover: pausa orbit global + escala chip + aura dorada */
+  .eco-visual:hover :global(.mui-orbit) { animation-play-state: paused; }
+  .eco-visual:hover .eco-ring-beam,
+  .eco-visual:hover .eco-particles,
+  .eco-visual:hover .eco-ring-decor { animation-play-state: paused; }
+  .eco-chip:hover {
+    transform: scale(1.15);
+    border-color: var(--gold-500);
+    box-shadow:
+      0 14px 36px -10px rgba(212,175,55,.55),
+      0 0 0 3px color-mix(in srgb, var(--gold-500) 25%, transparent);
+    z-index: 5;
+  }
 
+  /* ============ CENTRO ============ */
   .eco-center {
-    position: relative; z-index: 2;
-    width: 110px; height: 110px;
+    position: relative; z-index: 3;
+    width: 120px; height: 120px;
+    display: grid; place-items: center;
+  }
+  /* Halo cónico rotante */
+  .eco-center-conic {
+    position: absolute; inset: -8px;
+    border-radius: 50%;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      color-mix(in srgb, var(--gold-500) 70%, transparent) 40deg,
+      transparent 110deg,
+      transparent 180deg,
+      color-mix(in srgb, var(--gold-400) 55%, transparent) 220deg,
+      transparent 290deg,
+      transparent 360deg
+    );
+    filter: blur(6px);
+    animation: conicSpin 8s linear infinite;
+    opacity: .85;
+  }
+  @keyframes conicSpin { to { transform: rotate(360deg); } }
+  /* Aura radial respirando */
+  .eco-center-aura {
+    position: absolute; inset: -16px;
+    border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--gold-500) 40%, transparent), transparent 65%);
+    filter: blur(10px);
+    animation: auraPulse 3.2s ease-in-out infinite;
+  }
+  @keyframes auraPulse {
+    0%, 100% { opacity: .55; transform: scale(1); }
+    50% { opacity: .9; transform: scale(1.12); }
+  }
+  /* Core sólido */
+  .eco-center-core {
+    position: relative;
+    width: 100%; height: 100%;
     border-radius: 50%;
     background: radial-gradient(circle at 30% 30%, var(--navy-600), var(--navy-900) 70%);
     display: grid; place-items: center;
     box-shadow:
-      0 0 0 6px rgba(255,255,255,.6),
-      0 0 0 7px color-mix(in srgb, var(--gold-500) 30%, transparent),
-      0 25px 50px -10px rgba(4,26,46,.4);
+      0 0 0 4px color-mix(in srgb, var(--bg) 95%, transparent),
+      0 0 0 5px color-mix(in srgb, var(--gold-500) 55%, transparent),
+      0 25px 50px -10px rgba(4,26,46,.5),
+      inset 0 2px 6px color-mix(in srgb, var(--gold-500) 25%, transparent);
   }
   .eco-center-inner { text-align: center; color: white; }
   .eco-center-mark {
-    font-size: 20px; font-weight: 800; letter-spacing: 0.02em;
-    color: var(--gold-400);
+    font-size: 22px; font-weight: 800; letter-spacing: 0.04em;
+    background: linear-gradient(135deg, var(--gold-300), var(--gold-500) 60%, var(--gold-700));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,.3));
   }
   .eco-center-sub {
-    font-size: 10px; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; color: rgba(255,255,255,.7);
-    margin-top: 2px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(255,255,255,.75);
+    margin-top: 3px;
   }
 
+  /* ============ DARK MODE ============ */
   :global(html.dark) .eco-orbit {
     background: linear-gradient(180deg, var(--bg) 0%, var(--navy-900) 100%);
+  }
+  :global(html.dark) .eco-chip:not(.eco-chip--primary) {
+    background: color-mix(in srgb, var(--bg-card) 90%, transparent);
+  }
+
+  /* ============ REDUCED MOTION ============ */
+  @media (prefers-reduced-motion: reduce) {
+    .eco-ring-beam, .eco-ring-decor, .eco-particles,
+    .eco-ripple, .eco-center-conic, .eco-center-aura,
+    .eco-halo, .eco-center-glow, .eco-dot {
+      animation: none !important;
+    }
   }
 </style>
