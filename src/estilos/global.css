@@ -135,12 +135,14 @@ main { padding-top: 72px; }
 
 /* ============ NAVBAR ============ */
 .nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   background: color-mix(in srgb, var(--bg) 75%, transparent);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid color-mix(in srgb, var(--ink-200) 60%, transparent);
   transition: background .3s;
+  /* Ensure nav stays above view-transition pseudo-elements */
+  isolation: isolate;
 }
 .nav-inner {
   display: flex; align-items: center; gap: 32px; height: 72px;
