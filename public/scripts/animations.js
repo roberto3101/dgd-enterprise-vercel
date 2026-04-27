@@ -351,7 +351,7 @@ async function bootAnimations() {
     //      Solo en pointer:fine (no mobile). Usa quickTo para perf.
     // ============================================================
     if (window.matchMedia('(pointer: fine)').matches) {
-      document.querySelectorAll('.btn-primary.btn-lg, .btn-gold.btn-lg').forEach(btn => {
+      document.querySelectorAll('.btn-primary.btn-lg').forEach(btn => {
         const xTo = gsap.quickTo(btn, 'x', { duration: 0.4, ease: 'power3.out' });
         const yTo = gsap.quickTo(btn, 'y', { duration: 0.4, ease: 'power3.out' });
         const strength = 8;
@@ -420,19 +420,19 @@ async function bootAnimations() {
   }
 }
 
-// ── Limpieza segura entre transiciones de página ──
+// ── Limpieza ligera entre transiciones de página ──
+// IMPORTANTE: NO usar dgdCtx.revert() en astro:before-swap. Eso revierte
+// SplitText/transforms del DOM saliente y causa un "flash" o efecto de
+// recarga durante la View Transition. El swap de Astro reemplaza el DOM
+// igual; sólo necesitamos matar ScrollTriggers para que no apunten a
+// elementos huérfanos durante la animación de la mascarilla.
 function cleanupAnimations() {
   if (window.ScrollTrigger) {
     window.ScrollTrigger.getAll().forEach(t => t.kill());
   }
-  if (dgdCtx) {
-    dgdCtx.revert();
-    dgdCtx = null;
-  }
-  if (dgdMM) {
-    dgdMM.revert();
-    dgdMM = null;
-  }
+  // Limpiamos referencias sin revert: el DOM ya será reemplazado.
+  dgdCtx = null;
+  dgdMM = null;
 }
 
 // Boot inicial + en cada navegación View Transitions
@@ -441,4 +441,3 @@ document.addEventListener('astro:page-load', () => {
   cleanupAnimations();
   bootAnimations();
 });
-document.addEventListener('astro:before-swap', cleanupAnimations);
