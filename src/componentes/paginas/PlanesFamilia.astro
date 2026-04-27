@@ -16,7 +16,6 @@ const fSlug = familia.slug;
     <header class="fam-head">
       <div class="eyebrow"><Icon name={familia.icon} size={14} />{familia.subtitulo}</div>
       <h2 class="fam-title">{familia.name}</h2>
-      <p class="fam-intro">{familia.intro}</p>
     </header>
 
     <div class="var-tabs" role="tablist">
@@ -29,18 +28,15 @@ const fSlug = familia.slug;
           aria-selected={i === 0 ? 'true' : 'false'}
         >
           <span class="var-tab-name">{v.name}</span>
-          {v.etiqueta && <span class="var-tab-tag">{v.etiqueta}</span>}
         </button>
       ))}
     </div>
 
     {familia.variantes.map((v: any, i: number) => (
       <div class={`var-panel ${i === 0 ? 'active' : ''}`} data-panel={`${fSlug}-${v.slug}`}>
-        {v.tagline && <p class="var-tagline">{v.tagline}</p>}
         {v.implementacion && (
           <div class="var-impl">
-            <Icon name="zap" size={16} /><strong>{v.implementacion}</strong>
-            <span>· Implementación inicial (incluye adaptación, dominio personal y reportes a medida).</span>
+            <Icon name="zap" size={16} /><span>{v.implementacion}</span>
           </div>
         )}
         {v.limite && <div class="var-limite mono">// {v.limite}</div>}
@@ -182,9 +178,8 @@ const fSlug = familia.slug;
   }
   .var-tab {
     border: 0; background: transparent; cursor: pointer;
-    padding: 10px 16px; border-radius: 10px;
-    font-weight: 600; color: var(--ink-700); font-size: 14px;
-    display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
+    padding: 10px 18px; border-radius: 10px;
+    font-weight: 700; color: var(--ink-700); font-size: 14px;
     transition: all .15s;
   }
   .var-tab:hover { background: rgba(0,0,0,.04); }
@@ -193,13 +188,10 @@ const fSlug = familia.slug;
     box-shadow: var(--shadow-sm);
     color: var(--ink-900);
   }
-  .var-tab-name { font-size: 14px; font-weight: 700; }
-  .var-tab-tag { font-size: 11px; color: var(--ink-500); font-weight: 500; }
 
   .var-panel { display: none; }
   .var-panel.active { display: block; }
 
-  .var-tagline { text-align: center; max-width: 720px; margin: 0 auto 14px; color: var(--ink-700); font-size: 15px; }
   .var-impl {
     max-width: 720px; margin: 0 auto 14px;
     display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
@@ -359,7 +351,6 @@ const fSlug = familia.slug;
   @media (max-width: 640px) {
     .var-tabs { padding: 4px; }
     .var-tab { padding: 8px 12px; }
-    .var-tab-tag { display: none; }
     .planes-row { grid-template-columns: 1fr !important; }
     .plan-card.popular { transform: none; }
   }

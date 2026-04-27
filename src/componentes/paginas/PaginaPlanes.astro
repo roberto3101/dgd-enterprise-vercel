@@ -1,6 +1,5 @@
 ---
 import Icon from '@componentes/ui/Icon.astro';
-import SectionHeader from '@componentes/ui/SectionHeader.astro';
 import CTAPanel from '@componentes/ui/CTAPanel.astro';
 import PlanesFamilia from '@componentes/paginas/PlanesFamilia.astro';
 import type { Idioma } from '@helpers/idiomas';
@@ -24,7 +23,7 @@ const contactoHref = `/${idioma}/contacto/`;
 <section style="padding:0 0 48px;">
   <div class="container">
     <div class="fam-nav">
-      {datos.familias.map((f: any, i: number) => (
+      {datos.familias.map((f: any) => (
         <a class="fam-nav-link" href={`#fam-${f.slug}`}>
           <Icon name={f.icon} size={16} />
           <span>{f.name}</span>
@@ -40,29 +39,6 @@ const contactoHref = `/${idioma}/contacto/`;
   </div>
 ))}
 
-<section class="section-alt">
-  <div class="container">
-    <SectionHeader eyebrow={datos.servicios.eyebrow} titulo={datos.servicios.titulo} descripcion={datos.servicios.descripcion} />
-    <div class="servicios-grid">
-      {datos.servicios.items.map((s: any) => (
-        <div class={`servicio-card ${s.featured ? 'featured' : ''}`}>
-          {s.featured && <span class="badge badge-pop servicio-badge">{datos.featuredBadge}</span>}
-          <div class="servicio-icon"><Icon name={s.icon} size={22} /></div>
-          <h3 style="font-size:20px;margin-bottom:10px;">{s.name}</h3>
-          <p class="servicio-desc">{s.desc}</p>
-          <ul class="servicio-list">
-            {s.includes.map((f: string) => (
-              <li><Icon name="check" size={16} stroke={2.5} /><span>{f}</span></li>
-            ))}
-          </ul>
-          <div class="mono servicio-nota">{datos.servicios.nota}</div>
-          <a class={`btn ${s.featured ? 'btn-primary' : 'btn-outline'}`} href={contactoHref} style="width:100%;justify-content:center;">{datos.servicios.ctaSolicitar}</a>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
 <CTAPanel titulo={datos.cta.titulo} descripcion={datos.cta.descripcion} ctaPrimario={datos.cta.primario} hrefPrimario={contactoHref} />
 
 <style>
@@ -76,9 +52,7 @@ const contactoHref = `/${idioma}/contacto/`;
   .meta-pill svg { color: var(--brand-accent-2); }
   .planes-sectores { font-size: 12px; color: var(--ink-500); margin-top: 16px; letter-spacing: .04em; }
 
-  .fam-nav {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
-  }
+  .fam-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
   .fam-nav-link {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 12px 20px; border-radius: 999px;
@@ -87,35 +61,4 @@ const contactoHref = `/${idioma}/contacto/`;
     transition: all .15s;
   }
   .fam-nav-link:hover { background: var(--ink-900); color: var(--bg); border-color: transparent; transform: translateY(-1px); }
-
-  .servicios-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-  @media (max-width:1024px) { .servicios-grid { grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:640px) { .servicios-grid { grid-template-columns:1fr; } }
-  @media (max-width:640px) { .servicio-card.featured { transform: none; } }
-  .servicio-card {
-    padding:28px; border-radius:20px; background:var(--bg); border:1px solid var(--ink-200);
-    position:relative; box-shadow:var(--shadow-sm);
-  }
-  .servicio-card.featured {
-    background:linear-gradient(180deg,var(--brand-primary),#123558);
-    color:white; border:1px solid rgba(255,255,255,.15);
-    transform:scale(1.02); box-shadow:var(--shadow-xl);
-  }
-  .servicio-badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); }
-  .servicio-icon {
-    width:48px;height:48px;border-radius:12px;
-    background:color-mix(in srgb,var(--brand-accent) 12%,transparent);
-    color:var(--brand-accent-2);
-    display:grid;place-items:center;margin-bottom:16px;
-  }
-  .servicio-card.featured .servicio-icon { background:rgba(255,255,255,.12); color:var(--brand-accent); }
-  .servicio-desc { font-size:13.5px; color:var(--ink-500); margin-bottom:20px; line-height:1.55; }
-  .servicio-card.featured .servicio-desc { color:rgba(255,255,255,.8); }
-  .servicio-list { list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:22px; }
-  .servicio-list li { display:flex; gap:10px; font-size:13.5px; color:var(--ink-700); align-items:flex-start; }
-  .servicio-list svg { color:var(--brand-accent-2); flex-shrink:0; margin-top:2px; }
-  .servicio-card.featured .servicio-list li { color:rgba(255,255,255,.9); }
-  .servicio-card.featured .servicio-list svg { color:var(--brand-accent); }
-  .servicio-nota { font-size:12px; color:var(--ink-500); margin-bottom:14px; }
-  .servicio-card.featured .servicio-nota { color:rgba(255,255,255,.6); }
 </style>
