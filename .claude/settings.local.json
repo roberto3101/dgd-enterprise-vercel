@@ -4,7 +4,12 @@
       "Bash(python generar_tabla.py)",
       "Bash(git init *)",
       "Bash(git add *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(mkdir -p .claude/skills)",
+      "Bash(cp -r _tmp-gsap/skills/gsap-core .claude/skills/)",
+      "Bash(cp -r _tmp-gsap/skills/gsap-timeline .claude/skills/)",
+      "Bash(cp -r _tmp-gsap/skills/gsap-scrolltrigger .claude/skills/)",
+      "Bash(cp -r _tmp-gsap/skills/gsap-plugins .claude/skills/)"
     ]
   }
 }
