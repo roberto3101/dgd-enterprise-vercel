@@ -10,6 +10,9 @@ interface Props {
 const { className = '', name, description, href = '#', cta = 'Ver más', style = '' } = Astro.props;
 ---
 <div class={`bento-card ${className}`} style={style}>
+  <!-- Stretched link: la card entera es clickeable -->
+  <a href={href} class="bento-stretched" aria-label={`${name} — ${cta}`}></a>
+
   <!-- background slot (full-bleed media/decorativo) -->
   <div class="bento-bg">
     <slot name="background" />
@@ -26,15 +29,15 @@ const { className = '', name, description, href = '#', cta = 'Ver más', style =
     </div>
   </div>
 
-  <!-- CTA que aparece en hover (desktop) -->
+  <!-- CTA visual: aparece en hover (desktop), siempre en mobile -->
   <div class="bento-cta">
-    <a href={href} class="bento-link">
+    <span class="bento-link">
       {cta}
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="5" y1="12" x2="19" y2="12"/>
         <polyline points="12 5 19 12 12 19"/>
       </svg>
-    </a>
+    </span>
   </div>
 
   <!-- overlay sutil al hover -->
@@ -53,15 +56,28 @@ const { className = '', name, description, href = '#', cta = 'Ver más', style =
       0 0 0 1px rgba(4,26,46,.02),
       0 2px 6px rgba(4,26,46,.04),
       0 14px 30px -15px rgba(4,26,46,.08);
-    transition: box-shadow .4s ease, border-color .4s ease;
+    transition: box-shadow .4s ease, border-color .4s ease, transform .4s ease;
     transform: translateZ(0);
+    cursor: pointer;
   }
   .bento-card:hover {
     box-shadow:
-      0 0 0 1px rgba(212,175,55,.12),
+      0 0 0 1px rgba(212,175,55,.18),
       0 2px 6px rgba(4,26,46,.05),
-      0 30px 60px -25px rgba(4,26,46,.18);
-    border-color: color-mix(in srgb, var(--gold-500) 22%, var(--ink-200));
+      0 36px 70px -25px rgba(4,26,46,.22);
+    border-color: color-mix(in srgb, var(--gold-500) 32%, var(--ink-200));
+    transform: translateY(-3px);
+  }
+  /* Stretched link: cubre toda la card, click captura cualquier área */
+  .bento-stretched {
+    position: absolute; inset: 0; z-index: 5;
+    text-indent: -9999px; overflow: hidden;
+    border-radius: inherit;
+  }
+  .bento-stretched:focus-visible {
+    outline: 2px solid var(--gold-500);
+    outline-offset: -2px;
+    text-indent: 0; /* no relevante, solo accesibilidad */
   }
   .bento-bg {
     position: absolute; inset: 0;
@@ -103,8 +119,9 @@ const { className = '', name, description, href = '#', cta = 'Ver más', style =
     display: inline-flex; align-items: center; gap: 6px;
     color: var(--navy-700); font-weight: 600; font-size: 14px;
     text-decoration: none;
-    pointer-events: auto;
+    transition: gap .25s ease, color .25s ease;
   }
+  .bento-card:hover .bento-link { gap: 10px; color: var(--gold-700); }
   .bento-overlay {
     position: absolute; inset: 0; z-index: 1;
     background: rgba(4,26,46,0);
@@ -132,4 +149,10 @@ const { className = '', name, description, href = '#', cta = 'Ver más', style =
   }
   :global(html.dark) .bento-title { color: rgba(255,255,255,.92); }
   :global(html.dark) .bento-desc { color: rgba(255,255,255,.6); }
+  :global(html.dark) .bento-icon { color: var(--gold-400); }
+  :global(html.dark) .bento-link { color: var(--gold-400); }
+  :global(html.dark) .bento-card:hover .bento-link { color: var(--gold-300); }
+  :global(html.dark) .bento-card:hover {
+    border-color: color-mix(in srgb, var(--gold-500) 35%, rgba(255,255,255,.08));
+  }
 </style>
