@@ -308,8 +308,18 @@ const fSlug = familia.slug;
   .tabla-comp tbody .td-val.popular {
     background: color-mix(in srgb, var(--brand-primary) 5%, transparent);
   }
-  .tabla-comp .td-yes { color: var(--brand-accent-2); display: inline-flex; }
-  .tabla-comp .td-no { color: var(--ink-300); display: inline-flex; }
+  .tabla-comp .td-yes {
+    color: var(--brand-accent-2);
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: color-mix(in srgb, var(--brand-accent-2) 14%, transparent);
+  }
+  .tabla-comp .td-no {
+    color: #dc2626;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: color-mix(in srgb, #dc2626 10%, transparent);
+  }
   .tabla-comp .td-text {
     font-size: 12px; font-weight: 600;
     padding: 3px 8px; border-radius: 999px;
