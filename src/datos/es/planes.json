@@ -4806,5 +4806,6 @@
     "titulo": "¿Ayuda eligiendo el plan correcto?",
     "descripcion": "Un consultor de DGD te orienta sobre qué plan de Codeplex se ajusta a tu volumen y qué servicio de implementación necesitas.",
     "primario": "Hablar con un consultor"
-  }
+  },
+  "modulosIncluidos": "Módulos incluidos en este plan"
 }

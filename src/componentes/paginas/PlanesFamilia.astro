@@ -63,6 +63,15 @@ const fSlug = familia.slug;
           ))}
         </div>
 
+        <div class="modulos-incluidos">
+          <div class="modulos-label">{textos.modulosIncluidos}</div>
+          <div class="modulos-chips">
+            {v.grupos.map((g: any) => (
+              <span class="modulo-chip"><Icon name="check" size={12} stroke={2.5} />{g.title}</span>
+            ))}
+          </div>
+        </div>
+
         <details class="tabla-wrap">
           <summary><Icon name="chevron" size={14} /><span>{textos.verTabla}</span></summary>
           <div class="tabla-scroll">
@@ -241,6 +250,28 @@ const fSlug = familia.slug;
   .plan-limit { font-size: 12px; color: var(--ink-500); margin-bottom: 16px; min-height: 32px; }
   .plan-card.popular .plan-limit { color: rgba(255,255,255,.75); }
   .plan-card .btn { width: 100%; justify-content: center; margin-top: auto; }
+
+  .modulos-incluidos {
+    margin-bottom: 16px;
+    padding: 16px 18px;
+    background: var(--ink-100);
+    border: 1px solid var(--ink-200);
+    border-radius: 14px;
+  }
+  .modulos-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .08em; color: var(--ink-500); margin-bottom: 10px;
+  }
+  .modulos-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .modulo-chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 5px 10px; border-radius: 999px;
+    background: var(--bg);
+    border: 1px solid var(--ink-200);
+    font-size: 12px; font-weight: 600;
+    color: var(--ink-900);
+  }
+  .modulo-chip svg { color: var(--brand-accent-2); flex-shrink: 0; }
 
   .tabla-wrap {
     margin-top: 8px;
