@@ -1,58 +1,44 @@
 ---
-interface Props {
-  productos: any;
-}
-const { productos } = Astro.props;
+interface Props { data: any; }
+const { data } = Astro.props;
+// 3 SVG paths fijos por feature, en orden (no i18n)
+const FEATURE_ICONS = [
+  '<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>',
+  '<line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/>',
+  '<rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>',
+];
 ---
 <section class="producto-accion">
   <div class="producto-accion-bg"></div>
   <div class="container">
     <div class="producto-accion-grid">
       <div data-anim="reveal-left">
-        <div class="eyebrow" style="color:var(--gold-400);">Producto en acción</div>
+        <div class="eyebrow" style="color:var(--gold-400);">{data.eyebrow}</div>
         <h2 style="color:white;margin-top:10px;" data-anim="reveal-up">
-          Tu operación contable<br/>
-          <span class="gradient-text">en tiempo real</span>
+          {data.tituloPre}<br/>
+          <span class="gradient-text">{data.tituloAccent}</span>
         </h2>
         <p style="color:rgba(255,255,255,.78);font-size:17px;margin-top:18px;line-height:1.65;max-width:480px;">
-          Desde el escritorio o desde el celular: ContaPlex y GestiónPlex te dan
-          una sola vista del flujo de caja, KPIs y movimientos de tu negocio —
-          sincronizado con SUNAT.
+          {data.descripcion}
         </p>
 
         <div class="producto-accion-features" data-anim="stagger">
-          <div class="paf-item">
-            <div class="paf-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          {data.features.map((f: any, i: number) => (
+            <div class="paf-item">
+              <div class="paf-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" set:html={FEATURE_ICONS[i] || FEATURE_ICONS[0]}></svg>
+              </div>
+              <div>
+                <div class="paf-title">{f.titulo}</div>
+                <div class="paf-desc">{f.desc}</div>
+              </div>
             </div>
-            <div>
-              <div class="paf-title">Flujo de caja consolidado</div>
-              <div class="paf-desc">Vista mensual con desglose por sede, módulo y centro de costo</div>
-            </div>
-          </div>
-          <div class="paf-item">
-            <div class="paf-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
-            </div>
-            <div>
-              <div class="paf-title">KPIs en vivo</div>
-              <div class="paf-desc">Rendimiento YTD, activos, ingresos — actualizados al momento</div>
-            </div>
-          </div>
-          <div class="paf-item">
-            <div class="paf-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-            </div>
-            <div>
-              <div class="paf-title">Móvil + escritorio</div>
-              <div class="paf-desc">Sincronización nativa para que el contador y el dueño vean lo mismo</div>
-            </div>
-          </div>
+          ))}
         </div>
 
         <div style="margin-top:32px;">
           <a class="btn btn-primary btn-lg btn-shine" href="#contacto">
-            Ver demo en vivo
+            {data.cta}
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
         </div>
@@ -60,7 +46,7 @@ const { productos } = Astro.props;
 
       <div class="producto-accion-img-wrap" data-anim="img-zoom">
         <div class="paw-glow"></div>
-        <img src="/imagenes/dashboard-mockup.webp" alt="Dashboard ContaPlex en laptop y móvil" loading="lazy" />
+        <img src="/imagenes/dashboard-mockup.webp" alt={data.alt} loading="lazy" />
       </div>
     </div>
   </div>

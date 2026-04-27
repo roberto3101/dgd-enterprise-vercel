@@ -18,15 +18,15 @@ const { planes } = Astro.props;
       {planes.items.map((pl: any) => (
         <div style={`padding:28px; border-radius:18px; background:${pl.popular?'linear-gradient(180deg, var(--brand-primary), #123558)':'var(--bg)'}; color:${pl.popular?'white':'inherit'}; border:${pl.popular?'1px solid rgba(255,255,255,.15)':'1px solid var(--ink-200)'}; position:relative; box-shadow:${pl.popular?'var(--shadow-xl)':'var(--shadow-sm)'}; display:flex; flex-direction:column`}>
           {pl.popular && (
-            <span class="badge badge-pop" style="position:absolute; top:-12px; left:50%; transform:translateX(-50%)">MÁS POPULAR</span>
+            <span class="badge badge-pop" style="position:absolute; top:-12px; left:50%; transform:translateX(-50%)">{planes.popularBadge}</span>
           )}
           <div style={`font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:${pl.popular?'var(--brand-accent)':'var(--brand-accent-2)'}; margin-bottom:8px`}>{planes.producto}</div>
           <h3 style="font-size:22px; margin-bottom:6px">{pl.nombre}</h3>
           <p style={`font-size:13px; color:${pl.popular?'rgba(255,255,255,.7)':'var(--ink-500)'}; margin-bottom:16px; line-height:1.5; min-height:38px`}>{pl.desc}</p>
           <div style="display:flex; align-items:baseline; gap:4px; margin-bottom:4px">
-            <span style="font-size:16px; font-weight:600; opacity:.7">S/</span>
+            <span style="font-size:16px; font-weight:600; opacity:.7">{planes.moneda}</span>
             <span style="font-size:42px; font-weight:800; letter-spacing:-0.03em">{pl.precio}</span>
-            <span style={`font-size:13px; color:${pl.popular?'rgba(255,255,255,.7)':'var(--ink-500)'}`}>/mes</span>
+            <span style={`font-size:13px; color:${pl.popular?'rgba(255,255,255,.7)':'var(--ink-500)'}`}>{planes.perMes}</span>
           </div>
           <div style={`font-size:12px; color:${pl.popular?'rgba(255,255,255,.7)':'var(--ink-500)'}; margin-bottom:20px`}>{pl.empresas}</div>
           <ul style="list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:24px; flex:1">
@@ -37,7 +37,7 @@ const { planes } = Astro.props;
               </li>
             ))}
           </ul>
-          <a href="#contacto" class={pl.popular ? 'btn btn-primary' : 'btn btn-outline'} style="justify-content:center; width:100%">Solicitar {pl.nombre}</a>
+          <a href="#contacto" class={pl.popular ? 'btn btn-primary' : 'btn btn-outline'} style="justify-content:center; width:100%">{planes.ctaSolicitar} {pl.nombre}</a>
         </div>
       ))}
     </div>

@@ -8,28 +8,127 @@
     "descripcion": "We implement and support your company with <b>ContaPlex</b>, <b>GestiónPlex</b> and <b>Electronic Invoicing</b> — Codeplex's cloud systems, fully SUNAT-compliant.",
     "ctaPrimario": "Request free demo",
     "ctaSecundario": "See plans",
-    "bullets": ["7-day setup", "Training included", "Local support in Peru"],
+    "bullets": [
+      "7-day setup",
+      "Training included",
+      "Local support in Peru"
+    ],
     "dashboard": {
       "url": "app.contaplex.pe/dashboard",
       "eyebrow": "Demo view · Accounting panel",
       "titulo": "Accounting panel",
-      "tags": ["✓ PLE validated", "SIRE ready"],
-      "sidebar": ["Dashboard", "Income", "Expenses", "E-books", "SIRE", "PLE", "Reports", "Companies"],
-      "metricas": [
-        { "label": "Income", "valor": "S/ 485,230", "delta": "+12.4%" },
-        { "label": "Expenses", "valor": "S/ 312,180", "delta": "-3.1%" },
-        { "label": "Profit", "valor": "S/ 173,050", "delta": "+28.7%" }
+      "tags": [
+        "✓ PLE validated",
+        "SIRE ready"
       ],
-      "chart": { "titulo": "Monthly flow · S/", "subtitulo": "Last 6 months", "meses": ["Nov","Dec","Jan","Feb","Mar","Apr"] },
-      "floatingTop": { "titulo": "Filed to SUNAT", "subtitulo": "Sales Book · OK" },
-      "floatingBottom": { "eyebrow": "Invoicing today", "monto": "S/ 48,230", "delta": "↑ 18% vs yesterday" }
+      "sidebar": [
+        "Dashboard",
+        "Income",
+        "Expenses",
+        "E-books",
+        "SIRE",
+        "PLE",
+        "Reports",
+        "Companies"
+      ],
+      "metricas": [
+        {
+          "label": "Income",
+          "valor": "S/ 485,230",
+          "delta": "+12.4%"
+        },
+        {
+          "label": "Expenses",
+          "valor": "S/ 312,180",
+          "delta": "-3.1%"
+        },
+        {
+          "label": "Profit",
+          "valor": "S/ 173,050",
+          "delta": "+28.7%"
+        }
+      ],
+      "chart": {
+        "titulo": "Monthly flow · S/",
+        "subtitulo": "Last 6 months",
+        "meses": [
+          "Nov",
+          "Dec",
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr"
+        ]
+      },
+      "floatingTop": {
+        "titulo": "Filed to SUNAT",
+        "subtitulo": "Sales Book · OK"
+      },
+      "floatingBottom": {
+        "eyebrow": "Invoicing today",
+        "monto": "S/ 48,230",
+        "delta": "↑ 18% vs yesterday"
+      }
     },
     "metricsStrip": [
-      { "text": "Partner", "label": "authorized Codeplex Software · Peru" },
-      { "text": "SUNAT", "label": "100% compliant: SIRE, PLE, e-invoicing" },
-      { "text": "Cloud", "label": "multi-company, multi-user, multi-warehouse" },
-      { "text": "Mon · Sat", "label": "local support in Spanish and English" }
-    ]
+      {
+        "text": "Partner",
+        "label": "authorized Codeplex Software · Peru"
+      },
+      {
+        "text": "SUNAT",
+        "label": "100% compliant: SIRE, PLE, e-invoicing"
+      },
+      {
+        "text": "Cloud",
+        "label": "multi-company, multi-user, multi-warehouse"
+      },
+      {
+        "text": "Mon · Sat",
+        "label": "local support in Spanish and English"
+      }
+    ],
+    "marqueeItems": [
+      "ContaPlex",
+      "GestiónPlex",
+      "Electronic Invoicing",
+      "SUNAT electronic books",
+      "Inventory control",
+      "Multi-warehouse",
+      "POS · Point of sale",
+      "Fixed assets",
+      "Withholdings & detractions",
+      "Financial statements",
+      "Purchase management",
+      "Accounting reports"
+    ],
+    "impactSection": {
+      "eyebrow": "Documented results",
+      "tituloPre": "What improves when",
+      "tituloGradient": "you implement Codeplex",
+      "metrics": [
+        {
+          "value": 40,
+          "suffix": "%",
+          "label": "less time on monthly closing"
+        },
+        {
+          "value": 35,
+          "suffix": "%",
+          "label": "fewer invoicing errors"
+        },
+        {
+          "value": 70,
+          "suffix": "%",
+          "label": "faster SUNAT books submission"
+        },
+        {
+          "value": 60,
+          "suffix": "%",
+          "label": "less time on inventory counts"
+        }
+      ]
+    }
   },
   "productos": {
     "eyebrow": "Our suite",
@@ -41,7 +140,11 @@
         "nombre": "ContaPlex",
         "tagline": "Cloud accounting integrated with SUNAT",
         "color": "#14B8A6",
-        "bullets": ["SIRE · PLE · electronic books", "Financial statements & analysis", "Multi-company, multi-user"],
+        "bullets": [
+          "SIRE · PLE · electronic books",
+          "Financial statements & analysis",
+          "Multi-company, multi-user"
+        ],
         "cta": "Learn more"
       },
       {
@@ -49,7 +152,11 @@
         "nombre": "GestiónPlex",
         "tagline": "Logistics, inventory, POS and restaurant",
         "color": "#3B82F6",
-        "bullets": ["Multi-warehouse inventory", "POS and restaurant module", "Mobile app for sales reps"],
+        "bullets": [
+          "Multi-warehouse inventory",
+          "POS and restaurant module",
+          "Mobile app for sales reps"
+        ],
         "cta": "Learn more"
       },
       {
@@ -57,7 +164,11 @@
         "nombre": "SUNAT Invoicing",
         "tagline": "Valid e-invoices, receipts and waybills",
         "color": "#8B5CF6",
-        "bullets": ["Digital certificate included", "Auto XML/PDF/CDR delivery", "Integrates with ContaPlex & GestiónPlex"],
+        "bullets": [
+          "Digital certificate included",
+          "Auto XML/PDF/CDR delivery",
+          "Integrates with ContaPlex & GestiónPlex"
+        ],
         "cta": "Learn more"
       }
     ]
@@ -68,20 +179,81 @@
     "descripcion": "You license the software from Codeplex's official pricing. We add implementation, training and local support.",
     "producto": "ContaPlex",
     "items": [
-      { "nombre": "Standard", "precio": 50, "empresas": "5 companies", "desc": "Basic records, PLE, journal generation", "features": ["Accounting voucher", "Purchase & sales ledgers", "Cash & banks", "PLE", "Accounting books"] },
-      { "nombre": "Business", "precio": 100, "empresas": "15 companies", "desc": "PLE validation, opening balances, advanced queries", "popular": true, "features": ["Everything in Standard", "PLE validation", "Opening balances", "DAOT", "Accounts receivable"] },
-      { "nombre": "Gold", "precio": 300, "empresas": "50 companies", "desc": "Fixed assets, withholdings, full financials", "features": ["Everything in Business", "Fixed assets", "Withholdings", "Financial statements (function & nature)"] }
+      {
+        "nombre": "Standard",
+        "precio": 50,
+        "empresas": "5 companies",
+        "desc": "Basic records, PLE, journal generation",
+        "features": [
+          "Accounting voucher",
+          "Purchase & sales ledgers",
+          "Cash & banks",
+          "PLE",
+          "Accounting books"
+        ]
+      },
+      {
+        "nombre": "Business",
+        "precio": 100,
+        "empresas": "15 companies",
+        "desc": "PLE validation, opening balances, advanced queries",
+        "popular": true,
+        "features": [
+          "Everything in Standard",
+          "PLE validation",
+          "Opening balances",
+          "DAOT",
+          "Accounts receivable"
+        ]
+      },
+      {
+        "nombre": "Gold",
+        "precio": 300,
+        "empresas": "50 companies",
+        "desc": "Fixed assets, withholdings, full financials",
+        "features": [
+          "Everything in Business",
+          "Fixed assets",
+          "Withholdings",
+          "Financial statements (function & nature)"
+        ]
+      }
     ],
-    "ctaVerTodos": "See all plans"
+    "ctaVerTodos": "See all plans",
+    "popularBadge": "MOST POPULAR",
+    "moneda": "S/",
+    "perMes": "/mo",
+    "ctaSolicitar": "Request"
   },
   "casos": {
     "eyebrow": "Case studies",
     "titulo": "Results published by Codeplex",
     "descripcion": "Impact documented by Codeplex Software across suite implementations. Grupo DGD is an authorized partner in Peru.",
     "items": [
-      { "industria": "Accounting & finance", "empresa": "Financial process optimization", "kpi": "40% less time on accounting management", "desc": "Case published by Codeplex on ContaPlex rollout to automate records and reports.", "tag": "Source: codeplex.pe", "color": "#14B8A6" },
-      { "industria": "Logistics & warehousing", "empresa": "Efficient logistics management", "kpi": "35% reduction in warehouse costs", "desc": "Case published by Codeplex on GestiónPlex rollout for multi-warehouse inventory and valued kardex.", "tag": "Source: codeplex.pe", "color": "#3B82F6" },
-      { "industria": "Electronic invoicing", "empresa": "E-invoicing implementation", "kpi": "70% less time processing SUNAT documents", "desc": "Case published by Codeplex on SUNAT Invoicing deployment with automatic XML/PDF/CDR delivery.", "tag": "Source: codeplex.pe", "color": "#8B5CF6" }
+      {
+        "industria": "Accounting & finance",
+        "empresa": "Financial process optimization",
+        "kpi": "40% less time on accounting management",
+        "desc": "Case published by Codeplex on ContaPlex rollout to automate records and reports.",
+        "tag": "Source: codeplex.pe",
+        "color": "#14B8A6"
+      },
+      {
+        "industria": "Logistics & warehousing",
+        "empresa": "Efficient logistics management",
+        "kpi": "35% reduction in warehouse costs",
+        "desc": "Case published by Codeplex on GestiónPlex rollout for multi-warehouse inventory and valued kardex.",
+        "tag": "Source: codeplex.pe",
+        "color": "#3B82F6"
+      },
+      {
+        "industria": "Electronic invoicing",
+        "empresa": "E-invoicing implementation",
+        "kpi": "70% less time processing SUNAT documents",
+        "desc": "Case published by Codeplex on SUNAT Invoicing deployment with automatic XML/PDF/CDR delivery.",
+        "tag": "Source: codeplex.pe",
+        "color": "#8B5CF6"
+      }
     ]
   },
   "blog": {
@@ -95,15 +267,87 @@
   "cta": {
     "titulo": "Ready to digitize your company?",
     "descripcion": "Leave us your details and a consultant will contact you in under 24 hours. No strings attached.",
-    "bullets": ["Personalized demo for your industry", "Tailored implementation proposal", "No fine print, no commitment"],
+    "bullets": [
+      "Personalized demo for your industry",
+      "Tailored implementation proposal",
+      "No fine print, no commitment"
+    ],
     "formulario": {
       "titulo": "Book your demo",
       "nombre": "Full name *",
       "email": "Business email *",
       "whatsapp": "WhatsApp (optional)",
       "producto": "Product of interest",
-      "productos": ["ContaPlex", "GestiónPlex", "SUNAT Invoicing", "All three integrated", "Not sure yet"],
+      "productos": [
+        "ContaPlex",
+        "GestiónPlex",
+        "SUNAT Invoicing",
+        "All three integrated",
+        "Not sure yet"
+      ],
       "cta": "Book demo"
     }
+  },
+  "ecosistema": {
+    "eyebrow": "The ecosystem",
+    "tituloPre": "One cloud suite,",
+    "tituloAccent": "multiple modules",
+    "tituloPost": "connected.",
+    "descripcion": "ContaPlex, GestiónPlex and Electronic Invoicing share the same database, users and accounting rules. Implement one — when you add another, it is ready, with no migrations or double data entry.",
+    "bullets": [
+      "Single source of truth across modules",
+      "Simultaneous updates",
+      "Unified support from Peru"
+    ],
+    "modulos": [
+      {
+        "key": "a",
+        "titulo": "ContaPlex"
+      },
+      {
+        "key": "b",
+        "titulo": "Inventory"
+      },
+      {
+        "key": "c",
+        "titulo": "Invoicing"
+      },
+      {
+        "key": "d",
+        "titulo": "POS"
+      },
+      {
+        "key": "e",
+        "titulo": "Reports"
+      },
+      {
+        "key": "f",
+        "titulo": "Customers"
+      }
+    ],
+    "coreMark": "DGD",
+    "coreSub": "Partner"
+  },
+  "productoEnAccion": {
+    "eyebrow": "Product in action",
+    "tituloPre": "Your accounting operations",
+    "tituloAccent": "in real time",
+    "descripcion": "From desktop or mobile: ContaPlex and GestiónPlex give you a single view of cash flow, KPIs and business movements — synced with SUNAT.",
+    "features": [
+      {
+        "titulo": "Consolidated cash flow",
+        "desc": "Monthly view broken down by site, module and cost center"
+      },
+      {
+        "titulo": "Live KPIs",
+        "desc": "YTD performance, assets, revenue — updated instantly"
+      },
+      {
+        "titulo": "Mobile + desktop",
+        "desc": "Native sync so the accountant and the owner see the same data"
+      }
+    ],
+    "cta": "See live demo",
+    "alt": "ContaPlex dashboard on laptop and mobile"
   }
 }

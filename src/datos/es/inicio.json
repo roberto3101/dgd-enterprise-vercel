@@ -8,28 +8,127 @@
     "descripcion": "Implementamos y acompañamos tu empresa con <b>ContaPlex</b>, <b>GestiónPlex</b> y <b>Facturación Electrónica</b> — los sistemas cloud de Codeplex, 100% válidos ante SUNAT.",
     "ctaPrimario": "Solicitar demo gratis",
     "ctaSecundario": "Ver planes",
-    "bullets": ["Setup en 7 días", "Capacitación incluida", "Soporte en Perú"],
+    "bullets": [
+      "Setup en 7 días",
+      "Capacitación incluida",
+      "Soporte en Perú"
+    ],
     "dashboard": {
       "url": "app.contaplex.pe/dashboard",
       "eyebrow": "Vista demo · Panel contable",
       "titulo": "Panel contable",
-      "tags": ["✓ PLE validado", "SIRE listo"],
-      "sidebar": ["Dashboard", "Ingresos", "Gastos", "Libros electrónicos", "SIRE", "PLE", "Reportes", "Empresas"],
-      "metricas": [
-        { "label": "Ingresos", "valor": "S/ 485,230", "delta": "+12.4%" },
-        { "label": "Gastos", "valor": "S/ 312,180", "delta": "-3.1%" },
-        { "label": "Utilidad", "valor": "S/ 173,050", "delta": "+28.7%" }
+      "tags": [
+        "✓ PLE validado",
+        "SIRE listo"
       ],
-      "chart": { "titulo": "Flujo mensual · S/", "subtitulo": "Últimos 6 meses", "meses": ["Nov","Dic","Ene","Feb","Mar","Abr"] },
-      "floatingTop": { "titulo": "SUNAT presentó", "subtitulo": "Libro de Ventas · OK" },
-      "floatingBottom": { "eyebrow": "Facturación hoy", "monto": "S/ 48,230", "delta": "↑ 18% vs ayer" }
+      "sidebar": [
+        "Dashboard",
+        "Ingresos",
+        "Gastos",
+        "Libros electrónicos",
+        "SIRE",
+        "PLE",
+        "Reportes",
+        "Empresas"
+      ],
+      "metricas": [
+        {
+          "label": "Ingresos",
+          "valor": "S/ 485,230",
+          "delta": "+12.4%"
+        },
+        {
+          "label": "Gastos",
+          "valor": "S/ 312,180",
+          "delta": "-3.1%"
+        },
+        {
+          "label": "Utilidad",
+          "valor": "S/ 173,050",
+          "delta": "+28.7%"
+        }
+      ],
+      "chart": {
+        "titulo": "Flujo mensual · S/",
+        "subtitulo": "Últimos 6 meses",
+        "meses": [
+          "Nov",
+          "Dic",
+          "Ene",
+          "Feb",
+          "Mar",
+          "Abr"
+        ]
+      },
+      "floatingTop": {
+        "titulo": "SUNAT presentó",
+        "subtitulo": "Libro de Ventas · OK"
+      },
+      "floatingBottom": {
+        "eyebrow": "Facturación hoy",
+        "monto": "S/ 48,230",
+        "delta": "↑ 18% vs ayer"
+      }
     },
     "metricsStrip": [
-      { "text": "Partner", "label": "autorizado Codeplex Software · Perú" },
-      { "text": "SUNAT", "label": "100% válido: SIRE, PLE, facturación electrónica" },
-      { "text": "Cloud", "label": "multi-empresa, multi-usuario, multi-almacén" },
-      { "text": "Lun · Sáb", "label": "soporte en Perú, en español" }
-    ]
+      {
+        "text": "Partner",
+        "label": "autorizado Codeplex Software · Perú"
+      },
+      {
+        "text": "SUNAT",
+        "label": "100% válido: SIRE, PLE, facturación electrónica"
+      },
+      {
+        "text": "Cloud",
+        "label": "multi-empresa, multi-usuario, multi-almacén"
+      },
+      {
+        "text": "Lun · Sáb",
+        "label": "soporte en Perú, en español"
+      }
+    ],
+    "marqueeItems": [
+      "ContaPlex",
+      "GestiónPlex",
+      "Facturación Electrónica",
+      "Libros electrónicos SUNAT",
+      "Control de inventarios",
+      "Múltiples almacenes",
+      "POS · Punto de venta",
+      "Activos fijos",
+      "Retenciones y detracciones",
+      "Estados financieros",
+      "Gestión de compras",
+      "Reportes contables"
+    ],
+    "impactSection": {
+      "eyebrow": "Resultados documentados",
+      "tituloPre": "Lo que mejora cuando",
+      "tituloGradient": "implementas Codeplex",
+      "metrics": [
+        {
+          "value": 40,
+          "suffix": "%",
+          "label": "menos tiempo en cierre contable mensual"
+        },
+        {
+          "value": 35,
+          "suffix": "%",
+          "label": "reducción en errores de facturación"
+        },
+        {
+          "value": 70,
+          "suffix": "%",
+          "label": "más rápido el envío de libros SUNAT"
+        },
+        {
+          "value": 60,
+          "suffix": "%",
+          "label": "menos tiempo en conteos de inventario"
+        }
+      ]
+    }
   },
   "productos": {
     "eyebrow": "Nuestra suite",
@@ -41,7 +140,11 @@
         "nombre": "ContaPlex",
         "tagline": "Contabilidad cloud integrada con SUNAT",
         "color": "#14B8A6",
-        "bullets": ["SIRE · PLE · libros electrónicos", "Estados financieros y análisis", "Multi-empresa y multi-usuario"],
+        "bullets": [
+          "SIRE · PLE · libros electrónicos",
+          "Estados financieros y análisis",
+          "Multi-empresa y multi-usuario"
+        ],
         "cta": "Conocer más"
       },
       {
@@ -49,7 +152,11 @@
         "nombre": "GestiónPlex",
         "tagline": "Logística, inventarios, POS y restaurante",
         "color": "#3B82F6",
-        "bullets": ["Inventarios multi-almacén", "POS y módulo restaurante", "App móvil para vendedores"],
+        "bullets": [
+          "Inventarios multi-almacén",
+          "POS y módulo restaurante",
+          "App móvil para vendedores"
+        ],
         "cta": "Conocer más"
       },
       {
@@ -57,7 +164,11 @@
         "nombre": "Facturación SUNAT",
         "tagline": "Boletas, facturas y guías válidas",
         "color": "#8B5CF6",
-        "bullets": ["Certificado digital incluido", "Envío automático XML/PDF/CDR", "Integra con ContaPlex y GestiónPlex"],
+        "bullets": [
+          "Certificado digital incluido",
+          "Envío automático XML/PDF/CDR",
+          "Integra con ContaPlex y GestiónPlex"
+        ],
         "cta": "Conocer más"
       }
     ]
@@ -68,20 +179,81 @@
     "descripcion": "La licencia del software la contratas según la lista oficial de Codeplex. Nosotros añadimos implementación, capacitación y soporte local.",
     "producto": "ContaPlex",
     "items": [
-      { "nombre": "Estándar", "precio": 50, "empresas": "5 empresas", "desc": "Registros básicos, PLE, generación de diario", "features": ["Voucher contable", "Registro de compras y ventas", "Caja y bancos", "PLE", "Libros contables"] },
-      { "nombre": "Business", "precio": 100, "empresas": "15 empresas", "desc": "Validación PLE, saldos iniciales, consultas avanzadas", "popular": true, "features": ["Todo lo de Estándar", "Validación PLE", "Saldos iniciales", "DAOT", "Cuentas por cobrar"] },
-      { "nombre": "Gold", "precio": 300, "empresas": "50 empresas", "desc": "Activos fijos, retenciones, EE.FF. completos", "features": ["Todo lo de Business", "Activos fijos", "Retenciones", "EE.FF. función y naturaleza"] }
+      {
+        "nombre": "Estándar",
+        "precio": 50,
+        "empresas": "5 empresas",
+        "desc": "Registros básicos, PLE, generación de diario",
+        "features": [
+          "Voucher contable",
+          "Registro de compras y ventas",
+          "Caja y bancos",
+          "PLE",
+          "Libros contables"
+        ]
+      },
+      {
+        "nombre": "Business",
+        "precio": 100,
+        "empresas": "15 empresas",
+        "desc": "Validación PLE, saldos iniciales, consultas avanzadas",
+        "popular": true,
+        "features": [
+          "Todo lo de Estándar",
+          "Validación PLE",
+          "Saldos iniciales",
+          "DAOT",
+          "Cuentas por cobrar"
+        ]
+      },
+      {
+        "nombre": "Gold",
+        "precio": 300,
+        "empresas": "50 empresas",
+        "desc": "Activos fijos, retenciones, EE.FF. completos",
+        "features": [
+          "Todo lo de Business",
+          "Activos fijos",
+          "Retenciones",
+          "EE.FF. función y naturaleza"
+        ]
+      }
     ],
-    "ctaVerTodos": "Ver todos los planes"
+    "ctaVerTodos": "Ver todos los planes",
+    "popularBadge": "MÁS POPULAR",
+    "moneda": "S/",
+    "perMes": "/mes",
+    "ctaSolicitar": "Solicitar"
   },
   "casos": {
     "eyebrow": "Casos de éxito",
     "titulo": "Resultados publicados por Codeplex",
     "descripcion": "Impacto documentado por Codeplex Software en implementaciones de su suite. Grupo DGD es partner autorizado en Perú.",
     "items": [
-      { "industria": "Contabilidad y finanzas", "empresa": "Optimización de procesos financieros", "kpi": "40% menos tiempo en gestión contable", "desc": "Caso publicado por Codeplex sobre la implementación de ContaPlex para automatizar registros y reportes.", "tag": "Fuente: codeplex.pe", "color": "#14B8A6" },
-      { "industria": "Logística y almacenes", "empresa": "Gestión logística eficiente", "kpi": "35% de reducción de costos de almacén", "desc": "Caso publicado por Codeplex sobre la implementación de GestiónPlex para inventarios multi-almacén y kárdex valorizado.", "tag": "Fuente: codeplex.pe", "color": "#3B82F6" },
-      { "industria": "Facturación electrónica", "empresa": "Implementación de facturación electrónica", "kpi": "70% menos tiempo de procesamiento SUNAT", "desc": "Caso publicado por Codeplex sobre el despliegue de Facturación SUNAT con envío automático XML/PDF/CDR.", "tag": "Fuente: codeplex.pe", "color": "#8B5CF6" }
+      {
+        "industria": "Contabilidad y finanzas",
+        "empresa": "Optimización de procesos financieros",
+        "kpi": "40% menos tiempo en gestión contable",
+        "desc": "Caso publicado por Codeplex sobre la implementación de ContaPlex para automatizar registros y reportes.",
+        "tag": "Fuente: codeplex.pe",
+        "color": "#14B8A6"
+      },
+      {
+        "industria": "Logística y almacenes",
+        "empresa": "Gestión logística eficiente",
+        "kpi": "35% de reducción de costos de almacén",
+        "desc": "Caso publicado por Codeplex sobre la implementación de GestiónPlex para inventarios multi-almacén y kárdex valorizado.",
+        "tag": "Fuente: codeplex.pe",
+        "color": "#3B82F6"
+      },
+      {
+        "industria": "Facturación electrónica",
+        "empresa": "Implementación de facturación electrónica",
+        "kpi": "70% menos tiempo de procesamiento SUNAT",
+        "desc": "Caso publicado por Codeplex sobre el despliegue de Facturación SUNAT con envío automático XML/PDF/CDR.",
+        "tag": "Fuente: codeplex.pe",
+        "color": "#8B5CF6"
+      }
     ]
   },
   "blog": {
@@ -95,15 +267,87 @@
   "cta": {
     "titulo": "¿Listo para digitalizar tu empresa?",
     "descripcion": "Déjanos tus datos y un consultor te contacta en menos de 24 horas. Sin compromiso.",
-    "bullets": ["Demo personalizada según tu industria", "Propuesta de implementación a medida", "Sin letra chica, sin compromiso"],
+    "bullets": [
+      "Demo personalizada según tu industria",
+      "Propuesta de implementación a medida",
+      "Sin letra chica, sin compromiso"
+    ],
     "formulario": {
       "titulo": "Agenda tu demo",
       "nombre": "Nombre y apellido *",
       "email": "Email corporativo *",
       "whatsapp": "WhatsApp (opcional)",
       "producto": "Producto de interés",
-      "productos": ["ContaPlex", "GestiónPlex", "Facturación SUNAT", "Los tres integrados", "No estoy seguro"],
+      "productos": [
+        "ContaPlex",
+        "GestiónPlex",
+        "Facturación SUNAT",
+        "Los tres integrados",
+        "No estoy seguro"
+      ],
       "cta": "Agendar demo"
     }
+  },
+  "ecosistema": {
+    "eyebrow": "El ecosistema",
+    "tituloPre": "Una suite cloud,",
+    "tituloAccent": "varios módulos",
+    "tituloPost": "conectados.",
+    "descripcion": "ContaPlex, GestiónPlex y Facturación Electrónica comparten la misma base de datos, usuarios y reglas contables. Implementas uno, y cuando sumes otro ya está listo — sin migraciones ni dobles digitaciones.",
+    "bullets": [
+      "Datos únicos entre módulos",
+      "Actualizaciones simultáneas",
+      "Soporte unificado desde Perú"
+    ],
+    "modulos": [
+      {
+        "key": "a",
+        "titulo": "ContaPlex"
+      },
+      {
+        "key": "b",
+        "titulo": "Inventario"
+      },
+      {
+        "key": "c",
+        "titulo": "Facturación"
+      },
+      {
+        "key": "d",
+        "titulo": "POS"
+      },
+      {
+        "key": "e",
+        "titulo": "Reportes"
+      },
+      {
+        "key": "f",
+        "titulo": "Clientes"
+      }
+    ],
+    "coreMark": "DGD",
+    "coreSub": "Partner"
+  },
+  "productoEnAccion": {
+    "eyebrow": "Producto en acción",
+    "tituloPre": "Tu operación contable",
+    "tituloAccent": "en tiempo real",
+    "descripcion": "Desde el escritorio o desde el celular: ContaPlex y GestiónPlex te dan una sola vista del flujo de caja, KPIs y movimientos de tu negocio — sincronizado con SUNAT.",
+    "features": [
+      {
+        "titulo": "Flujo de caja consolidado",
+        "desc": "Vista mensual con desglose por sede, módulo y centro de costo"
+      },
+      {
+        "titulo": "KPIs en vivo",
+        "desc": "Rendimiento YTD, activos, ingresos — actualizados al momento"
+      },
+      {
+        "titulo": "Móvil + escritorio",
+        "desc": "Sincronización nativa para que el contador y el dueño vean lo mismo"
+      }
+    ],
+    "cta": "Ver demo en vivo",
+    "alt": "Dashboard ContaPlex en laptop y móvil"
   }
 }

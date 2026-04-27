@@ -5,40 +5,34 @@
   Puerto a Astro + CSS: 6 módulos alrededor del core DGD conectados por
   beams de luz que fluyen hacia el centro (data converging to core).
 */
-const modulos = [
-  { key: 'a', titulo: 'ContaPlex',     svg: 'M3 4h18v16H3zM3 10h18M9 4v16' },
-  { key: 'b', titulo: 'Inventario',    svg: 'M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16zM3.3 7L12 12l8.7-5' },
-  { key: 'c', titulo: 'Facturación',   svg: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6' },
-  { key: 'd', titulo: 'POS',           svg: 'M3 2v7a3 3 0 0 0 6 0V2M6 2v20M17 2a4 4 0 0 0-4 4v5a2 2 0 0 0 2 2h2v9' },
-  { key: 'e', titulo: 'Reportes',      svg: 'M3 3v18h18M7 14l3-3 4 4 6-6' },
-  { key: 'f', titulo: 'Clientes',      svg: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75' },
-];
+interface Props { ecosistema: any; }
+const { ecosistema } = Astro.props;
+// SVG paths fijos por slot (no i18n) — los textos vienen de la prop.
+const SVG_PATHS: Record<string, string> = {
+  a: 'M3 4h18v16H3zM3 10h18M9 4v16',
+  b: 'M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16zM3.3 7L12 12l8.7-5',
+  c: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6',
+  d: 'M3 2v7a3 3 0 0 0 6 0V2M6 2v20M17 2a4 4 0 0 0-4 4v5a2 2 0 0 0 2 2h2v9',
+  e: 'M3 3v18h18M7 14l3-3 4 4 6-6',
+  f: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75',
+};
+const modulos = ecosistema.modulos.map((m: any) => ({ ...m, svg: SVG_PATHS[m.key] }));
 ---
 <section class="eco-beam-section">
   <div class="eco-bg-grid" aria-hidden="true"></div>
   <div class="container">
     <div class="eco-layout">
       <div class="eco-text" data-anim="reveal-up">
-        <div class="eyebrow">El ecosistema</div>
-        <h2>Una suite cloud,<br/><span class="eco-accent">varios módulos</span><br/>conectados.</h2>
-        <p>
-          ContaPlex, GestiónPlex y Facturación Electrónica comparten la misma base de datos,
-          usuarios y reglas contables. Implementas uno, y cuando sumes otro ya está listo —
-          sin migraciones ni dobles digitaciones.
-        </p>
+        <div class="eyebrow">{ecosistema.eyebrow}</div>
+        <h2>{ecosistema.tituloPre}<br/><span class="eco-accent">{ecosistema.tituloAccent}</span><br/>{ecosistema.tituloPost}</h2>
+        <p>{ecosistema.descripcion}</p>
         <ul class="eco-bullets">
-          <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold-700)" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Datos únicos entre módulos
-          </li>
-          <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold-700)" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Actualizaciones simultáneas
-          </li>
-          <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold-700)" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Soporte unificado desde Perú
-          </li>
+          {ecosistema.bullets.map((b: string) => (
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold-700)" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              {b}
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -78,7 +72,7 @@ const modulos = [
         </svg>
 
         <!-- Nodos módulos -->
-        {modulos.map((m, i) => (
+        {modulos.map((m: any) => (
           <div class={`node node--${m.key}`} title={m.titulo}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d={m.svg}/>
@@ -90,8 +84,8 @@ const modulos = [
         <div class="node-core">
           <div class="core-aura" aria-hidden="true"></div>
           <div class="core-inner">
-            <div class="core-mark">DGD</div>
-            <div class="core-sub">Partner</div>
+            <div class="core-mark">{ecosistema.coreMark}</div>
+            <div class="core-sub">{ecosistema.coreSub}</div>
           </div>
         </div>
       </div>

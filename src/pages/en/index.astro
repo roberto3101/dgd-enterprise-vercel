@@ -2,6 +2,8 @@
 import Principal from '@layout/Principal.astro';
 import Hero from '@componentes/inicio/Hero.astro';
 import ProductosDestacados from '@componentes/inicio/ProductosDestacados.astro';
+import EcosistemaOrbit from '@componentes/inicio/EcosistemaOrbit.astro';
+import ProductoEnAccion from '@componentes/inicio/ProductoEnAccion.astro';
 import Planes from '@componentes/inicio/Planes.astro';
 import CasosExito from '@componentes/inicio/CasosExito.astro';
 import Blog from '@componentes/inicio/Blog.astro';
@@ -13,6 +15,8 @@ const datos = await cargarDatos<any>('en', 'inicio');
 <Principal idioma="en">
   <Hero hero={datos.hero} />
   <ProductosDestacados productos={datos.productos} />
+  <EcosistemaOrbit ecosistema={datos.ecosistema} />
+  <ProductoEnAccion data={datos.productoEnAccion} />
   <Planes planes={datos.planes} />
   <CasosExito casos={datos.casos} />
   <Blog blog={datos.blog} />

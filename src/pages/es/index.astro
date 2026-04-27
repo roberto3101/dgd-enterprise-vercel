@@ -15,8 +15,8 @@ const datos = await cargarDatos<any>('es', 'inicio');
 <Principal idioma="es">
   <Hero hero={datos.hero} />
   <ProductosDestacados productos={datos.productos} />
-  <EcosistemaOrbit />
-  <ProductoEnAccion productos={datos.productos} />
+  <EcosistemaOrbit ecosistema={datos.ecosistema} />
+  <ProductoEnAccion data={datos.productoEnAccion} />
   <Planes planes={datos.planes} />
   <CasosExito casos={datos.casos} />
   <Blog blog={datos.blog} />
