@@ -175,55 +175,54 @@
   },
   "planes": {
     "eyebrow": "Plans & services",
-    "titulo": "Plans come from Codeplex. Service comes from DGD.",
-    "descripcion": "You license the software from Codeplex's official pricing. We add implementation, training and local support.",
-    "producto": "ContaPlex",
-    "items": [
+    "titulo": "Three families. One implementation.",
+    "descripcion": "ContaPlex, GestiónPlex and Electronic Invoicing — the three official Codeplex plans, implemented and supported locally by DGD in Peru.",
+    "productos": [
       {
-        "nombre": "Standard",
-        "precio": 50,
-        "empresas": "5 companies",
-        "desc": "Basic records, PLE, journal generation",
-        "features": [
-          "Accounting voucher",
-          "Purchase & sales ledgers",
-          "Cash & banks",
-          "PLE",
-          "Accounting books"
+        "producto": "ContaPlex",
+        "slug": "contaplex",
+        "tagline": "Accounting Management",
+        "icon": "calc",
+        "desde": "0",
+        "desdeLabel": "Free",
+        "highlights": [
+          "Up to 20,000 receipts/month",
+          "PLE · SIRE generation",
+          "Migration from GestiónPlex"
         ]
       },
       {
-        "nombre": "Business",
-        "precio": 100,
-        "empresas": "15 companies",
-        "desc": "PLE validation, opening balances, advanced queries",
-        "popular": true,
-        "features": [
-          "Everything in Standard",
-          "PLE validation",
-          "Opening balances",
-          "DAOT",
-          "Accounts receivable"
-        ]
+        "producto": "GestiónPlex",
+        "slug": "gestionplex",
+        "tagline": "Business logistics software",
+        "icon": "box",
+        "desde": "100",
+        "highlights": [
+          "Unlimited receipts",
+          "POS + Inventory + Treasury",
+          "Web · Android · iOS"
+        ],
+        "popular": true
       },
       {
-        "nombre": "Gold",
-        "precio": 300,
-        "empresas": "50 companies",
-        "desc": "Fixed assets, withholdings, full financials",
-        "features": [
-          "Everything in Business",
-          "Fixed assets",
-          "Withholdings",
-          "Financial statements (function & nature)"
+        "producto": "Electronic Invoicing",
+        "slug": "facturacion-electronica",
+        "tagline": "Business software",
+        "icon": "receipt",
+        "desde": "50",
+        "highlights": [
+          "Up to 2,000 receipts/month",
+          "Multiuser",
+          "SUNAT digital certificate included"
         ]
       }
     ],
-    "ctaVerTodos": "See all plans",
     "popularBadge": "MOST POPULAR",
     "moneda": "S/",
     "perMes": "/mo",
-    "ctaSolicitar": "Request"
+    "desdeText": "From",
+    "ctaVer": "View plans",
+    "ctaVerTodos": "View all plans & pricing"
   },
   "casos": {
     "eyebrow": "Case studies",

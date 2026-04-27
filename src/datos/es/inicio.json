@@ -175,55 +175,54 @@
   },
   "planes": {
     "eyebrow": "Planes y servicios",
-    "titulo": "Los planes son de Codeplex. El servicio es de DGD.",
-    "descripcion": "La licencia del software la contratas según la lista oficial de Codeplex. Nosotros añadimos implementación, capacitación y soporte local.",
-    "producto": "ContaPlex",
-    "items": [
+    "titulo": "Tres familias. Una sola implementación.",
+    "descripcion": "ContaPlex, GestiónPlex y Facturación Electrónica — los tres planes oficiales de Codeplex implementados y soportados localmente por DGD en Perú.",
+    "productos": [
       {
-        "nombre": "Estándar",
-        "precio": 50,
-        "empresas": "5 empresas",
-        "desc": "Registros básicos, PLE, generación de diario",
-        "features": [
-          "Voucher contable",
-          "Registro de compras y ventas",
-          "Caja y bancos",
-          "PLE",
-          "Libros contables"
+        "producto": "ContaPlex",
+        "slug": "contaplex",
+        "tagline": "Gestión Contable",
+        "icon": "calc",
+        "desde": "0",
+        "desdeLabel": "Gratuito",
+        "highlights": [
+          "Hasta 20 mil comprobantes/mes",
+          "Generación PLE · SIRE",
+          "Migración desde GestiónPlex"
         ]
       },
       {
-        "nombre": "Business",
-        "precio": 100,
-        "empresas": "15 empresas",
-        "desc": "Validación PLE, saldos iniciales, consultas avanzadas",
-        "popular": true,
-        "features": [
-          "Todo lo de Estándar",
-          "Validación PLE",
-          "Saldos iniciales",
-          "DAOT",
-          "Cuentas por cobrar"
-        ]
+        "producto": "GestiónPlex",
+        "slug": "gestionplex",
+        "tagline": "Software de logística empresarial",
+        "icon": "box",
+        "desde": "100",
+        "highlights": [
+          "Comprobantes ilimitados",
+          "POS + Inventario + Tesorería",
+          "Web · Android · iOS"
+        ],
+        "popular": true
       },
       {
-        "nombre": "Gold",
-        "precio": 300,
-        "empresas": "50 empresas",
-        "desc": "Activos fijos, retenciones, EE.FF. completos",
-        "features": [
-          "Todo lo de Business",
-          "Activos fijos",
-          "Retenciones",
-          "EE.FF. función y naturaleza"
+        "producto": "Facturación Electrónica",
+        "slug": "facturacion-electronica",
+        "tagline": "Software empresarial",
+        "icon": "receipt",
+        "desde": "50",
+        "highlights": [
+          "Hasta 2 mil comprobantes/mes",
+          "Multiusuario",
+          "Certificado digital SUNAT incluido"
         ]
       }
     ],
-    "ctaVerTodos": "Ver todos los planes",
     "popularBadge": "MÁS POPULAR",
     "moneda": "S/",
     "perMes": "/mes",
-    "ctaSolicitar": "Solicitar"
+    "desdeText": "Desde",
+    "ctaVer": "Ver planes",
+    "ctaVerTodos": "Ver todos los planes y precios"
   },
   "casos": {
     "eyebrow": "Casos de éxito",
