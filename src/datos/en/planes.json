@@ -1,50 +1,1044 @@
 {
-  "eyebrow": "Plans and services",
-  "titulo": "Plans come from Codeplex. The service comes from DGD.",
-  "descripcion": "Software licenses are contracted from Codeplex's official list. We add implementation, training and local support in Peru.",
-  "tabsTitulo": "Official Codeplex plans",
-  "ctaCotizar": "Request implementation quote",
-  "precioMes": "/mo",
-  "moneda": "S/",
-  "tabs": [
-    { "slug": "contaplex", "name": "ContaPlex", "icon": "calc" },
-    { "slug": "gestionplex", "name": "GestiónPlex", "icon": "box" },
-    { "slug": "facturacion-sunat", "name": "SUNAT Invoicing", "icon": "receipt" }
-  ],
-  "nota": "// Prices from Codeplex Software's official list. DGD quotes implementation separately.",
+  "eyebrow": "Official Codeplex plans",
+  "titulo": "Plans & pricing — exactly as in the 2025 brochure",
+  "descripcion": "Official Codeplex Software pricing (VAT included). DGD adds local implementation, training and Peru-based support.",
+  "ctaCotizar": "Get implementation quote",
+  "ctaConsulta": "Talk to a consultant",
+  "monedaMes": "S/ {n} /mo",
+  "monedaUnico": "S/ {n} one-time",
+  "gratuito": "Free",
+  "incluyeIgv": "VAT included",
+  "incluyeActualizaciones": "Updates included",
   "popularBadge": "MOST POPULAR",
   "featuredBadge": "MOST CHOSEN",
+  "verBrochure": "Industries: Hardware · Pharmacies · Bodegas · Mini-markets · Construction · Factories",
+  "leyendaIncluido": "Included",
+  "leyendaNoIncluido": "Not included",
+  "verTabla": "Compare plans",
+  "ocultarTabla": "Hide table",
+
+  "familias": [
+    {
+      "slug": "contaplex",
+      "name": "Contaplex",
+      "subtitulo": "Accounting Management",
+      "icon": "calc",
+      "intro": "Cloud accounting system. Generates Journal, PLE, SIRE and financial reports. Automatically migrates from Gestionplex.",
+      "variantes": [
+        {
+          "slug": "gratuito",
+          "name": "Free Plan",
+          "etiqueta": "No cost",
+          "tagline": "To get started with basic accounting.",
+          "limite": "Up to 20,000 sales receipts per company. Beyond that, upgrade to Contaplex Empresarial.",
+          "planes": [
+            { "key": "gratuito", "name": "Free", "price": "0", "priceLabel": "Free", "limit": "Free version" }
+          ],
+          "grupos": [
+            { "title": "Configuration", "items": [
+              { "name": "Company creation", "values": { "gratuito": false } },
+              { "name": "Chart of accounts per company", "values": { "gratuito": true } },
+              { "name": "Cash & Banks setup", "values": { "gratuito": true } },
+              { "name": "Automatic exchange rate", "values": { "gratuito": true } },
+              { "name": "Taxes", "values": { "gratuito": true } },
+              { "name": "Fixed Assets creation", "values": { "gratuito": false } },
+              { "name": "Cost Center registration", "values": { "gratuito": false } }
+            ]},
+            { "title": "Processes (Excel import)", "items": [
+              { "name": "Accounting voucher", "values": { "gratuito": true } },
+              { "name": "Purchase records", "values": { "gratuito": true } },
+              { "name": "Sales records (up to 20K receipts/company)", "values": { "gratuito": true } },
+              { "name": "Cash & banks records", "values": { "gratuito": true } },
+              { "name": "Bills of exchange records", "values": { "gratuito": false } },
+              { "name": "Generate Journal (Voucher, purchases, sales, cash & banks)", "values": { "gratuito": true } },
+              { "name": "Migrate data from Gestionplex (Purchases & sales)", "values": { "gratuito": true } },
+              { "name": "Auto cash close (collections & payments)", "values": { "gratuito": true } },
+              { "name": "PLE - SIRE", "values": { "gratuito": true } },
+              { "name": "PLE - SIRE validation", "values": { "gratuito": true } },
+              { "name": "Expense reports", "values": { "gratuito": false } },
+              { "name": "Initial balances (payables and receivables)", "values": { "gratuito": false } },
+              { "name": "FX-difference entries", "values": { "gratuito": false } },
+              { "name": "Compensations", "values": { "gratuito": false } }
+            ]},
+            { "title": "Books", "items": [
+              { "name": "Purchases", "values": { "gratuito": true } },
+              { "name": "Sales", "values": { "gratuito": true } },
+              { "name": "Cash & Banks", "values": { "gratuito": true } },
+              { "name": "Journal", "values": { "gratuito": true } },
+              { "name": "General Ledger", "values": { "gratuito": true } },
+              { "name": "Trial Balance", "values": { "gratuito": true } },
+              { "name": "Balance Sheet", "values": { "gratuito": false } },
+              { "name": "Income Statement (by Function & Nature)", "values": { "gratuito": false } },
+              { "name": "Cash Flow Statement", "values": { "gratuito": false } },
+              { "name": "Statement of Changes in Equity", "values": { "gratuito": false } },
+              { "name": "Fixed Assets", "values": { "gratuito": false } },
+              { "name": "Withholdings book", "values": { "gratuito": false } }
+            ]},
+            { "title": "Reports", "items": [
+              { "name": "Annual account inquiry", "values": { "gratuito": false } },
+              { "name": "Monthly account balance", "values": { "gratuito": false } },
+              { "name": "Account inquiry", "values": { "gratuito": false } },
+              { "name": "Monthly purchases", "values": { "gratuito": false } },
+              { "name": "Customer receivables (summary & detail)", "values": { "gratuito": false } },
+              { "name": "Vendor payables (summary & detail)", "values": { "gratuito": false } },
+              { "name": "DAOT", "values": { "gratuito": false } },
+              { "name": "Accounting annexes", "values": { "gratuito": false } },
+              { "name": "Income tax determination", "values": { "gratuito": false } },
+              { "name": "Settlements", "values": { "gratuito": false } }
+            ]},
+            { "title": "Security", "items": [
+              { "name": "User control (unlimited users)", "values": { "gratuito": true } },
+              { "name": "Password reset & email recovery", "values": { "gratuito": true } },
+              { "name": "Parameterization", "values": { "gratuito": true } }
+            ]}
+          ]
+        },
+        {
+          "slug": "independientes",
+          "name": "Independent Accountants",
+          "etiqueta": "6 tiers by company count",
+          "tagline": "For accountants managing multiple companies. From 5 to 55 companies.",
+          "planes": [
+            { "key": "basic", "name": "Basic", "price": "50", "limit": "5 companies" },
+            { "key": "standar", "name": "Standard", "price": "100", "limit": "15 companies" },
+            { "key": "premium1", "name": "Premium 1", "price": "150", "limit": "25 companies", "popular": true },
+            { "key": "premium2", "name": "Premium 2", "price": "200", "limit": "35 companies" },
+            { "key": "premium3", "name": "Premium 3", "price": "250", "limit": "45 companies" },
+            { "key": "gold", "name": "Gold", "price": "300", "limit": "55 companies" }
+          ],
+          "grupos": [
+            { "title": "Configuration", "items": [
+              { "name": "Company creation", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Chart of accounts per company", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Cash & Banks setup", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Automatic exchange rate", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Taxes", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Fixed Assets creation", "values": { "basic": false, "standar": false, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Cost Center registration", "values": { "basic": false, "standar": false, "premium1": true, "premium2": true, "premium3": true, "gold": true } }
+            ]},
+            { "title": "Processes (Excel import)", "items": [
+              { "name": "Accounting voucher", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Purchase records", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Sales records (up to 20K receipts/company)", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Cash & banks records", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Bills of exchange records", "values": { "basic": false, "standar": false, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Generate Journal", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Generates entries from Gestionplex to Contaplex (purchases, sales, cash, dispatch, finished goods)", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "PLE - SIRE", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "PLE - SIRE validation", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Expense reports", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Initial balances (payables and receivables)", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "FX-difference entries", "values": { "basic": false, "standar": false, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Compensations", "values": { "basic": false, "standar": false, "premium1": true, "premium2": true, "premium3": true, "gold": true } }
+            ]},
+            { "title": "Books", "items": [
+              { "name": "Purchases", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Sales", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Cash & Banks", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Journal", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "General Ledger", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Trial Balance", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Balance Sheet", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Income Statement (by Function & Nature)", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Cash Flow Statement", "values": { "basic": false, "standar": false, "premium1": false, "premium2": false, "premium3": false, "gold": true } },
+              { "name": "Statement of Changes in Equity", "values": { "basic": false, "standar": false, "premium1": false, "premium2": false, "premium3": false, "gold": true } },
+              { "name": "Fixed Assets", "values": { "basic": false, "standar": false, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Withholdings book", "values": { "basic": false, "standar": false, "premium1": false, "premium2": false, "premium3": false, "gold": true } }
+            ]},
+            { "title": "Reports", "items": [
+              { "name": "Annual account inquiry", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Monthly account balance", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Account inquiry", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Monthly purchases", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Customer receivables (summary & detail)", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Vendor payables (summary & detail)", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "DAOT", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Accounting annexes", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Income tax determination", "values": { "basic": false, "standar": false, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Settlements", "values": { "basic": false, "standar": false, "premium1": true, "premium2": true, "premium3": true, "gold": true } }
+            ]},
+            { "title": "Security", "items": [
+              { "name": "User control (unlimited users)", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Password reset & email recovery", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } },
+              { "name": "Parameterization", "values": { "basic": true, "standar": true, "premium1": true, "premium2": true, "premium3": true, "gold": true } }
+            ]}
+          ],
+          "tablaVolumen": {
+            "titulo": "Volume plans — Contaplex pricing table",
+            "headers": ["Companies (up to)", "Plan S/.", "Tier"],
+            "rows": [
+              ["100", "350.00", "Gold 1"],
+              ["150", "400.00", "Gold 1"],
+              ["200", "450.00", "Gold 3"],
+              ["250", "500.00", "Gold 4"],
+              ["300", "550.00", "Gold 5"],
+              ["350", "600.00", "Gold 6"],
+              ["400", "650.00", "Gold 7"],
+              ["450", "700.00", "Gold 8"],
+              ["500", "750.00", "Gold 9"],
+              ["550", "800.00", "Gold 10"],
+              ["600", "850.00", "Gold 11"],
+              ["650", "900.00", "Gold 12"],
+              ["700", "950.00", "Gold 13"]
+            ]
+          }
+        },
+        {
+          "slug": "empresarial",
+          "name": "Enterprise",
+          "etiqueta": "For high-volume companies",
+          "tagline": "Complete Accounting Management. Includes Mobile Manager App on Gold plan.",
+          "planes": [
+            { "key": "basic", "name": "Basic", "price": "150", "limit": "1 company · up to 50K receipts/month" },
+            { "key": "gold", "name": "Gold", "price": "300", "limit": "1 company · up to 100K receipts/month", "popular": true }
+          ],
+          "grupos": [
+            { "title": "Configuration", "items": [
+              { "name": "Company creation", "values": { "basic": true, "gold": true } },
+              { "name": "Chart of accounts per company", "values": { "basic": true, "gold": true } },
+              { "name": "Cash & Banks setup", "values": { "basic": true, "gold": true } },
+              { "name": "Automatic exchange rate", "values": { "basic": true, "gold": true } },
+              { "name": "Taxes", "values": { "basic": true, "gold": true } },
+              { "name": "Fixed Assets creation", "values": { "basic": true, "gold": true } },
+              { "name": "Cost Center registration", "values": { "basic": true, "gold": true } }
+            ]},
+            { "title": "Processes (Excel import)", "items": [
+              { "name": "Accounting voucher", "values": { "basic": true, "gold": true } },
+              { "name": "Purchase records", "values": { "basic": true, "gold": true } },
+              { "name": "Sales records", "values": { "basic": true, "gold": true } },
+              { "name": "Monthly issued sales receipts", "values": { "basic": "Up to 50K", "gold": "Up to 100K" } },
+              { "name": "Cash & banks records", "values": { "basic": true, "gold": true } },
+              { "name": "Bills of exchange records", "values": { "basic": true, "gold": true } },
+              { "name": "Generate Journal", "values": { "basic": true, "gold": true } },
+              { "name": "Generates entries from Gestionplex to Contaplex (purchases, sales, cash, dispatch, finished goods)", "values": { "basic": true, "gold": true } },
+              { "name": "PLE", "values": { "basic": true, "gold": true } },
+              { "name": "PLE validation", "values": { "basic": true, "gold": true } },
+              { "name": "Expense reports", "values": { "basic": true, "gold": true } },
+              { "name": "Initial balances (payables and receivables)", "values": { "basic": true, "gold": true } },
+              { "name": "FX-difference entries", "values": { "basic": true, "gold": true } },
+              { "name": "Compensations", "values": { "basic": true, "gold": true } }
+            ]},
+            { "title": "Books", "items": [
+              { "name": "Purchases", "values": { "basic": true, "gold": true } },
+              { "name": "Sales", "values": { "basic": true, "gold": true } },
+              { "name": "Cash & Banks", "values": { "basic": true, "gold": true } },
+              { "name": "Journal", "values": { "basic": true, "gold": true } },
+              { "name": "General Ledger", "values": { "basic": true, "gold": true } },
+              { "name": "Trial Balance", "values": { "basic": true, "gold": true } },
+              { "name": "Balance Sheet", "values": { "basic": true, "gold": true } },
+              { "name": "Income Statement (by Function & Nature)", "values": { "basic": true, "gold": true } },
+              { "name": "Cash Flow Statement", "values": { "basic": true, "gold": true } },
+              { "name": "Statement of Changes in Equity", "values": { "basic": true, "gold": true } },
+              { "name": "Fixed Assets", "values": { "basic": true, "gold": true } },
+              { "name": "Withholdings book", "values": { "basic": true, "gold": true } }
+            ]},
+            { "title": "Reports", "items": [
+              { "name": "Annual account inquiry", "values": { "basic": true, "gold": true } },
+              { "name": "Monthly account balance", "values": { "basic": true, "gold": true } },
+              { "name": "Account inquiry", "values": { "basic": true, "gold": true } },
+              { "name": "Monthly purchases", "values": { "basic": true, "gold": true } },
+              { "name": "Customer receivables (summary & detail)", "values": { "basic": true, "gold": true } },
+              { "name": "Vendor payables (summary & detail)", "values": { "basic": true, "gold": true } },
+              { "name": "DAOT", "values": { "basic": true, "gold": true } },
+              { "name": "Accounting annexes", "values": { "basic": true, "gold": true } },
+              { "name": "Income tax determination", "values": { "basic": true, "gold": true } },
+              { "name": "Settlements", "values": { "basic": true, "gold": true } },
+              { "name": "VAT settlement", "values": { "basic": true, "gold": true } },
+              { "name": "Tax settlement", "values": { "basic": true, "gold": true } }
+            ]},
+            { "title": "Security", "items": [
+              { "name": "User control (unlimited users)", "values": { "basic": true, "gold": true } },
+              { "name": "Password reset & email recovery", "values": { "basic": true, "gold": true } },
+              { "name": "Parameterization", "values": { "basic": true, "gold": true } }
+            ]},
+            { "title": "Mobile Manager App", "items": [
+              { "name": "Income & expense summary", "values": { "basic": false, "gold": true } },
+              { "name": "Bank balance", "values": { "basic": false, "gold": true } },
+              { "name": "Receivables (summary & detail)", "values": { "basic": false, "gold": true } },
+              { "name": "Payables (summary & detail)", "values": { "basic": false, "gold": true } },
+              { "name": "Cash flow", "values": { "basic": false, "gold": true } }
+            ]}
+          ]
+        }
+      ]
+    },
+
+    {
+      "slug": "gestionplex",
+      "name": "Gestionplex",
+      "subtitulo": "Business logistics software",
+      "icon": "box",
+      "intro": "Unlimited receipts. Manage purchases, sales, inventory, treasury and production. Cloud system — Web, Android, iOS.",
+      "variantes": [
+        {
+          "slug": "comercial-100",
+          "name": "Commercial 100",
+          "etiqueta": "Entry plan",
+          "tagline": "For entrepreneurs starting electronic invoicing.",
+          "planes": [
+            { "key": "p100", "name": "Commercial", "price": "100", "limit": "1 branch (S/.50 per extra branch) · Unlimited receipts" }
+          ],
+          "grupos": [
+            { "title": "Configuration", "items": [
+              { "name": "Receipts with your logo and company info", "values": { "p100": true } },
+              { "name": "Print formats: A4, A45, 80mm, 57mm", "values": { "p100": true } },
+              { "name": "Product import with multiple presentations", "values": { "p100": true } },
+              { "name": "Price import", "values": { "p100": true } },
+              { "name": "Salesperson registration", "values": { "p100": true } },
+              { "name": "Inventory import", "values": { "p100": true } }
+            ]},
+            { "title": "Purchases", "items": [
+              { "name": "Purchase records (auto-update sale prices)", "values": { "p100": true } },
+              { "name": "Vendor delivery notes", "values": { "p100": true } },
+              { "name": "Warehouse intakes", "values": { "p100": true } }
+            ]},
+            { "title": "Sales", "items": [
+              { "name": "Quotes", "values": { "p100": true } },
+              { "name": "Sales orders", "values": { "p100": true } },
+              { "name": "Sales: standard, POS and barcode", "values": { "p100": true } },
+              { "name": "Warehouse outflows", "values": { "p100": true } },
+              { "name": "Customer & carrier delivery notes", "values": { "p100": true } },
+              { "name": "Receipt console", "values": { "p100": true } },
+              { "name": "Auto-send to SUNAT", "values": { "p100": true } },
+              { "name": "Auto-email/WhatsApp XML, PDF, CDR", "values": { "p100": true } },
+              { "name": "SUNAT digital certificate", "values": { "p100": true } },
+              { "name": "Web, Android, iOS", "values": { "p100": true } },
+              { "name": "Branches included", "values": { "p100": "Up to 1 (+S/.50 each extra)" } },
+              { "name": "FREE Accounting System (Basic version)", "values": { "p100": true } },
+              { "name": "Unlimited users", "values": { "p100": true } }
+            ]},
+            { "title": "Inventory", "items": [
+              { "name": "Physical & valued inventory records", "values": { "p100": true } },
+              { "name": "Excel inventory import", "values": { "p100": true } }
+            ]},
+            { "title": "Reports", "items": [
+              { "name": "Detailed & summary physical kardex", "values": { "p100": true } },
+              { "name": "Detailed & summary valued kardex", "values": { "p100": true } },
+              { "name": "Sales by salesperson", "values": { "p100": true } },
+              { "name": "Sales profit by document, month", "values": { "p100": true } },
+              { "name": "Sales & profit charts", "values": { "p100": true } },
+              { "name": "Stock by laboratory", "values": { "p100": true } },
+              { "name": "Product ranking by units & soles, by branch", "values": { "p100": true } },
+              { "name": "Commissions", "values": { "p100": true } },
+              { "name": "Bank reconciliation", "values": { "p100": true } },
+              { "name": "Warehouse in & out report", "values": { "p100": true } },
+              { "name": "Stock replenishment", "values": { "p100": true } }
+            ]},
+            { "title": "Support", "items": [
+              { "name": "Video tutorials", "values": { "p100": true } },
+              { "name": "Personalized advisory", "values": { "p100": true } },
+              { "name": "Personalized support", "values": { "p100": true } },
+              { "name": "Support via WhatsApp, Tickets and Email", "values": { "p100": true } }
+            ]}
+          ]
+        },
+        {
+          "slug": "comercial-150",
+          "name": "Commercial 150",
+          "etiqueta": "Adds Treasury + Transfers",
+          "tagline": "For businesses that need to manage cash, banks and inter-warehouse transfers.",
+          "planes": [
+            { "key": "p150", "name": "Commercial", "price": "150", "limit": "2 branches (S/.50 per extra branch) · Unlimited receipts" }
+          ],
+          "grupos": [
+            { "title": "Configuration", "items": [
+              { "name": "Receipts with your logo and company info", "values": { "p150": true } },
+              { "name": "Print formats: A4, A45, 80mm, 57mm", "values": { "p150": true } },
+              { "name": "Product import with multiple presentations", "values": { "p150": true } },
+              { "name": "Price import", "values": { "p150": true } },
+              { "name": "Salesperson registration", "values": { "p150": true } },
+              { "name": "Inventory import", "values": { "p150": true } }
+            ]},
+            { "title": "Purchases", "items": [
+              { "name": "Purchase records (auto-update sale prices)", "values": { "p150": true } },
+              { "name": "Vendor delivery notes", "values": { "p150": true } },
+              { "name": "Warehouse intakes", "values": { "p150": true } }
+            ]},
+            { "title": "Sales", "items": [
+              { "name": "Quotes", "values": { "p150": true } },
+              { "name": "Sales orders", "values": { "p150": true } },
+              { "name": "Sales: standard, POS and barcode", "values": { "p150": true } },
+              { "name": "Warehouse outflows", "values": { "p150": true } },
+              { "name": "Customer & carrier delivery notes", "values": { "p150": true } },
+              { "name": "Receipt console", "values": { "p150": true } },
+              { "name": "Auto-send to SUNAT", "values": { "p150": true } },
+              { "name": "Auto-email/WhatsApp XML, PDF, CDR", "values": { "p150": true } },
+              { "name": "SUNAT digital certificate", "values": { "p150": true } },
+              { "name": "Web, Android, iOS", "values": { "p150": true } },
+              { "name": "Branches included", "values": { "p150": "Up to 2 (+S/.50 each extra)" } },
+              { "name": "FREE Accounting System (Basic version)", "values": { "p150": true } },
+              { "name": "Unlimited users", "values": { "p150": true } }
+            ]},
+            { "title": "Inventory", "items": [
+              { "name": "Physical & valued inventory records", "values": { "p150": true } },
+              { "name": "Excel inventory import", "values": { "p150": true } }
+            ]},
+            { "title": "Transfers", "items": [
+              { "name": "Goods request", "values": { "p150": true } },
+              { "name": "Goods dispatch", "values": { "p150": true } },
+              { "name": "Goods receipt record", "values": { "p150": true } }
+            ]},
+            { "title": "Treasury", "items": [
+              { "name": "Cash & bank setup", "values": { "p150": true } },
+              { "name": "Open & close cash by shift and branch", "values": { "p150": true } },
+              { "name": "Invoicing & sales by shift", "values": { "p150": true } },
+              { "name": "Payroll payments", "values": { "p150": true } },
+              { "name": "Money transfer between cash and banks", "values": { "p150": true } },
+              { "name": "Income & expense without receipt, classified", "values": { "p150": true } },
+              { "name": "Upload payment proof in JPG, PDF, DOC", "values": { "p150": true } },
+              { "name": "Receivables and payables", "values": { "p150": true } }
+            ]},
+            { "title": "Reports", "items": [
+              { "name": "Detailed & summary physical kardex", "values": { "p150": true } },
+              { "name": "Detailed & summary valued kardex", "values": { "p150": true } },
+              { "name": "Sales by salesperson", "values": { "p150": true } },
+              { "name": "Sales profit by document, month", "values": { "p150": true } },
+              { "name": "Sales & profit charts", "values": { "p150": true } },
+              { "name": "Stock by laboratory", "values": { "p150": true } },
+              { "name": "Product ranking by units & soles, by branch", "values": { "p150": true } },
+              { "name": "Commissions", "values": { "p150": true } },
+              { "name": "Bank reconciliation", "values": { "p150": true } },
+              { "name": "Warehouse in & out report", "values": { "p150": true } },
+              { "name": "Stock replenishment", "values": { "p150": true } },
+              { "name": "Detailed cash report", "values": { "p150": true } },
+              { "name": "Summary cash report", "values": { "p150": true } },
+              { "name": "Analytical cash report", "values": { "p150": true } }
+            ]},
+            { "title": "Support", "items": [
+              { "name": "Video tutorials", "values": { "p150": true } },
+              { "name": "Personalized advisory", "values": { "p150": true } },
+              { "name": "Personalized support", "values": { "p150": true } },
+              { "name": "Support via WhatsApp, Tickets and Email", "values": { "p150": true } }
+            ]}
+          ]
+        },
+        {
+          "slug": "comercial-200",
+          "name": "Commercial 200",
+          "etiqueta": "Adds Current Accounts",
+          "tagline": "For businesses already handling customer/vendor credit.",
+          "planes": [
+            { "key": "p200", "name": "Commercial", "price": "200", "limit": "2 branches (S/.50 per extra branch) · Unlimited receipts", "popular": true }
+          ],
+          "grupos": [
+            { "title": "Configuration", "items": [
+              { "name": "Receipts with your logo and company info", "values": { "p200": true } },
+              { "name": "Print formats: A4, A45, 80mm, 57mm", "values": { "p200": true } },
+              { "name": "Product import with multiple presentations", "values": { "p200": true } },
+              { "name": "Price import", "values": { "p200": true } },
+              { "name": "Salesperson registration", "values": { "p200": true } },
+              { "name": "Inventory import", "values": { "p200": true } }
+            ]},
+            { "title": "Purchases", "items": [
+              { "name": "Purchase records (auto-update sale prices)", "values": { "p200": true } },
+              { "name": "Vendor delivery notes", "values": { "p200": true } },
+              { "name": "Warehouse intakes", "values": { "p200": true } }
+            ]},
+            { "title": "Sales", "items": [
+              { "name": "Quotes", "values": { "p200": true } },
+              { "name": "Sales orders", "values": { "p200": true } },
+              { "name": "Sales: standard, POS and barcode", "values": { "p200": true } },
+              { "name": "Warehouse outflows", "values": { "p200": true } },
+              { "name": "Customer & carrier delivery notes", "values": { "p200": true } },
+              { "name": "Receipt console", "values": { "p200": true } },
+              { "name": "Auto-send to SUNAT", "values": { "p200": true } },
+              { "name": "Auto-email/WhatsApp XML, PDF, CDR", "values": { "p200": true } },
+              { "name": "SUNAT digital certificate", "values": { "p200": true } },
+              { "name": "Web, Android, iOS", "values": { "p200": true } },
+              { "name": "Branches included", "values": { "p200": "Up to 2 (+S/.50 each extra)" } },
+              { "name": "FREE Accounting System (Basic version)", "values": { "p200": true } },
+              { "name": "Unlimited users", "values": { "p200": true } }
+            ]},
+            { "title": "Inventory", "items": [
+              { "name": "Physical & valued inventory records", "values": { "p200": true } },
+              { "name": "Excel inventory import", "values": { "p200": true } }
+            ]},
+            { "title": "Transfers", "items": [
+              { "name": "Goods request", "values": { "p200": true } },
+              { "name": "Goods dispatch", "values": { "p200": true } },
+              { "name": "Goods receipt record", "values": { "p200": true } }
+            ]},
+            { "title": "Treasury", "items": [
+              { "name": "Cash & bank setup", "values": { "p200": true } },
+              { "name": "Open & close cash by shift and branch", "values": { "p200": true } },
+              { "name": "Invoicing & sales by shift", "values": { "p200": true } },
+              { "name": "Payroll payments", "values": { "p200": true } },
+              { "name": "Money transfer between cash and banks", "values": { "p200": true } },
+              { "name": "Income & expense without receipt, classified", "values": { "p200": true } },
+              { "name": "Upload payment proof in JPG, PDF, DOC", "values": { "p200": true } },
+              { "name": "Receivables and payables", "values": { "p200": true } }
+            ]},
+            { "title": "Reports", "items": [
+              { "name": "Detailed & summary physical kardex", "values": { "p200": true } },
+              { "name": "Detailed & summary valued kardex", "values": { "p200": true } },
+              { "name": "Sales by salesperson", "values": { "p200": true } },
+              { "name": "Sales profit by document, month", "values": { "p200": true } },
+              { "name": "Sales & profit charts", "values": { "p200": true } },
+              { "name": "Stock by laboratory", "values": { "p200": true } },
+              { "name": "Product ranking by units & soles, by branch", "values": { "p200": true } },
+              { "name": "Commissions", "values": { "p200": true } },
+              { "name": "Bank reconciliation", "values": { "p200": true } },
+              { "name": "Warehouse in & out report", "values": { "p200": true } },
+              { "name": "Stock replenishment", "values": { "p200": true } },
+              { "name": "Detailed cash report", "values": { "p200": true } },
+              { "name": "Summary cash report", "values": { "p200": true } },
+              { "name": "Analytical cash report", "values": { "p200": true } }
+            ]},
+            { "title": "Current Accounts", "items": [
+              { "name": "Customer initial balances (open receivables)", "values": { "p200": true } },
+              { "name": "Vendor initial balances (open payables)", "values": { "p200": true } },
+              { "name": "Auxiliary initial balances (open expense reports)", "values": { "p200": true } },
+              { "name": "Customer receivables detail & summary (history, open, paid)", "values": { "p200": true } },
+              { "name": "Vendor payables detail & summary (history, open, paid)", "values": { "p200": true } },
+              { "name": "Auxiliary expense reports detail & summary (history, open, paid)", "values": { "p200": true } }
+            ]},
+            { "title": "Support", "items": [
+              { "name": "Video tutorials", "values": { "p200": true } },
+              { "name": "Personalized advisory", "values": { "p200": true } },
+              { "name": "Personalized support", "values": { "p200": true } },
+              { "name": "Support via WhatsApp, Tickets and Email", "values": { "p200": true } }
+            ]}
+          ]
+        },
+        {
+          "slug": "comercial-300",
+          "name": "Commercial 300",
+          "etiqueta": "Adds Advanced Purchases + Production",
+          "tagline": "For factories and businesses with in-house production, requisitions and POs.",
+          "planes": [
+            { "key": "p300", "name": "Commercial", "price": "300", "limit": "2 branches (S/.50 per extra branch) · Unlimited receipts" }
+          ],
+          "grupos": [
+            { "title": "Configuration", "items": [
+              { "name": "Receipts with your logo and company info", "values": { "p300": true } },
+              { "name": "Print formats: A4, A45, 80mm, 57mm", "values": { "p300": true } },
+              { "name": "Product import with multiple presentations", "values": { "p300": true } },
+              { "name": "Price import", "values": { "p300": true } },
+              { "name": "Salesperson registration", "values": { "p300": true } },
+              { "name": "Inventory import", "values": { "p300": true } }
+            ]},
+            { "title": "Purchases", "items": [
+              { "name": "Requisitions", "values": { "p300": true } },
+              { "name": "Requisition approval", "values": { "p300": true } },
+              { "name": "Quotes", "values": { "p300": true } },
+              { "name": "Purchase orders", "values": { "p300": true } },
+              { "name": "Vendor delivery notes", "values": { "p300": true } },
+              { "name": "Purchase invoice", "values": { "p300": true } }
+            ]},
+            { "title": "Sales", "items": [
+              { "name": "Quotes", "values": { "p300": true } },
+              { "name": "Sales orders", "values": { "p300": true } },
+              { "name": "Sales: standard, POS and barcode", "values": { "p300": true } },
+              { "name": "Warehouse outflows", "values": { "p300": true } },
+              { "name": "Customer & carrier delivery notes", "values": { "p300": true } },
+              { "name": "Receipt console", "values": { "p300": true } },
+              { "name": "Auto-send to SUNAT", "values": { "p300": true } },
+              { "name": "Auto-email/WhatsApp XML, PDF, CDR", "values": { "p300": true } },
+              { "name": "SUNAT digital certificate", "values": { "p300": true } },
+              { "name": "Web, Android, iOS", "values": { "p300": true } },
+              { "name": "Branches included", "values": { "p300": "Up to 2 (+S/.50 each extra)" } },
+              { "name": "FREE Accounting System (Basic version)", "values": { "p300": true } },
+              { "name": "Unlimited users", "values": { "p300": true } }
+            ]},
+            { "title": "Inventory", "items": [
+              { "name": "Physical & valued inventory records", "values": { "p300": true } },
+              { "name": "Excel inventory import", "values": { "p300": true } }
+            ]},
+            { "title": "Transfers", "items": [
+              { "name": "Goods request", "values": { "p300": true } },
+              { "name": "Goods dispatch", "values": { "p300": true } },
+              { "name": "Goods receipt record", "values": { "p300": true } }
+            ]},
+            { "title": "Treasury", "items": [
+              { "name": "Cash & bank setup", "values": { "p300": true } },
+              { "name": "Open & close cash by shift and branch", "values": { "p300": true } },
+              { "name": "Invoicing & sales by shift", "values": { "p300": true } },
+              { "name": "Payroll payments", "values": { "p300": true } },
+              { "name": "Money transfer between cash and banks", "values": { "p300": true } },
+              { "name": "Income & expense without receipt, classified", "values": { "p300": true } },
+              { "name": "Upload payment proof in JPG, PDF, DOC", "values": { "p300": true } },
+              { "name": "Receivables", "values": { "p300": true } },
+              { "name": "Payables", "values": { "p300": true } }
+            ]},
+            { "title": "Reports", "items": [
+              { "name": "Detailed & summary physical kardex", "values": { "p300": true } },
+              { "name": "Detailed & summary valued kardex", "values": { "p300": true } },
+              { "name": "Sales by salesperson", "values": { "p300": true } },
+              { "name": "Sales profit by document, month", "values": { "p300": true } },
+              { "name": "Sales & profit charts", "values": { "p300": true } },
+              { "name": "Stock by laboratory", "values": { "p300": true } },
+              { "name": "Product ranking by units & soles, by branch", "values": { "p300": true } },
+              { "name": "Commissions", "values": { "p300": true } },
+              { "name": "Bank reconciliation", "values": { "p300": true } },
+              { "name": "Warehouse in & out report", "values": { "p300": true } },
+              { "name": "Stock replenishment", "values": { "p300": true } },
+              { "name": "Detailed cash report", "values": { "p300": true } },
+              { "name": "Summary cash report", "values": { "p300": true } },
+              { "name": "Analytical cash report", "values": { "p300": true } }
+            ]},
+            { "title": "Current Accounts", "items": [
+              { "name": "Customer initial balances", "values": { "p300": true } },
+              { "name": "Vendor initial balances", "values": { "p300": true } },
+              { "name": "Auxiliary initial balances", "values": { "p300": true } },
+              { "name": "Customer receivables detail & summary (history, open, paid)", "values": { "p300": true } },
+              { "name": "Vendor payables detail & summary (history, open, paid)", "values": { "p300": true } },
+              { "name": "Auxiliary expense reports detail & summary (history, open, paid)", "values": { "p300": true } }
+            ]},
+            { "title": "Production", "items": [
+              { "name": "Production dispatch / self-consumption", "values": { "p300": true } },
+              { "name": "Finished goods receipt", "values": { "p300": true } },
+              { "name": "Accounting entries per process", "values": { "p300": true } },
+              { "name": "Cost-center control", "values": { "p300": true } }
+            ]},
+            { "title": "Support", "items": [
+              { "name": "Video tutorials", "values": { "p300": true } },
+              { "name": "Personalized advisory", "values": { "p300": true } },
+              { "name": "Personalized support", "values": { "p300": true } },
+              { "name": "Support via WhatsApp, Tickets and Email", "values": { "p300": true } }
+            ]}
+          ]
+        },
+        {
+          "slug": "comercial-450",
+          "name": "Commercial 450",
+          "etiqueta": "Adds Cost Centers",
+          "tagline": "For companies with multiple cost centers and advanced reporting.",
+          "planes": [
+            { "key": "p450", "name": "Commercial", "price": "450", "limit": "2 branches (S/.50 per extra branch) · Unlimited receipts" }
+          ],
+          "grupos": [
+            { "title": "Configuration", "items": [
+              { "name": "Receipts with your logo and company info", "values": { "p450": true } },
+              { "name": "Print formats: A4, A45, 80mm, 57mm", "values": { "p450": true } },
+              { "name": "Product import with multiple presentations", "values": { "p450": true } },
+              { "name": "Price import", "values": { "p450": true } },
+              { "name": "Salesperson registration", "values": { "p450": true } },
+              { "name": "Inventory import", "values": { "p450": true } }
+            ]},
+            { "title": "Purchases", "items": [
+              { "name": "Requisitions", "values": { "p450": true } },
+              { "name": "Requisition approval", "values": { "p450": true } },
+              { "name": "Quotes", "values": { "p450": true } },
+              { "name": "Purchase orders", "values": { "p450": true } },
+              { "name": "Vendor delivery notes", "values": { "p450": true } },
+              { "name": "Purchase invoice", "values": { "p450": true } }
+            ]},
+            { "title": "Sales", "items": [
+              { "name": "Quotes", "values": { "p450": true } },
+              { "name": "Sales orders", "values": { "p450": true } },
+              { "name": "Sales: standard, POS and barcode", "values": { "p450": true } },
+              { "name": "Warehouse outflows", "values": { "p450": true } },
+              { "name": "Customer & carrier delivery notes", "values": { "p450": true } },
+              { "name": "Receipt console", "values": { "p450": true } },
+              { "name": "Auto-send to SUNAT", "values": { "p450": true } },
+              { "name": "Auto-email/WhatsApp XML, PDF, CDR", "values": { "p450": true } },
+              { "name": "SUNAT digital certificate", "values": { "p450": true } },
+              { "name": "Web, Android, iOS", "values": { "p450": true } },
+              { "name": "Branches included", "values": { "p450": "Up to 2 (+S/.50 each extra)" } },
+              { "name": "FREE Accounting System (Basic version)", "values": { "p450": true } },
+              { "name": "Unlimited users", "values": { "p450": true } }
+            ]},
+            { "title": "Inventory", "items": [
+              { "name": "Physical & valued inventory records", "values": { "p450": true } },
+              { "name": "Excel inventory import", "values": { "p450": true } }
+            ]},
+            { "title": "Transfers", "items": [
+              { "name": "Goods request", "values": { "p450": true } },
+              { "name": "Goods dispatch", "values": { "p450": true } },
+              { "name": "Goods receipt record", "values": { "p450": true } }
+            ]},
+            { "title": "Treasury", "items": [
+              { "name": "Cash & bank setup", "values": { "p450": true } },
+              { "name": "Open & close cash by shift and branch", "values": { "p450": true } },
+              { "name": "Invoicing & sales by shift", "values": { "p450": true } },
+              { "name": "Payroll payments", "values": { "p450": true } },
+              { "name": "Money transfer between cash and banks", "values": { "p450": true } },
+              { "name": "Income & expense without receipt, classified", "values": { "p450": true } },
+              { "name": "Upload payment proof in JPG, PDF, DOC", "values": { "p450": true } },
+              { "name": "Receivables", "values": { "p450": true } },
+              { "name": "Payables", "values": { "p450": true } }
+            ]},
+            { "title": "Reports", "items": [
+              { "name": "Detailed & summary physical kardex", "values": { "p450": true } },
+              { "name": "Detailed & summary valued kardex", "values": { "p450": true } },
+              { "name": "Sales by salesperson", "values": { "p450": true } },
+              { "name": "Sales profit by document, month", "values": { "p450": true } },
+              { "name": "Sales & profit charts", "values": { "p450": true } },
+              { "name": "Stock by laboratory", "values": { "p450": true } },
+              { "name": "Product ranking by units & soles, by branch", "values": { "p450": true } },
+              { "name": "Commissions", "values": { "p450": true } },
+              { "name": "Bank reconciliation", "values": { "p450": true } },
+              { "name": "Warehouse in & out report", "values": { "p450": true } },
+              { "name": "Stock replenishment", "values": { "p450": true } },
+              { "name": "Detailed cash report", "values": { "p450": true } },
+              { "name": "Summary cash report", "values": { "p450": true } },
+              { "name": "Analytical cash report", "values": { "p450": true } }
+            ]},
+            { "title": "Current Accounts", "items": [
+              { "name": "Customer initial balances", "values": { "p450": true } },
+              { "name": "Vendor initial balances", "values": { "p450": true } },
+              { "name": "Auxiliary initial balances", "values": { "p450": true } },
+              { "name": "Customer receivables detail & summary", "values": { "p450": true } },
+              { "name": "Vendor payables detail & summary", "values": { "p450": true } },
+              { "name": "Auxiliary expense reports detail & summary", "values": { "p450": true } }
+            ]},
+            { "title": "Production", "items": [
+              { "name": "Production dispatch / self-consumption", "values": { "p450": true } },
+              { "name": "Finished goods receipt", "values": { "p450": true } },
+              { "name": "Accounting entries per process", "values": { "p450": true } },
+              { "name": "Cost-center control", "values": { "p450": true } }
+            ]},
+            { "title": "Cost Centers", "items": [
+              { "name": "Cost center creation", "values": { "p450": true } },
+              { "name": "Purchase records with cost center", "values": { "p450": true } },
+              { "name": "Cash & bank records with cost center", "values": { "p450": true } },
+              { "name": "Production & consumption dispatches by cost center", "values": { "p450": true } },
+              { "name": "Cost-center report (summary & detailed)", "values": { "p450": true } },
+              { "name": "Excel export of cost center", "values": { "p450": true } }
+            ]},
+            { "title": "Support", "items": [
+              { "name": "Video tutorials", "values": { "p450": true } },
+              { "name": "Personalized advisory", "values": { "p450": true } },
+              { "name": "Personalized support", "values": { "p450": true } },
+              { "name": "Support via WhatsApp, Tickets and Email", "values": { "p450": true } }
+            ]}
+          ]
+        },
+        {
+          "slug": "grifo",
+          "name": "Gas Station",
+          "etiqueta": "Vertical · Service stations",
+          "tagline": "One-time implementation fee: S/ 3,000.00. Includes module adaptation, custom domain and report customization or creation.",
+          "implementacion": "S/ 3,000.00 one-time setup",
+          "planes": [
+            { "key": "grifo", "name": "Gas Station", "price": "350", "limit": "1 branch (S/.150 per extra branch) · Unlimited receipts" }
+          ],
+          "grupos": [
+            { "title": "Configuration", "items": [
+              { "name": "Receipts with your logo and company info", "values": { "grifo": true } },
+              { "name": "Print formats: A4, A45, 80mm, 57mm", "values": { "grifo": true } },
+              { "name": "Product import with multiple presentations", "values": { "grifo": true } },
+              { "name": "Price import", "values": { "grifo": true } },
+              { "name": "Salesperson registration", "values": { "grifo": true } },
+              { "name": "Inventory import", "values": { "grifo": true } }
+            ]},
+            { "title": "Purchases", "items": [
+              { "name": "Requisitions", "values": { "grifo": true } },
+              { "name": "Requisition approval", "values": { "grifo": true } },
+              { "name": "Quotes", "values": { "grifo": true } },
+              { "name": "Purchase orders", "values": { "grifo": true } },
+              { "name": "Vendor delivery notes", "values": { "grifo": true } },
+              { "name": "Purchase invoice", "values": { "grifo": true } }
+            ]},
+            { "title": "Sales", "items": [
+              { "name": "Quotes", "values": { "grifo": true } },
+              { "name": "Sales orders", "values": { "grifo": true } },
+              { "name": "Sales: standard, POS and barcode", "values": { "grifo": true } },
+              { "name": "Warehouse outflows", "values": { "grifo": true } },
+              { "name": "Customer & carrier delivery notes", "values": { "grifo": true } },
+              { "name": "Receipt console", "values": { "grifo": true } },
+              { "name": "Auto-send to SUNAT", "values": { "grifo": true } },
+              { "name": "Auto-email/WhatsApp XML, PDF, CDR", "values": { "grifo": true } },
+              { "name": "SUNAT digital certificate", "values": { "grifo": true } },
+              { "name": "Web, Android, iOS", "values": { "grifo": true } },
+              { "name": "Branches included", "values": { "grifo": "Up to 1 (+S/.150 each extra)" } },
+              { "name": "FREE Accounting System (limited version)", "values": { "grifo": true } },
+              { "name": "Unlimited users", "values": { "grifo": true } }
+            ]},
+            { "title": "Inventory", "items": [
+              { "name": "Physical & valued inventory records", "values": { "grifo": true } },
+              { "name": "Excel inventory import", "values": { "grifo": true } }
+            ]},
+            { "title": "Transfers", "items": [
+              { "name": "Goods request", "values": { "grifo": true } },
+              { "name": "Goods dispatch", "values": { "grifo": true } },
+              { "name": "Goods receipt record", "values": { "grifo": true } }
+            ]},
+            { "title": "Treasury", "items": [
+              { "name": "Cash & bank setup", "values": { "grifo": true } },
+              { "name": "Open & close cash by shift and branch", "values": { "grifo": true } },
+              { "name": "Invoicing & sales by shift", "values": { "grifo": true } },
+              { "name": "Payroll payments", "values": { "grifo": true } },
+              { "name": "Money transfer between cash and banks", "values": { "grifo": true } },
+              { "name": "Income & expense without receipt, classified", "values": { "grifo": true } },
+              { "name": "Upload payment proof in JPG, PDF, DOC", "values": { "grifo": true } },
+              { "name": "Receivables", "values": { "grifo": true } },
+              { "name": "Payables", "values": { "grifo": true } }
+            ]},
+            { "title": "Reports", "items": [
+              { "name": "Detailed & summary physical kardex", "values": { "grifo": true } },
+              { "name": "Detailed & summary valued kardex", "values": { "grifo": true } },
+              { "name": "Sales by salesperson", "values": { "grifo": true } },
+              { "name": "Sales profit by document, month", "values": { "grifo": true } },
+              { "name": "Sales & profit charts", "values": { "grifo": true } },
+              { "name": "Stock by laboratory", "values": { "grifo": true } },
+              { "name": "Product ranking by units & soles, by branch", "values": { "grifo": true } },
+              { "name": "Commissions", "values": { "grifo": true } },
+              { "name": "Bank reconciliation", "values": { "grifo": true } },
+              { "name": "Warehouse in & out report", "values": { "grifo": true } },
+              { "name": "Stock replenishment", "values": { "grifo": true } },
+              { "name": "Detailed cash report", "values": { "grifo": true } },
+              { "name": "Summary cash report", "values": { "grifo": true } },
+              { "name": "Analytical cash report", "values": { "grifo": true } }
+            ]},
+            { "title": "Current Accounts", "items": [
+              { "name": "Customer initial balances", "values": { "grifo": true } },
+              { "name": "Vendor initial balances", "values": { "grifo": true } },
+              { "name": "Auxiliary initial balances", "values": { "grifo": true } },
+              { "name": "Customer receivables detail & summary", "values": { "grifo": true } },
+              { "name": "Vendor payables detail & summary", "values": { "grifo": true } },
+              { "name": "Auxiliary expense reports detail & summary", "values": { "grifo": true } }
+            ]},
+            { "title": "Production", "items": [
+              { "name": "Production dispatch / self-consumption", "values": { "grifo": true } },
+              { "name": "Finished goods receipt", "values": { "grifo": true } },
+              { "name": "Accounting entries per process", "values": { "grifo": true } },
+              { "name": "Cost-center control", "values": { "grifo": true } }
+            ]},
+            { "title": "Gas Station Module", "items": [
+              { "name": "Islands, hoses and dispensers setup", "values": { "grifo": true } },
+              { "name": "Fuel configuration per island, hose and dispenser", "values": { "grifo": true } },
+              { "name": "Customer registration for gift tickets (in invoice/receipt, vouchers, end-of-month redemption)", "values": { "grifo": true } },
+              { "name": "Login/logout sessions", "values": { "grifo": true } },
+              { "name": "Open shift per island excluding already-open islands", "values": { "grifo": true } },
+              { "name": "Fuel sales with invoice, receipt and vouchers", "values": { "grifo": true } },
+              { "name": "Customer search by license plate", "values": { "grifo": true } },
+              { "name": "Sales by gallon or by soles", "values": { "grifo": true } },
+              { "name": "Multiple payment methods (Visa, Yape, Plin, etc.)", "values": { "grifo": true } },
+              { "name": "Print gift tickets after issuing receipts based on customer config", "values": { "grifo": true } },
+              { "name": "Counter logging: open/close shift recording dispenser readings", "values": { "grifo": true } },
+              { "name": "Credit voucher settlement (invoices from vouchers, Serafín gift ticket, non-billed fuel exits with print)", "values": { "grifo": true } },
+              { "name": "Cash recording (registers cash given and prints voucher)", "values": { "grifo": true } },
+              { "name": "Gift tickets: view, reprint and create new from one or many receipts", "values": { "grifo": true } },
+              { "name": "Ticket redemption: log redeemed tickets per day", "values": { "grifo": true } },
+              { "name": "Reports: daily sales (cash and deposit), credit vouchers and invoices, exportable to Excel", "values": { "grifo": true } },
+              { "name": "User control: assign permissions and security levels", "values": { "grifo": true } },
+              { "name": "Split voucher gallons across several legal entities of one client", "values": { "grifo": true } },
+              { "name": "Customer with multiple legal entities", "values": { "grifo": true } },
+              { "name": "Receivables reports by customer and by legal entity", "values": { "grifo": true } },
+              { "name": "Delivery notes with SCOP code", "values": { "grifo": true } },
+              { "name": "Redeemed receipts printed without source voucher reference", "values": { "grifo": true } }
+            ]},
+            { "title": "Support", "items": [
+              { "name": "Video tutorials", "values": { "grifo": true } },
+              { "name": "Personalized advisory", "values": { "grifo": true } },
+              { "name": "Personalized support", "values": { "grifo": true } },
+              { "name": "Support via WhatsApp, Tickets and Email", "values": { "grifo": true } }
+            ]}
+          ]
+        },
+        {
+          "slug": "restaurantes",
+          "name": "Restaurants",
+          "etiqueta": "Vertical · Food & delivery",
+          "tagline": "Dining rooms, tables, kitchen tickets, pre-bills and delivery. Run your business from anywhere!",
+          "planes": [
+            { "key": "basico", "name": "Basic", "price": "150", "limit": "Up to 2 branches · Unlimited receipts" },
+            { "key": "gold", "name": "Gold", "price": "300", "limit": "Up to 3 branches · Unlimited receipts", "popular": true }
+          ],
+          "grupos": [
+            { "title": "Configuration", "items": [
+              { "name": "Receipts with your logo and company info", "values": { "basico": true, "gold": true } },
+              { "name": "Print formats: A4, A45, 80mm, 57mm", "values": { "basico": true, "gold": true } },
+              { "name": "Product import with multiple presentations", "values": { "basico": true, "gold": true } },
+              { "name": "Price import", "values": { "basico": true, "gold": true } },
+              { "name": "Salesperson registration", "values": { "basico": true, "gold": true } },
+              { "name": "Inventory import", "values": { "basico": true, "gold": true } }
+            ]},
+            { "title": "Fast-food sales", "items": [
+              { "name": "POS Sales", "values": { "basico": true, "gold": true } },
+              { "name": "Receipt console", "values": { "basico": true, "gold": true } },
+              { "name": "Auto-send to SUNAT", "values": { "basico": true, "gold": true } },
+              { "name": "Auto-email/WhatsApp XML, PDF, CDR", "values": { "basico": true, "gold": true } },
+              { "name": "Digital certificate", "values": { "basico": true, "gold": true } },
+              { "name": "Web, Android, iOS", "values": { "basico": true, "gold": true } },
+              { "name": "Branches up to", "values": { "basico": "2", "gold": "3" } },
+              { "name": "FREE Accounting System (Basic version)", "values": { "basico": true, "gold": true } }
+            ]},
+            { "title": "Restaurant sales", "items": [
+              { "name": "Dining rooms and tables setup", "values": { "basico": true, "gold": true } },
+              { "name": "Order recording", "values": { "basico": true, "gold": true } },
+              { "name": "Kitchen ticket print", "values": { "basico": true, "gold": true } },
+              { "name": "Order status in kitchen (in progress and ready)", "values": { "basico": true, "gold": true } },
+              { "name": "Pre-bill issuance", "values": { "basico": true, "gold": true } },
+              { "name": "Cash collection and receipt issuance", "values": { "basico": true, "gold": true } },
+              { "name": "Delivery control", "values": { "basico": true, "gold": true } }
+            ]},
+            { "title": "Treasury", "items": [
+              { "name": "Cash & bank setup", "values": { "basico": true, "gold": true } },
+              { "name": "Open & close cash by shift and branch", "values": { "basico": true, "gold": true } },
+              { "name": "Pending-deliveries record", "values": { "basico": true, "gold": true } },
+              { "name": "Money transfer between cash and banks", "values": { "basico": true, "gold": true } },
+              { "name": "Record & classify expenses without receipt", "values": { "basico": true, "gold": true } },
+              { "name": "Upload payment proof in JPG, PDF, DOC", "values": { "basico": true, "gold": true } },
+              { "name": "Cash close report (Detailed and Summary)", "values": { "basico": true, "gold": true } }
+            ]},
+            { "title": "Support", "items": [
+              { "name": "Video tutorials", "values": { "basico": true, "gold": true } },
+              { "name": "Personalized advisory", "values": { "basico": true, "gold": true } },
+              { "name": "Personalized support", "values": { "basico": true, "gold": true } },
+              { "name": "Support via WhatsApp, Tickets and Email", "values": { "basico": true, "gold": true } }
+            ]}
+          ]
+        },
+        {
+          "slug": "transporte",
+          "name": "Transport",
+          "etiqueta": "Vertical · Carriers",
+          "tagline": "Electronic delivery notes, invoicing, per-driver order, routes and trip settlement.",
+          "planes": [
+            { "key": "transporte", "name": "Transport", "price": "150", "limit": "Multiuser · Unlimited receipts · up to 3 sites or 3 carriers" }
+          ],
+          "grupos": [
+            { "title": "Configuration", "items": [
+              { "name": "Receipts with your logo and company info", "values": { "transporte": true } },
+              { "name": "Print formats: A4, A45, 80mm, 57mm", "values": { "transporte": true } },
+              { "name": "Product import with multiple presentations", "values": { "transporte": true } },
+              { "name": "Price import", "values": { "transporte": true } },
+              { "name": "Salesperson registration", "values": { "transporte": true } },
+              { "name": "Inventory import", "values": { "transporte": true } }
+            ]},
+            { "title": "Delivery notes", "items": [
+              { "name": "Sender", "values": { "transporte": true } },
+              { "name": "Carrier", "values": { "transporte": true } }
+            ]},
+            { "title": "Purchases", "items": [
+              { "name": "Purchase records with settlement number per driver showing trip expenses", "values": { "transporte": true } }
+            ]},
+            { "title": "Sales", "items": [
+              { "name": "Quotes", "values": { "transporte": true } },
+              { "name": "Sales records by settlement number", "values": { "transporte": true } },
+              { "name": "Delivery notes (sender and carrier)", "values": { "transporte": true } },
+              { "name": "Receipt console", "values": { "transporte": true } },
+              { "name": "Auto-send to SUNAT", "values": { "transporte": true } },
+              { "name": "Auto-email/WhatsApp XML, PDF, CDR", "values": { "transporte": true } },
+              { "name": "SUNAT digital certificate", "values": { "transporte": true } },
+              { "name": "Web, Android, iOS", "values": { "transporte": true } },
+              { "name": "FREE Accounting System (Basic version)", "values": { "transporte": true } },
+              { "name": "Unlimited users", "values": { "transporte": true } }
+            ]},
+            { "title": "Carriers", "items": [
+              { "name": "Unit/driver maintenance to edit any field", "values": { "transporte": true } },
+              { "name": "Up to 3 sites or 3 carriers so notes do not mix", "values": { "transporte": true } },
+              { "name": "Multiple carrier delivery notes redeemed against a single invoice", "values": { "transporte": true } },
+              { "name": "Print transport and payer details inside the carrier delivery note", "values": { "transporte": true } },
+              { "name": "Scheduled trips and route creation", "values": { "transporte": true } }
+            ]},
+            { "title": "Treasury", "items": [
+              { "name": "Cash & bank setup", "values": { "transporte": true } },
+              { "name": "Settlement number record with cash given to driver for trip expenses", "values": { "transporte": true } },
+              { "name": "Driver-incurred expenses without receipt", "values": { "transporte": true } },
+              { "name": "Settlement report: cash given, cash returned with/without invoices, service invoices and trip profit", "values": { "transporte": true } }
+            ]},
+            { "title": "Support", "items": [
+              { "name": "Video tutorials", "values": { "transporte": true } },
+              { "name": "Personalized advisory", "values": { "transporte": true } },
+              { "name": "Personalized support", "values": { "transporte": true } },
+              { "name": "Support via WhatsApp, Tickets and Email", "values": { "transporte": true } }
+            ]}
+          ]
+        }
+      ]
+    },
+
+    {
+      "slug": "facturacion-electronica",
+      "name": "Electronic Invoicing",
+      "subtitulo": "SUNAT invoicing software",
+      "icon": "receipt",
+      "intro": "Up to 2,000 monthly receipts included. Multiuser. Web, Android, iOS. Includes FREE Accounting System (Basic version).",
+      "variantes": [
+        {
+          "slug": "facturacion",
+          "name": "Monthly plans",
+          "etiqueta": "Up to 2,000 receipts",
+          "tagline": "3 tiers based on the number of branches or warehouses.",
+          "planes": [
+            { "key": "basic", "name": "Plan Basic", "price": "50", "limit": "1 branch or warehouse" },
+            { "key": "premium", "name": "Plan Premium", "price": "150", "limit": "3 branches or warehouses", "popular": true },
+            { "key": "gold", "name": "Plan Gold", "price": "200", "limit": "4 branches or warehouses" }
+          ],
+          "grupos": [
+            { "title": "Configuration", "items": [
+              { "name": "Receipts with your logo and company info", "values": { "basic": true, "premium": true, "gold": true } },
+              { "name": "Print formats: A4, A45, 80mm, 57mm", "values": { "basic": true, "premium": true, "gold": true } },
+              { "name": "Product import with multiple presentations", "values": { "basic": true, "premium": true, "gold": true } },
+              { "name": "Price import", "values": { "basic": true, "premium": true, "gold": true } }
+            ]},
+            { "title": "Sales", "items": [
+              { "name": "Sales: standard, POS and barcode", "values": { "basic": true, "premium": true, "gold": true } },
+              { "name": "Customer & carrier delivery notes", "values": { "basic": true, "premium": true, "gold": true } },
+              { "name": "Receipt console", "values": { "basic": true, "premium": true, "gold": true } },
+              { "name": "Auto-send to SUNAT", "values": { "basic": true, "premium": true, "gold": true } },
+              { "name": "Auto-email/WhatsApp XML, PDF, CDR", "values": { "basic": true, "premium": true, "gold": true } },
+              { "name": "SUNAT digital certificate", "values": { "basic": true, "premium": true, "gold": true } },
+              { "name": "Web, Android, iOS", "values": { "basic": true, "premium": true, "gold": true } },
+              { "name": "FREE Accounting System (Basic version)", "values": { "basic": true, "premium": true, "gold": true } },
+              { "name": "Unlimited users", "values": { "basic": true, "premium": true, "gold": true } },
+              { "name": "Branches or warehouses included", "values": { "basic": "1", "premium": "3", "gold": "4" } }
+            ]},
+            { "title": "Support", "items": [
+              { "name": "Video tutorials", "values": { "basic": true, "premium": true, "gold": true } },
+              { "name": "Personalized advisory", "values": { "basic": true, "premium": true, "gold": true } },
+              { "name": "Personalized support", "values": { "basic": true, "premium": true, "gold": true } },
+              { "name": "Support via WhatsApp, Tickets and Email", "values": { "basic": true, "premium": true, "gold": true } }
+            ]}
+          ],
+          "extras": {
+            "titulo": "Add-on plan — when exceeding 2,000 receipts",
+            "subtitulo": "Per-package cost for additional electronic receipts",
+            "headers": ["Package", "Range", "Unit price", "Total"],
+            "rows": [
+              ["Package 1", "From 1 to 1,000", "S/ 0.030", "S/ 30.00"],
+              ["Package 2", "From 1,001 to 5,000", "S/ 0.0250", "S/ 125.00"],
+              ["Package 3", "From 5,001 to 10,000", "S/ 0.0230", "S/ 200.00"],
+              ["Package 4", "From 10,001 to 50,000", "S/ 0.0200", "S/ 1,000.00"]
+            ],
+            "extra": {
+              "titulo": "Private database",
+              "items": [
+                "Exclusive hosting for your customer information",
+                "Higher speed and response time, direct channel to RENIEC and SUNAT",
+                "One-time payment: S/ 1,000.00"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+
   "servicios": {
-    "eyebrow": "DGD services",
+    "eyebrow": "DGD Services",
     "titulo": "What we add on top of your Codeplex license",
-    "descripcion": "You contract the software license directly on Codeplex's official plan. DGD makes sure it works in your company with these packages.",
-    "nota": "// quote depends on scope",
-    "ctaSolicitar": "Request quote",
+    "descripcion": "You buy the software license directly under the official Codeplex plan. DGD makes it work for your company with these packages.",
+    "nota": "// quoted by scope",
+    "ctaSolicitar": "Request a quote",
     "items": [
       {
         "name": "Essential Onboarding",
         "icon": "compass",
-        "desc": "Installation, base parametrization and 2 live training sessions. Ideal if your data is already clean.",
-        "includes": ["Initial setup", "Base chart of accounts", "2 team sessions", "WhatsApp support 30 days"]
+        "desc": "Install, base parameterization and 2 live training sessions. Ideal if your data is already prepared.",
+        "includes": ["Initial setup", "Base chart of accounts", "2 team sessions", "30-day WhatsApp support"]
       },
       {
         "name": "Full Implementation",
         "icon": "academy",
-        "desc": "Historical data migration, module integration and 60 days of accompaniment.",
-        "includes": ["Everything in Essential", "Data migration", "ContaPlex ↔ GestiónPlex integration", "5 team sessions", "60-day support"],
+        "desc": "Historical data migration, module integration and 60-day hand-holding.",
+        "includes": ["Everything in Essential", "Data migration", "Contaplex ↔ Gestionplex integration", "5 team sessions", "60-day support"],
         "featured": true
       },
       {
-        "name": "Annual Support",
+        "name": "Annual Companionship",
         "icon": "headset",
-        "desc": "Priority support, quarterly training and process review all year.",
-        "includes": ["Priority support 12 months", "4 quarterly trainings", "Process review", "Assigned consultant"]
+        "desc": "Priority support, quarterly trainings and process review all year long.",
+        "includes": ["12-month priority support", "4 quarterly trainings", "Process review", "Assigned consultant"]
       }
     ]
   },
   "cta": {
     "titulo": "Need help choosing the right plan?",
-    "descripcion": "A DGD consultant helps you pick the Codeplex plan that fits your volume and the implementation service you need.",
+    "descripcion": "A DGD consultant guides you on which Codeplex plan fits your volume and which implementation service you need.",
     "primario": "Talk to a consultant"
   }
 }
