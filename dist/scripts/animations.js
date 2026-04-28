@@ -200,20 +200,11 @@ async function bootAnimations() {
       });
     }
 
-    // ── Hero dashboard mockup: entrada con perspective ──
-    const heroDash = document.querySelector('.hero .gradient-border');
-    if (heroDash) {
-      gsap.set(heroDash, { transformPerspective: 1500, transformOrigin: 'right center' });
-      gsap.from(heroDash, {
-        rotationY: -10,
-        rotationX: 4,
-        scale: 0.92,
-        opacity: 0,
-        duration: 1.4,
-        ease: 'expo.out',
-        delay: 0.3,
-      });
-    }
+    // ── Hero dashboard: SIN entrada propia ──
+    // El padre .hero data-anim="reveal-right" ya provee la entrada
+    // visual. Una entrada extra sobre el .gradient-border terminaba
+    // dejándolo invisible cuando el tween se interrumpía. El
+    // dashboard aparece siempre en su estado natural.
 
     // ── Hero floating cards + dashboard: anular CSS floatY y usar GSAP yoyo ──
     document.querySelectorAll('.hero .glass, .hero .gradient-border').forEach(el => {

@@ -40,7 +40,14 @@ const modulos = ecosistema.modulos.map((m: any) => ({ ...m, svg: SVG_PATHS[m.key
         <!-- SVG: rutas estáticas + beams animados que fluyen al centro -->
         <svg class="eco-beams" viewBox="0 0 500 460" fill="none" aria-hidden="true">
           <defs>
-            <linearGradient id="dgd-beam" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="100" y2="0">
+            <!-- Beam gradient: tonos amber profundo para máximo contraste sobre cream (light mode) -->
+            <linearGradient id="dgd-beam-light" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="100" y2="0">
+              <stop offset="0%" stop-color="#A07918" stop-opacity="0"/>
+              <stop offset="50%" stop-color="#7A5611" stop-opacity="1"/>
+              <stop offset="100%" stop-color="#4A3508" stop-opacity="0"/>
+            </linearGradient>
+            <!-- Beam gradient brillante para dark mode -->
+            <linearGradient id="dgd-beam-dark" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="100" y2="0">
               <stop offset="0%" stop-color="#F0D98C" stop-opacity="0"/>
               <stop offset="50%" stop-color="#D4AF37" stop-opacity="1"/>
               <stop offset="100%" stop-color="#B78B2B" stop-opacity="0"/>
@@ -161,13 +168,13 @@ const modulos = ecosistema.modulos.map((m: any) => ({ ...m, svg: SVG_PATHS[m.key
 
   /* Beams: arco de luz recorriendo cada ruta hacia el centro */
   .p-beam {
-    stroke: url(#dgd-beam);
-    stroke-width: 2.6;
+    stroke: url(#dgd-beam-light);
+    stroke-width: 3;
     stroke-linecap: round;
     fill: none;
     stroke-dasharray: 44 540;
     stroke-dashoffset: 584;
-    filter: drop-shadow(0 0 6px color-mix(in srgb, var(--gold-500) 70%, transparent));
+    filter: drop-shadow(0 0 8px color-mix(in srgb, var(--gold-700) 50%, transparent));
     animation: beamFlow 3.2s cubic-bezier(.55,.15,.45,.85) infinite;
   }
   .b1 { animation-delay: 0s;    animation-duration: 3.2s; }
@@ -283,6 +290,11 @@ const modulos = ecosistema.modulos.map((m: any) => ({ ...m, svg: SVG_PATHS[m.key
   }
   :global(html.dark) .p-static {
     stroke: color-mix(in srgb, var(--ink-300) 40%, transparent);
+  }
+  :global(html.dark) .p-beam {
+    stroke: url(#dgd-beam-dark);
+    stroke-width: 2.6;
+    filter: drop-shadow(0 0 6px color-mix(in srgb, var(--gold-500) 70%, transparent));
   }
 
   /* ============ REDUCED MOTION ============ */
