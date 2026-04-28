@@ -367,8 +367,13 @@ async function bootAnimations() {
     }
 
     // ============================================================
-    //  14. ECOSISTEMA ORBIT — entrada coreografiada
-    //      Núcleo → módulos → beams. Núcleo respira en loop.
+    //  14. ECOSISTEMA ORBIT — entrada + respiración
+    //      El parent .eco-visual ya hace reveal-scale; aquí sólo
+    //      añadimos un fade-in coreografiado SUAVE para los hijos
+    //      (sin pre-ocultarlos con opacity: 0, para evitar que
+    //      queden invisibles si el ScrollTrigger se mata por
+    //      refresh antes de disparar). Worst-case: los hijos
+    //      quedan visibles aunque no se anime — no hay "vacío".
     // ============================================================
     const orbit = document.querySelector('.eco-visual');
     if (orbit) {
@@ -378,13 +383,13 @@ async function bootAnimations() {
 
       const tl = gsap.timeline({
         scrollTrigger: { trigger: orbit, start: 'top 80%', once: true },
-        defaults: { ease: 'expo.out' },
-        delay: 0.2, // espera al reveal-scale del padre
+        defaults: { ease: 'expo.out', immediateRender: false }, // ← clave: no pre-aplica from-state
+        delay: 0.2,
       });
-      if (core) tl.from(core, { scale: 0.55, opacity: 0, duration: 0.9 }, 0);
+      if (core) tl.from(core, { scale: 0.65, opacity: 0, duration: 0.9 }, 0);
       if (nodes.length) {
         tl.from(nodes, {
-          scale: 0.6, opacity: 0,
+          scale: 0.7, opacity: 0,
           duration: 0.8, stagger: { each: 0.08, from: 'random' },
         }, 0.25);
       }
@@ -393,7 +398,8 @@ async function bootAnimations() {
           opacity: 0, duration: 0.6, stagger: 0.05,
         }, 0.6);
       }
-      // Núcleo: respiración continua sutil
+
+      // Núcleo: respiración continua (sin ScrollTrigger, siempre corre).
       if (core) {
         gsap.to(core, {
           scale: 1.04, duration: 2.6,
