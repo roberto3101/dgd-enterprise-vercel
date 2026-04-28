@@ -87,77 +87,60 @@ async function bootAnimations() {
     });
 
     // ============================================================
-    //  2.  REVEAL UP — clip-path + slide (sofisticado)
-    //      Usa ScrollTrigger.batch para mejor perf en bloques.
+    //  2-5.  REVEAL ANIMATIONS — todas con immediateRender: false
+    //        para evitar que un refresh-race deje elementos
+    //        invisibles para siempre. Si el trigger nunca dispara,
+    //        los elementos quedan en su estado natural (visibles).
     // ============================================================
-    const revealEls = document.querySelectorAll('[data-anim="reveal"], [data-anim="reveal-up"]');
-    if (revealEls.length) {
-      gsap.set(revealEls, { y: 32, opacity: 0 });
-      ScrollTrigger.batch(revealEls, {
-        start: 'top 88%',
-        once: true,
-        onEnter: (batch) => gsap.to(batch, {
-          y: 0,
-          opacity: 1,
-          duration: 0.9,
-          stagger: 0.08,
-          ease: 'expo.out',
-          overwrite: 'auto',
-          onComplete: () => batch.forEach(el => el.classList.add('anim-done')),
-        }),
-      });
-    }
 
-    // ============================================================
-    //  3.  REVEAL LEFT / RIGHT — slide horizontal
-    // ============================================================
+    // 2. REVEAL UP — fade + slide-up
+    document.querySelectorAll('[data-anim="reveal"], [data-anim="reveal-up"]').forEach(el => {
+      gsap.from(el, {
+        y: 32, opacity: 0,
+        duration: 0.9, ease: 'expo.out',
+        immediateRender: false,
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+        onComplete: () => el.classList.add('anim-done'),
+      });
+    });
+
+    // 3. REVEAL LEFT / RIGHT — slide horizontal
     document.querySelectorAll('[data-anim="reveal-left"]').forEach(el => {
-      gsap.fromTo(el,
-        { x: -56, opacity: 0 },
-        {
-          x: 0, opacity: 1, duration: 1.1, ease: 'expo.out',
-          scrollTrigger: { trigger: el, start: 'top 85%', once: true },
-        }
-      );
+      gsap.from(el, {
+        x: -56, opacity: 0,
+        duration: 1.1, ease: 'expo.out',
+        immediateRender: false,
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+      });
     });
     document.querySelectorAll('[data-anim="reveal-right"]').forEach(el => {
-      gsap.fromTo(el,
-        { x: 56, opacity: 0 },
-        {
-          x: 0, opacity: 1, duration: 1.1, ease: 'expo.out',
-          scrollTrigger: { trigger: el, start: 'top 85%', once: true },
-        }
-      );
+      gsap.from(el, {
+        x: 56, opacity: 0,
+        duration: 1.1, ease: 'expo.out',
+        immediateRender: false,
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+      });
     });
 
-    // ============================================================
-    //  4.  REVEAL SCALE — sutil scale-up
-    // ============================================================
+    // 4. REVEAL SCALE — sutil scale-up
     document.querySelectorAll('[data-anim="reveal-scale"]').forEach(el => {
-      gsap.fromTo(el,
-        { scale: 0.94, opacity: 0 },
-        {
-          scale: 1, opacity: 1, duration: 1, ease: 'expo.out',
-          scrollTrigger: { trigger: el, start: 'top 85%', once: true },
-        }
-      );
+      gsap.from(el, {
+        scale: 0.94, opacity: 0,
+        duration: 1, ease: 'expo.out',
+        immediateRender: false,
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+      });
     });
 
-    // ============================================================
-    //  5.  STAGGER CHILDREN — cascada con batch
-    // ============================================================
+    // 5. STAGGER CHILDREN — cascada
     document.querySelectorAll('[data-anim="stagger"]').forEach(el => {
       const children = el.querySelectorAll(':scope > *');
       if (!children.length) return;
-      gsap.set(children, { y: 28, opacity: 0 });
-      ScrollTrigger.create({
-        trigger: el,
-        start: 'top 85%',
-        once: true,
-        onEnter: () => gsap.to(children, {
-          y: 0, opacity: 1,
-          duration: 0.75, stagger: 0.07, ease: 'expo.out',
-        }),
+      gsap.from(children, {
+        y: 28, opacity: 0,
+        duration: 0.75, stagger: 0.07, ease: 'expo.out',
+        immediateRender: false,
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true },
       });
     });
 
@@ -293,31 +276,26 @@ async function bootAnimations() {
     //  10. IMAGE ZOOM — fade + sutil scale
     // ============================================================
     document.querySelectorAll('[data-anim="img-zoom"]').forEach(el => {
-      gsap.fromTo(el,
-        { scale: 1.05, opacity: 0 },
-        {
-          scale: 1, opacity: 1, duration: 1.3, ease: 'expo.out',
-          scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-        }
-      );
+      gsap.from(el, {
+        scale: 1.05, opacity: 0,
+        duration: 1.3, ease: 'expo.out',
+        immediateRender: false,
+        scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+      });
     });
 
     // ============================================================
-    //  11. METRIC CARDS — entrada coordinada con batch + glow border
-    //      Usa ScrollTrigger.batch para perf cuando hay muchas cards.
+    //  11. METRIC CARDS — entrada coordinada con batch
+    //      Usa from() con immediateRender:false vía ScrollTrigger.batch.
     // ============================================================
     const metricCards = document.querySelectorAll('.metric-card');
     if (metricCards.length) {
-      gsap.set(metricCards, { y: 40, opacity: 0 });
       ScrollTrigger.batch(metricCards, {
         start: 'top 85%',
         once: true,
-        onEnter: (batch) => gsap.to(batch, {
-          y: 0,
-          opacity: 1,
-          duration: 0.9,
-          stagger: 0.12,
-          ease: 'expo.out',
+        onEnter: (batch) => gsap.from(batch, {
+          y: 40, opacity: 0,
+          duration: 0.9, stagger: 0.12, ease: 'expo.out',
           overwrite: 'auto',
         }),
       });
@@ -424,6 +402,18 @@ async function bootAnimations() {
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(() => ScrollTrigger.refresh());
   }
+
+  // ── SAFETY NET: si por race-condition algún [data-anim] quedó
+  // a opacity 0 después de 2.5s, lo forzamos visible. Garantiza
+  // que la página nunca se quede con secciones en blanco.
+  setTimeout(() => {
+    document.querySelectorAll('[data-anim]').forEach(el => {
+      const cs = window.getComputedStyle(el);
+      if (parseFloat(cs.opacity) < 0.05) {
+        gsap.to(el, { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.4, ease: 'power2.out' });
+      }
+    });
+  }, 2500);
 }
 
 // ── Limpieza ligera entre transiciones de página ──
