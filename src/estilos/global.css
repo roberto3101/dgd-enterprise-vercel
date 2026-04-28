@@ -547,35 +547,41 @@ html.js [data-anim="stagger"] > * { animation: failsafeShow 0s linear 2.5s forwa
   color: transparent;
 }
 
-/* ============ VIEW TRANSITIONS — polygon-gradient ============ */
+/* ============ VIEW TRANSITIONS — circle reveal from top-left ============ */
 /*
-  Tailwind CSS 4 adds in production builds:
-    ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important }
-  We override it with !important on the more-specific (root) selector.
-  Higher specificity (root > *) wins when both rules carry !important.
+  Usamos radial-gradient como mask en lugar de un SVG con filter
+  porque el minificador (LightningCSS / Tailwind 4) rompe el url()
+  anidado del filter SVG en producción al añadirle comillas simples
+  que chocan con las del data URI exterior. radial-gradient evita
+  el url() anidado y produce el mismo efecto: círculo borroso (por
+  el gradient soft-edge) expandiéndose desde top-left.
+
+  Especificidad: ::view-transition-X(root) → 0,1,0
+                 ::view-transition-X(*)    → 0,0,0
+  La forma con (root) gana al universal de Tailwind por especificidad.
 */
 ::view-transition-group(root) {
   animation-timing-function: var(--expo-out) !important;
 }
 
 ::view-transition-new(root) {
-  mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><defs><filter id="blur"><feGaussianBlur stdDeviation="2"/></filter></defs><circle cx="0" cy="0" r="18" fill="white" filter="url(%23blur)"/></svg>') top left / 0 no-repeat;
-  mask-origin: content-box;
-  animation: vt-circle-scale 1s both !important;
-  animation-fill-mode: both !important;
+  -webkit-mask: radial-gradient(circle at top left, #000 60%, transparent 100%) top left / 0 0 no-repeat;
+          mask: radial-gradient(circle at top left, #000 60%, transparent 100%) top left / 0 0 no-repeat;
+  animation: vt-circle-scale 1s cubic-bezier(.16,1,.3,1) both !important;
   transform-origin: top left;
 }
 
-::view-transition-old(root),
-.dark::view-transition-old(root) {
-  animation: vt-circle-scale 1s both !important;
-  animation-fill-mode: both !important;
+::view-transition-old(root) {
+  animation: vt-circle-scale 1s cubic-bezier(.16,1,.3,1) both !important;
   transform-origin: top left;
   z-index: -1;
 }
 
 @keyframes vt-circle-scale {
-  to { mask-size: 350vmax; }
+  to {
+    -webkit-mask-size: 350vmax 350vmax;
+            mask-size: 350vmax 350vmax;
+  }
 }
 
 /* ============ RESPONSIVE ============ */
