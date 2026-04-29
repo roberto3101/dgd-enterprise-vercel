@@ -472,22 +472,16 @@ html.js [data-reveal="right"].revealed { transform: none; }
 [data-reveal-delay="4"] { transition-delay: .32s; }
 
 /* ============ GSAP ANIMATIONS (data-anim) — initial states ============ */
-/* Oculta antes de que GSAP procese, para evitar flash */
-html.js [data-anim="reveal"],
-html.js [data-anim="reveal-up"],
-html.js [data-anim="reveal-left"],
-html.js [data-anim="reveal-right"],
-html.js [data-anim="reveal-scale"],
-html.js [data-anim="img-zoom"] { opacity: 0; }
-html.js [data-anim="hero-title"] { opacity: 0; }
-html.js [data-anim="hero-title"].anim-done { opacity: 1; }
-html.js [data-anim="stagger"] > * { opacity: 0; }
-
-/* Failsafe: si GSAP no carga en 2.5s, mostrar todo */
-@keyframes failsafeShow { to { opacity: 1; } }
-html.js [data-anim] { animation: failsafeShow 0s linear 2.5s forwards; }
-html.js [data-anim="stagger"] > * { animation: failsafeShow 0s linear 2.5s forwards; }
-/* GSAP toma control y sobrescribe via inline style — esto solo aplica si falla */
+/* IMPORTANTE: NO ocultamos por CSS antes de que GSAP cargue.
+   Hacerlo dejaba el contenido invisible 1-3 s en cargas lentas
+   mientras se descargaban los scripts de GSAP/ScrollTrigger/
+   SplitType/CountUp desde CDN. Ahora los elementos son visibles
+   desde el primer paint; GSAP usa `gsap.from()` con
+   `immediateRender: false` para aplicar el estado inicial
+   (opacity:0, etc.) sólo cuando el ScrollTrigger dispara —
+   instantáneamente para arriba-de-fold, on-scroll para el resto.
+   Worst case: alguna animación de entrada no se ve, pero el
+   usuario nunca espera por texto invisible. */
 
 /* prefers-reduced-motion: todo visible inmediatamente */
 @media (prefers-reduced-motion: reduce) {
