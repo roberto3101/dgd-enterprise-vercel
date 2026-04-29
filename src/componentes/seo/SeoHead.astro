@@ -1,0 +1,128 @@
+---
+/**
+ * SeoHead — todo el SEO técnico centralizado.
+ *
+ * Incluye:
+ *  - Meta básicos (title, description, keywords, canonical, robots)
+ *  - Open Graph (Facebook, WhatsApp, LinkedIn, etc.)
+ *  - Twitter Cards
+ *  - hreflang alternates (ES ↔ EN)
+ *  - JSON-LD Schema.org: Organization + WebSite + (opcional Product/Article)
+ */
+import type { Idioma } from '@helpers/idiomas';
+
+interface Props {
+  idioma: Idioma;
+  seoData: {
+    titulo: string;
+    descripcion: string;
+    ogImage?: string;
+    ogImageAlt?: string;
+    twitterHandle?: string;
+    keywords?: string;
+  };
+  /** Schema extra opcional (Product, Article, etc.) que se inyecta como JSON-LD adicional */
+  schemaExtra?: Record<string, any>;
+}
+
+const { idioma, seoData, schemaExtra } = Astro.props;
+const SITE = 'https://dgd-enterprise.pe';
+
+// URL canónica + alternates por idioma
+const pathname = Astro.url.pathname;
+const canonical = new URL(pathname, SITE).toString();
+const hrefEs = new URL(pathname.replace(/^\/en\//, '/es/'), SITE).toString();
+const hrefEn = new URL(pathname.replace(/^\/es\//, '/en/'), SITE).toString();
+
+const ogImage = new URL(seoData.ogImage || '/imagenes/og-cover.png', SITE).toString();
+const ogLocale = idioma === 'es' ? 'es_PE' : 'en_US';
+const ogLocaleAlt = idioma === 'es' ? 'en_US' : 'es_PE';
+
+// JSON-LD: Organization (sitewide)
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Grupo DGD',
+  alternateName: 'DGD Enterprise',
+  url: SITE,
+  logo: `${SITE}/logo.png`,
+  description: seoData.descripcion,
+  foundingLocation: {
+    '@type': 'Place',
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'PE',
+      addressRegion: 'Lima',
+    },
+  },
+  areaServed: { '@type': 'Country', name: 'Peru' },
+  knowsAbout: ['ContaPlex', 'GestiónPlex', 'Facturación Electrónica SUNAT', 'PLE', 'SIRE'],
+  sameAs: [
+    'https://www.linkedin.com/company/grupo-dgd',
+    'https://www.facebook.com/grupodgd',
+    'https://www.instagram.com/grupodgd',
+  ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer service',
+    availableLanguage: ['Spanish', 'English'],
+    areaServed: 'PE',
+  },
+};
+
+// JSON-LD: WebSite con SearchAction
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Grupo DGD',
+  url: SITE,
+  inLanguage: idioma === 'es' ? 'es-PE' : 'en-US',
+  publisher: { '@id': `${SITE}/#organization` },
+};
+---
+<!-- Meta básicos -->
+<title>{seoData.titulo}</title>
+<meta name="description" content={seoData.descripcion} />
+{seoData.keywords && <meta name="keywords" content={seoData.keywords} />}
+<meta name="author" content="Grupo DGD" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="googlebot" content="index, follow" />
+<link rel="canonical" href={canonical} />
+
+<!-- Alternates hreflang i18n -->
+<link rel="alternate" hreflang="es-PE" href={hrefEs} />
+<link rel="alternate" hreflang="en-US" href={hrefEn} />
+<link rel="alternate" hreflang="x-default" href={hrefEs} />
+
+<!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Grupo DGD" />
+<meta property="og:title" content={seoData.titulo} />
+<meta property="og:description" content={seoData.descripcion} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={seoData.ogImageAlt || seoData.titulo} />
+<meta property="og:locale" content={ogLocale} />
+<meta property="og:locale:alternate" content={ogLocaleAlt} />
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image" />
+{seoData.twitterHandle && <meta name="twitter:site" content={seoData.twitterHandle} />}
+{seoData.twitterHandle && <meta name="twitter:creator" content={seoData.twitterHandle} />}
+<meta name="twitter:title" content={seoData.titulo} />
+<meta name="twitter:description" content={seoData.descripcion} />
+<meta name="twitter:image" content={ogImage} />
+<meta name="twitter:image:alt" content={seoData.ogImageAlt || seoData.titulo} />
+
+<!-- JSON-LD: Organization -->
+<script type="application/ld+json" set:html={JSON.stringify({ ...orgSchema, '@id': `${SITE}/#organization` })}></script>
+
+<!-- JSON-LD: WebSite -->
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)}></script>
+
+<!-- JSON-LD: extra opcional (Product, Article, BreadcrumbList, etc.) -->
+{schemaExtra && (
+  <script type="application/ld+json" set:html={JSON.stringify(schemaExtra)}></script>
+)}

@@ -4,15 +4,17 @@ interface Props {
 }
 const { footer } = Astro.props;
 ---
-<footer>
+<footer itemscope itemtype="https://schema.org/Organization">
+  <meta itemprop="url" content="https://dgd-enterprise.pe" />
+  <meta itemprop="logo" content="https://dgd-enterprise.pe/logo.png" />
   <div class="container">
     <div class="footer-grid">
       <div>
         <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px; color:white">
           <div style="width:32px; height:32px; border-radius:8px; background:linear-gradient(135deg, #14B8A6, #0D9488); display:grid; place-items:center; color:white; font-weight:800">D</div>
-          <span style="color:white; font-weight:700; font-size:18px">DGD<span style="color:var(--brand-accent)">.</span>enterprise</span>
+          <span itemprop="name" style="color:white; font-weight:700; font-size:18px">DGD<span style="color:var(--brand-accent)">.</span>enterprise</span>
         </div>
-        <p style="font-size:14px; line-height:1.65; color:var(--ink-400); margin-bottom:20px; max-width:320px">
+        <p itemprop="description" style="font-size:14px; line-height:1.65; color:var(--ink-400); margin-bottom:20px; max-width:320px">
           {footer.descripcion}
         </p>
         <div style="display:flex; gap:10px">
@@ -43,9 +45,16 @@ const { footer } = Astro.props;
       ))}
     </div>
     <div class="footer-bottom">
-      <div>
-        <div>{footer.razonSocial} · <span style="font-family:var(--font-mono); opacity:.7">{footer.ruc}</span></div>
-        <div style="margin-top:3px; color:var(--ink-500); font-family:var(--font-mono); font-size:12px">{footer.direccion}</div>
+      <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+        <div>
+          <span itemprop="legalName">{footer.razonSocial}</span> ·
+          <span itemprop="taxID" style="font-family:var(--font-mono); opacity:.7">{footer.ruc}</span>
+        </div>
+        <div style="margin-top:3px; color:var(--ink-500); font-family:var(--font-mono); font-size:12px">
+          <span itemprop="streetAddress">{footer.direccion}</span>
+          <meta itemprop="addressCountry" content="PE" />
+          <meta itemprop="addressRegion" content="Lima" />
+        </div>
       </div>
       <div style="display:flex; gap:18px; align-items:center">
         <span>{footer.copyright}</span>

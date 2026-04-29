@@ -5,18 +5,25 @@ import BarraNavegacion from '@componentes/navegacion/BarraNavegacion.astro';
 import PieDePagina from '@componentes/navegacion/PieDePagina.astro';
 import CookieBanner from '@componentes/ui/CookieBanner.astro';
 import WhatsAppFloat from '@componentes/ui/WhatsAppFloat.astro';
+import SeoHead from '@componentes/seo/SeoHead.astro';
 import { cargarDatos, LOCALES_HTML, type Idioma } from '@helpers/idiomas';
 
 interface Props {
   idioma: Idioma;
+  /** Override SEO por página (opcional) */
+  seoOverride?: { titulo?: string; descripcion?: string; ogImage?: string };
+  /** Schema.org adicional (Product, Article, etc.) */
+  schemaExtra?: Record<string, any>;
 }
-const { idioma } = Astro.props;
+const { idioma, seoOverride, schemaExtra } = Astro.props;
 
-const [navegacion, footerData, seoData] = await Promise.all([
+const [navegacion, footerData, seoBase] = await Promise.all([
   cargarDatos<any>(idioma, 'navegacion'),
   cargarDatos<any>(idioma, 'footer'),
-  cargarDatos<{ titulo: string; descripcion: string }>(idioma, 'seo'),
+  cargarDatos<any>(idioma, 'seo'),
 ]);
+
+const seoData = { ...seoBase, ...seoOverride };
 ---
 <!DOCTYPE html>
 <html lang={LOCALES_HTML[idioma]}>
@@ -26,9 +33,10 @@ const [navegacion, footerData, seoData] = await Promise.all([
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#0E3A5F" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#041A2E" media="(prefers-color-scheme: dark)" />
-    <title>{seoData.titulo}</title>
-    <meta name="description" content={seoData.descripcion} />
     <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <!-- SEO: meta tags + Open Graph + Twitter Cards + JSON-LD Schema.org -->
+    <SeoHead idioma={idioma} seoData={seoData} schemaExtra={schemaExtra} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />

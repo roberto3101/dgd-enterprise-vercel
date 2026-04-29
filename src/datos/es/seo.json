@@ -1,4 +1,8 @@
 {
   "titulo": "Grupo DGD — Partner oficial Codeplex en Perú",
-  "descripcion": "Implementamos ContaPlex, GestiónPlex y Facturación Electrónica SUNAT. Asesoría local, capacitación y soporte en Perú."
+  "descripcion": "Implementamos ContaPlex, GestiónPlex y Facturación Electrónica SUNAT. Asesoría local, capacitación y soporte en Perú.",
+  "ogImage": "/logo.png",
+  "ogImageAlt": "Grupo DGD — Partner oficial Codeplex en Perú",
+  "twitterHandle": "@grupodgd",
+  "keywords": "Codeplex Perú, ContaPlex, GestiónPlex, facturación electrónica SUNAT, software contable Perú, libros electrónicos PLE, SIRE, partner Codeplex"
 }

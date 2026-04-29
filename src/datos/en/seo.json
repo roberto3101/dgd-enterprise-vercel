@@ -1,4 +1,8 @@
 {
   "titulo": "Grupo DGD — Official Codeplex Partner in Peru",
-  "descripcion": "We implement ContaPlex, GestiónPlex and SUNAT e-Invoicing. Local consulting, training and support in Peru."
+  "descripcion": "We implement ContaPlex, GestiónPlex and SUNAT e-Invoicing. Local consulting, training and support in Peru.",
+  "ogImage": "/logo.png",
+  "ogImageAlt": "Grupo DGD — Official Codeplex Partner in Peru",
+  "twitterHandle": "@grupodgd",
+  "keywords": "Codeplex Peru, ContaPlex, GestiónPlex, SUNAT e-invoicing, accounting software Peru, electronic books PLE, SIRE, Codeplex partner"
 }
