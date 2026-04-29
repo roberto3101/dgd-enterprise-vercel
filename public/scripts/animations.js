@@ -87,18 +87,32 @@ async function bootAnimations() {
     });
 
     // ============================================================
-    //  2-5.  REVEAL ANIMATIONS — todas con immediateRender: false
-    //        para evitar que un refresh-race deje elementos
-    //        invisibles para siempre. Si el trigger nunca dispara,
-    //        los elementos quedan en su estado natural (visibles).
+    //  2-5.  REVEAL ANIMATIONS — viewport-aware
+    //
+    //  Estrategia: en el momento que GSAP arranca, miramos cada
+    //  elemento. Si ya está dentro del viewport (arriba-de-fold),
+    //  lo dejamos quieto — ya está visible y meterle entrada
+    //  causaría un parpadeo (visible → snap invisible → fade).
+    //  Si está abajo del fold, lo PRE-OCULTAMOS con gsap.set
+    //  (el usuario no lo ve, está fuera de pantalla) y lo
+    //  animamos con gsap.to cuando entra al viewport. Resultado:
+    //  cero flicker, la entrada se ve solo en elementos que
+    //  realmente entran al viewport por scroll.
     // ============================================================
+
+    const VH = window.innerHeight;
+    const inViewport = (el) => {
+      const r = el.getBoundingClientRect();
+      return r.top < VH && r.bottom > 0;
+    };
 
     // 2. REVEAL UP — fade + slide-up
     document.querySelectorAll('[data-anim="reveal"], [data-anim="reveal-up"]').forEach(el => {
-      gsap.from(el, {
-        y: 32, opacity: 0,
+      if (inViewport(el)) { el.classList.add('anim-done'); return; }
+      gsap.set(el, { opacity: 0, y: 32 });
+      gsap.to(el, {
+        opacity: 1, y: 0,
         duration: 0.9, ease: 'expo.out',
-        immediateRender: false,
         scrollTrigger: { trigger: el, start: 'top 88%', once: true },
         onComplete: () => el.classList.add('anim-done'),
       });
@@ -106,28 +120,31 @@ async function bootAnimations() {
 
     // 3. REVEAL LEFT / RIGHT — slide horizontal
     document.querySelectorAll('[data-anim="reveal-left"]').forEach(el => {
-      gsap.from(el, {
-        x: -56, opacity: 0,
+      if (inViewport(el)) return;
+      gsap.set(el, { opacity: 0, x: -56 });
+      gsap.to(el, {
+        opacity: 1, x: 0,
         duration: 1.1, ease: 'expo.out',
-        immediateRender: false,
         scrollTrigger: { trigger: el, start: 'top 85%', once: true },
       });
     });
     document.querySelectorAll('[data-anim="reveal-right"]').forEach(el => {
-      gsap.from(el, {
-        x: 56, opacity: 0,
+      if (inViewport(el)) return;
+      gsap.set(el, { opacity: 0, x: 56 });
+      gsap.to(el, {
+        opacity: 1, x: 0,
         duration: 1.1, ease: 'expo.out',
-        immediateRender: false,
         scrollTrigger: { trigger: el, start: 'top 85%', once: true },
       });
     });
 
     // 4. REVEAL SCALE — sutil scale-up
     document.querySelectorAll('[data-anim="reveal-scale"]').forEach(el => {
-      gsap.from(el, {
-        scale: 0.94, opacity: 0,
+      if (inViewport(el)) return;
+      gsap.set(el, { opacity: 0, scale: 0.94 });
+      gsap.to(el, {
+        opacity: 1, scale: 1,
         duration: 1, ease: 'expo.out',
-        immediateRender: false,
         scrollTrigger: { trigger: el, start: 'top 85%', once: true },
       });
     });
@@ -136,10 +153,11 @@ async function bootAnimations() {
     document.querySelectorAll('[data-anim="stagger"]').forEach(el => {
       const children = el.querySelectorAll(':scope > *');
       if (!children.length) return;
-      gsap.from(children, {
-        y: 28, opacity: 0,
+      if (inViewport(el)) return; // arriba-de-fold: nada
+      gsap.set(children, { opacity: 0, y: 28 });
+      gsap.to(children, {
+        opacity: 1, y: 0,
         duration: 0.75, stagger: 0.07, ease: 'expo.out',
-        immediateRender: false,
         scrollTrigger: { trigger: el, start: 'top 85%', once: true },
       });
     });
@@ -264,28 +282,30 @@ async function bootAnimations() {
     });
 
     // ============================================================
-    //  10. IMAGE ZOOM — fade + sutil scale
+    //  10. IMAGE ZOOM — fade + sutil scale (viewport-aware)
     // ============================================================
     document.querySelectorAll('[data-anim="img-zoom"]').forEach(el => {
-      gsap.from(el, {
-        scale: 1.05, opacity: 0,
+      if (inViewport(el)) return;
+      gsap.set(el, { opacity: 0, scale: 1.05 });
+      gsap.to(el, {
+        opacity: 1, scale: 1,
         duration: 1.3, ease: 'expo.out',
-        immediateRender: false,
         scrollTrigger: { trigger: el, start: 'top 90%', once: true },
       });
     });
 
     // ============================================================
-    //  11. METRIC CARDS — entrada coordinada con batch
-    //      Usa from() con immediateRender:false vía ScrollTrigger.batch.
+    //  11. METRIC CARDS — entrada coordinada (viewport-aware)
     // ============================================================
-    const metricCards = document.querySelectorAll('.metric-card');
+    const metricCards = Array.from(document.querySelectorAll('.metric-card'))
+      .filter(el => !inViewport(el));
     if (metricCards.length) {
+      gsap.set(metricCards, { opacity: 0, y: 40 });
       ScrollTrigger.batch(metricCards, {
         start: 'top 85%',
         once: true,
-        onEnter: (batch) => gsap.from(batch, {
-          y: 40, opacity: 0,
+        onEnter: (batch) => gsap.to(batch, {
+          opacity: 1, y: 0,
           duration: 0.9, stagger: 0.12, ease: 'expo.out',
           overwrite: 'auto',
         }),
@@ -394,17 +414,22 @@ async function bootAnimations() {
     document.fonts.ready.then(() => ScrollTrigger.refresh());
   }
 
-  // ── SAFETY NET: si por race-condition algún [data-anim] quedó
-  // a opacity 0 después de 2.5s, lo forzamos visible. Garantiza
-  // que la página nunca se quede con secciones en blanco.
+  // ── SAFETY NET: si algún [data-anim] DENTRO del viewport quedó
+  // invisible por race condition, lo forzamos visible a los 1.5s.
+  // No tocamos elementos below-fold (esos están correctamente
+  // esperando que su ScrollTrigger dispare al hacer scroll).
   setTimeout(() => {
+    const VH = window.innerHeight;
     document.querySelectorAll('[data-anim]').forEach(el => {
+      const r = el.getBoundingClientRect();
+      const inView = r.top < VH && r.bottom > 0;
+      if (!inView) return; // dejar tranquilos los below-fold
       const cs = window.getComputedStyle(el);
       if (parseFloat(cs.opacity) < 0.05) {
         gsap.to(el, { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.4, ease: 'power2.out' });
       }
     });
-  }, 2500);
+  }, 1500);
 }
 
 // ── Limpieza ligera entre transiciones de página ──
