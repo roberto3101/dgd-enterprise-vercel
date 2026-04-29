@@ -10,7 +10,7 @@ const pathname = Astro.url.pathname;
 const hrefEs = idioma === 'es' ? pathname : pathname.replace(/^\/en\//, '/es/');
 const hrefEn = idioma === 'en' ? pathname : pathname.replace(/^\/es\//, '/en/');
 ---
-<nav class="nav" transition:persist="navbar">
+<nav class="nav">
   <div class="nav-inner">
     <Logo />
     <div class="nav-links">
