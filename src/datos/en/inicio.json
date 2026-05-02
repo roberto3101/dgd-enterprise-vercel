@@ -2,74 +2,55 @@
   "hero": {
     "badgePartner": "★ Official Codeplex Partner",
     "badgeSunat": "SUNAT Authorized",
-    "tituloPre": "Stay compliant with ",
-    "tituloGradient": "SUNAT",
-    "tituloPost": " — no headaches.",
-    "descripcion": "We implement and support your company with <b>ContaPlex</b>, <b>GestiónPlex</b> and <b>Electronic Invoicing</b> — Codeplex's cloud systems, fully SUNAT-compliant.",
+    "tituloPre": "Cloud software for ",
+    "tituloGradient": "your business",
+    "tituloPost": " in Peru.",
+    "descripcion": "We implement <strong>ContaPlex</strong>, <strong>GestiónPlex</strong> and <strong>SUNAT Electronic Invoicing</strong>. We serve gas stations, restaurants, retail, warehouses and accounting — with local consulting in Lima.",
     "ctaPrimario": "Request free demo",
-    "ctaSecundario": "See plans",
+    "ctaSecundario": "View plans",
     "bullets": [
-      "7-day setup",
+      "Setup in 7 days",
       "Training included",
-      "Local support in Peru"
+      "Support from Peru"
     ],
-    "dashboard": {
-      "url": "app.contaplex.pe/dashboard",
-      "eyebrow": "Demo view · Accounting panel",
-      "titulo": "Accounting panel",
-      "tags": [
-        "✓ PLE validated",
-        "SIRE ready"
-      ],
-      "sidebar": [
-        "Dashboard",
-        "Income",
-        "Expenses",
-        "E-books",
-        "SIRE",
-        "PLE",
-        "Reports",
-        "Companies"
-      ],
-      "metricas": [
-        {
-          "label": "Income",
-          "valor": "S/ 485,230",
-          "delta": "+12.4%"
-        },
-        {
-          "label": "Expenses",
-          "valor": "S/ 312,180",
-          "delta": "-3.1%"
-        },
-        {
-          "label": "Profit",
-          "valor": "S/ 173,050",
-          "delta": "+28.7%"
-        }
-      ],
-      "chart": {
-        "titulo": "Monthly flow · S/",
-        "subtitulo": "Last 6 months",
-        "meses": [
-          "Nov",
-          "Dec",
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr"
-        ]
+    "verticales": [
+      {
+        "key": "grifos",
+        "label": "Gas stations",
+        "sub": "Islands, dispensers, vouchers & SCOP",
+        "img": "https://images.pexels.com/photos/9800009/pexels-photo-9800009.jpeg?auto=compress&cs=tinysrgb&w=1200"
       },
-      "floatingTop": {
-        "titulo": "Filed to SUNAT",
-        "subtitulo": "Sales Book · OK"
+      {
+        "key": "restaurantes",
+        "label": "Restaurants",
+        "sub": "Tables, kitchen tickets, pre-bills, delivery",
+        "img": "https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?auto=compress&cs=tinysrgb&w=1200"
       },
-      "floatingBottom": {
-        "eyebrow": "Invoicing today",
-        "monto": "S/ 48,230",
-        "delta": "↑ 18% vs yesterday"
+      {
+        "key": "comercio",
+        "label": "Retail · POS",
+        "sub": "Sales, inventory, barcode",
+        "img": "https://images.pexels.com/photos/3962285/pexels-photo-3962285.jpeg?auto=compress&cs=tinysrgb&w=1200"
+      },
+      {
+        "key": "logistica",
+        "label": "Logistics · Warehouses",
+        "sub": "Multi-warehouse, kardex, transfers",
+        "img": "https://images.pexels.com/photos/4481259/pexels-photo-4481259.jpeg?auto=compress&cs=tinysrgb&w=1200"
+      },
+      {
+        "key": "contabilidad",
+        "label": "Accounting",
+        "sub": "PLE · SIRE · Financial statements",
+        "img": "https://images.pexels.com/photos/6863183/pexels-photo-6863183.jpeg?auto=compress&cs=tinysrgb&w=1200"
+      },
+      {
+        "key": "facturacion",
+        "label": "SUNAT Invoicing",
+        "sub": "Invoice, receipt, electronic delivery note",
+        "img": "https://images.pexels.com/photos/4348401/pexels-photo-4348401.jpeg?auto=compress&cs=tinysrgb&w=1200"
       }
-    },
+    ],
     "metricsStrip": [
       {
         "text": "Partner",

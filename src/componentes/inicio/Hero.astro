@@ -1,34 +1,42 @@
 ---
-import BorderBeam from '@componentes/ui/mui/BorderBeam.astro';
 import DotPattern from '@componentes/ui/mui/DotPattern.astro';
 interface Props {
   hero: any;
 }
 const { hero } = Astro.props;
-const d = hero.dashboard;
-// Video de stock sin copyright (Pexels / free commercial use). Fallback: gradient.
 const heroVideo = "https://videos.pexels.com/video-files/8419153/8419153-uhd_2560_1440_25fps.mp4";
 ---
-<section class="hero">
-  <video class="hero-video" autoplay muted loop playsinline preload="none" poster="">
+<section class="hero hero-v2">
+  <!-- Background ambiental -->
+  <video class="hero-video" autoplay muted loop playsinline preload="none">
     <source src={heroVideo} type="video/mp4" />
   </video>
   <div class="hero-bg"></div>
-  <div class="hero-grid-bg"></div>
+  <DotPattern width={28} height={28} cr={1} color="color-mix(in srgb, var(--gold-500) 18%, transparent)" />
 
   <div class="container">
-    <div class="hero-grid">
-      <div>
-        <div class="row" style="gap:8px; margin-bottom:24px" data-anim="reveal-up">
+    <div class="hero-grid-v2">
+      <!-- Columna izquierda: copy -->
+      <div class="hero-copy">
+        <div class="row" style="gap:8px; margin-bottom:22px" data-anim="reveal-up">
           <span class="badge badge-pop">{hero.badgePartner}</span>
           <span class="badge">{hero.badgeSunat}</span>
         </div>
+
         <h1 data-anim="hero-title">
           {hero.tituloPre}<span class="gradient-text">{hero.tituloGradient}</span>{hero.tituloPost}
         </h1>
-        <p data-anim="reveal-up" style="font-size:19px; margin-top:22px; max-width:560px; color:var(--ink-500); line-height:1.6" set:html={hero.descripcion}></p>
 
-        <div class="row" style="margin-top:32px; gap:12px" data-anim="reveal-up">
+        <!-- Verticales rápidas: lo que SOMOS, en una línea -->
+        <div class="verticales-tags" data-anim="reveal-up">
+          {hero.verticales.map((v: any) => (
+            <span class="vt-pill"><span class="vt-dot"></span>{v.label}</span>
+          ))}
+        </div>
+
+        <p class="hero-desc" data-anim="reveal-up" set:html={hero.descripcion}></p>
+
+        <div class="row" style="margin-top:30px; gap:12px" data-anim="reveal-up">
           <a class="btn btn-primary btn-lg btn-shine" href="#contacto">
             {hero.ctaPrimario}
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -36,97 +44,37 @@ const heroVideo = "https://videos.pexels.com/video-files/8419153/8419153-uhd_256
           <a class="btn btn-outline btn-lg" href="#planes">{hero.ctaSecundario}</a>
         </div>
 
-        <div style="margin-top:36px; display:flex; gap:24px; flex-wrap:wrap; font-size:13px; color:var(--ink-500)" data-anim="stagger">
+        <div class="hero-bullets" data-anim="stagger">
           {hero.bullets.map((b: string) => (
-            <div style="display:flex; align-items:center; gap:6px">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-700)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <div class="hero-bullet">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-500)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
               {b}
             </div>
           ))}
         </div>
       </div>
 
-      <div style="position:relative" data-anim="reveal-right">
-        <div class="gradient-border" style="animation: floatY 6s ease-in-out infinite; position: relative">
-          <BorderBeam size={100} duration={9} colorFrom="#D4AF37" colorTo="#175082" borderWidth={1.5} />
-          <div class="dash" style="font-family: var(--font); box-shadow: var(--shadow-xl)">
-            <div class="dash-chrome">
-              <div class="dash-dot r"></div><div class="dash-dot y"></div><div class="dash-dot g"></div>
-              <div class="dash-url">{d.url}</div>
-            </div>
-            <div style="display:grid; grid-template-columns:180px 1fr; min-height:420px; background:var(--bg-card)">
-              <aside style="background:var(--bg-alt); border-right:1px solid var(--ink-200); padding:16px">
-                <div style="display:flex; align-items:center; gap:8px; margin-bottom:24px">
-                  <div style="width:26px; height:26px; border-radius:7px; background:linear-gradient(135deg,var(--navy-700),var(--gold-500)); display:grid; place-items:center; color:white; font-size:12px; font-weight:800">C</div>
-                  <span style="font-weight:700; font-size:14px">ContaPlex</span>
-                </div>
-                {d.sidebar.map((x: string, i: number) => (
-                  <div style={`padding:8px 10px; font-size:13px; border-radius:6px; margin-bottom:2px; background:${i===0?'var(--bg-card)':'transparent'}; color:${i===0?'var(--ink-900)':'var(--ink-500)'}; font-weight:${i===0?600:500}; display:flex; align-items:center; gap:8px; ${i===0?'box-shadow:var(--shadow-sm)':''}`}>
-                    <div style={`width:6px; height:6px; border-radius:2px; background:${i===0?'var(--gold-500)':'var(--ink-300)'}`}></div>
-                    {x}
-                  </div>
-                ))}
-              </aside>
-              <main style="padding:20px">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px">
-                  <div>
-                    <div style="font-size:11px; color:var(--ink-500); text-transform:uppercase; letter-spacing:.08em; font-weight:600">{d.eyebrow}</div>
-                    <div style="font-size:18px; font-weight:700; margin-top:2px">{d.titulo}</div>
-                  </div>
-                  <div style="display:flex; gap:6px">
-                    <div style="padding:5px 10px; background:color-mix(in srgb, var(--gold-500) 18%, transparent); color:var(--gold-700); border-radius:6px; font-size:11px; font-weight:600">{d.tags[0]}</div>
-                    <div style="padding:5px 10px; background:var(--ink-100); color:var(--ink-700); border-radius:6px; font-size:11px; font-weight:600">{d.tags[1]}</div>
-                  </div>
-                </div>
-                <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:14px">
-                  {d.metricas.map((s: any) => (
-                    <div style="padding:12px; border:1px solid var(--ink-200); border-radius:10px; background:var(--bg-card)">
-                      <div style="font-size:10px; color:var(--ink-500); text-transform:uppercase; font-weight:600; letter-spacing:.06em">{s.label}</div>
-                      <div style="font-size:18px; font-weight:700; margin:4px 0">{s.valor}</div>
-                      <div style={`font-size:11px; color:${s.delta.startsWith('+')?'var(--gold-700)':'#EF4444'}; font-weight:600`}>{s.delta}</div>
-                    </div>
-                  ))}
-                </div>
-                <div style="padding:14px; border:1px solid var(--ink-200); border-radius:10px; background:var(--bg-card)">
-                  <div style="display:flex; justify-content:space-between; margin-bottom:10px">
-                    <div style="font-size:12px; font-weight:600">{d.chart.titulo}</div>
-                    <div style="font-size:11px; color:var(--ink-500)">{d.chart.subtitulo}</div>
-                  </div>
-                  <svg viewBox="0 0 300 90" style="width:100%; height:90px">
-                    <defs>
-                      <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="0" stop-color="#D4AF37" stop-opacity=".45"/>
-                        <stop offset="1" stop-color="#D4AF37" stop-opacity="0"/>
-                      </linearGradient>
-                    </defs>
-                    <path d="M0,70 L50,55 L100,60 L150,40 L200,45 L250,25 L300,30 L300,90 L0,90 Z" fill="url(#g1)"/>
-                    <path d="M0,70 L50,55 L100,60 L150,40 L200,45 L250,25 L300,30" fill="none" stroke="#B78B2B" stroke-width="2"/>
-                    {[70,55,60,40,45,25,30].map((y, i) => (
-                      <circle cx={i*50} cy={y} r="3" fill="white" stroke="#B78B2B" stroke-width="2"/>
-                    ))}
-                  </svg>
-                  <div style="display:flex; justify-content:space-between; font-size:10px; color:var(--ink-500); margin-top:6px">
-                    {d.chart.meses.map((m: string) => <span>{m}</span>)}
-                  </div>
-                </div>
-              </main>
+      <!-- Columna derecha: showcase de verticales (auto-cycle) -->
+      <div class="hero-showcase" data-anim="reveal-right" aria-label="Sectores que atendemos">
+        {hero.verticales.map((v: any, i: number) => (
+          <div
+            class={`shc-slide ${i === 0 ? 'active' : ''}`}
+            data-shc-slide
+            data-index={i}
+            style={`background-image: linear-gradient(180deg, rgba(4,26,46,.15) 0%, rgba(4,26,46,.85) 100%), url('${v.img}');`}
+          >
+            <div class="shc-frame">
+              <div class="shc-num">{String(i+1).padStart(2,'0')} / {String(hero.verticales.length).padStart(2,'0')}</div>
+              <div class="shc-label">{v.label}</div>
+              <div class="shc-sub">{v.sub}</div>
             </div>
           </div>
-        </div>
-
-        <div class="glass" style="position:absolute; top:-20px; right:-10px; border-radius:12px; padding:12px 14px; display:flex; align-items:center; gap:10px; animation: floatY 5s ease-in-out infinite .5s">
-          <div style="width:36px; height:36px; border-radius:9px; background:linear-gradient(135deg,var(--gold-500),var(--gold-700)); color:var(--navy-900); display:grid; place-items:center">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div>
-            <div style="font-size:11px; color:var(--ink-500); font-weight:600">{d.floatingTop.titulo}</div>
-            <div style="font-size:13px; font-weight:700">{d.floatingTop.subtitulo}</div>
-          </div>
-        </div>
-        <div class="glass" style="position:absolute; bottom:-16px; left:-24px; border-radius:12px; padding:14px 16px; animation: floatY 7s ease-in-out infinite 1s">
-          <div style="font-size:10px; color:var(--ink-500); font-weight:600; text-transform:uppercase; letter-spacing:.06em">{d.floatingBottom.eyebrow}</div>
-          <div style="font-size:20px; font-weight:800; margin:2px 0; background:linear-gradient(135deg,var(--navy-700),var(--gold-500)); -webkit-background-clip:text; background-clip:text; color:transparent">{d.floatingBottom.monto}</div>
-          <div style="font-size:11px; color:var(--gold-700); font-weight:600">{d.floatingBottom.delta}</div>
+        ))}
+        <!-- Dots indicador -->
+        <div class="shc-dots">
+          {hero.verticales.map((_v: any, i: number) => (
+            <button type="button" class={`shc-dot ${i === 0 ? 'active' : ''}`} data-shc-dot data-index={i} aria-label={`Ver vertical ${i+1}`}></button>
+          ))}
         </div>
       </div>
     </div>
@@ -181,34 +129,200 @@ const heroVideo = "https://videos.pexels.com/video-files/8419153/8419153-uhd_256
 </section>
 
 <style>
-  @media (max-width: 820px) {
-    .section-navy > .container > div { grid-template-columns: repeat(2, 1fr) !important; gap: 24px !important; }
+  .hero-v2 { padding-top: 56px; padding-bottom: 56px; }
+  .hero-grid-v2 {
+    display: grid; grid-template-columns: 1.05fr 1fr;
+    gap: 56px; align-items: center;
+    position: relative; z-index: 2;
   }
-  @media (max-width: 480px) {
-    .section-navy > .container > div { grid-template-columns: 1fr !important; }
+  @media (max-width: 1024px) {
+    .hero-grid-v2 { grid-template-columns: 1fr; gap: 40px; }
   }
 
-  .metric-card {
-    text-align:center; padding:32px 20px; border-radius:14px;
-    background:var(--bg-card); border:1px solid var(--ink-200);
-    transition:border-color .4s ease, transform .4s ease;
+  .hero-copy h1 {
+    font-size: clamp(38px, 5.4vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 6px 0 18px;
   }
-  .metric-card:hover {
-    border-color:color-mix(in srgb, var(--gold-500) 35%, var(--ink-200));
-    transform:translateY(-2px);
+  .hero-desc {
+    font-size: 17px;
+    margin-top: 18px;
+    max-width: 540px;
+    color: var(--ink-500);
+    line-height: 1.65;
   }
-  .metric-num {
-    font-size:clamp(40px, 5vw, 54px); font-weight:700; letter-spacing:-0.03em;
-    color:var(--ink-900); line-height:1;
+  .hero-bullets {
+    margin-top: 30px;
+    display: flex; flex-wrap: wrap; gap: 22px;
+    font-size: 13px; color: var(--ink-500);
   }
-  :global(html.dark) .metric-num { color: var(--gold-400); }
-  .metric-label {
-    font-size:13px; color:var(--ink-500); margin-top:12px;
-    line-height:1.5; font-weight:500;
+  .hero-bullet { display: flex; align-items: center; gap: 6px; }
+
+  /* Verticales como pills justo debajo del título — clave del 3-second test */
+  .verticales-tags {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin: 8px 0 4px;
   }
-  @media (max-width: 820px) {
-    section[style*="border-bottom:1px solid var(--ink-200)"] > .container > div:last-child {
-      grid-template-columns: repeat(2, 1fr) !important;
-    }
+  .vt-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px; border-radius: 999px;
+    background: color-mix(in srgb, var(--gold-500) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--gold-500) 28%, transparent);
+    color: var(--ink-900); font-size: 13px; font-weight: 600;
+    letter-spacing: 0.005em;
+  }
+  .vt-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold-700);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold-500) 25%, transparent);
+  }
+  :global(html.dark) .vt-pill {
+    background: color-mix(in srgb, var(--gold-500) 8%, transparent);
+    color: rgba(255,255,255,.92);
+    border-color: color-mix(in srgb, var(--gold-500) 35%, transparent);
+  }
+
+  /* ===== Showcase auto-cycle ===== */
+  .hero-showcase {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    max-width: 540px;
+    margin: 0 auto;
+    width: 100%;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow:
+      0 30px 60px -25px rgba(4,26,46,.45),
+      0 0 0 1px rgba(255,255,255,.04);
+    isolation: isolate;
+  }
+  .shc-slide {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    opacity: 0;
+    transform: scale(1.06);
+    transition: opacity .9s ease, transform 6s ease;
+    will-change: opacity, transform;
+    display: flex; align-items: flex-end;
+  }
+  .shc-slide.active {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .shc-frame {
+    width: 100%;
+    padding: 28px 28px 56px;
+    color: white;
+    transform: translateY(8px);
+    opacity: 0;
+    transition: opacity .6s ease .15s, transform .6s ease .15s;
+  }
+  .shc-slide.active .shc-frame {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .shc-num {
+    font-family: var(--font-mono);
+    font-size: 12px; font-weight: 600;
+    color: var(--gold-400);
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .shc-label {
+    font-size: clamp(28px, 3.4vw, 38px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    color: white;
+  }
+  .shc-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,.78);
+    margin-top: 8px;
+    line-height: 1.5;
+    max-width: 90%;
+  }
+
+  .shc-dots {
+    position: absolute; bottom: 18px; left: 28px;
+    display: flex; gap: 6px;
+    z-index: 3;
+  }
+  .shc-dot {
+    width: 22px; height: 4px;
+    border-radius: 2px;
+    background: rgba(255,255,255,.28);
+    border: none;
+    cursor: pointer;
+    transition: background .3s, width .3s;
+    padding: 0;
+  }
+  .shc-dot.active {
+    background: var(--gold-500);
+    width: 36px;
+  }
+  .shc-dot:hover { background: rgba(255,255,255,.6); }
+  .shc-dot.active:hover { background: var(--gold-500); }
+
+  @media (max-width: 1024px) {
+    .hero-showcase { max-width: 100%; aspect-ratio: 16 / 11; }
+  }
+  @media (max-width: 600px) {
+    .hero-showcase { aspect-ratio: 4 / 3; }
+    .shc-frame { padding: 20px 20px 48px; }
+    .shc-label { font-size: 26px; }
+    .verticales-tags { gap: 6px; }
+    .vt-pill { font-size: 12px; padding: 5px 10px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .shc-slide, .shc-frame { transition: opacity .3s ease; transform: none; }
   }
 </style>
+
+<script is:inline>
+  (function () {
+    function setupShowcase() {
+      const root = document.querySelector('.hero-showcase');
+      if (!root || root.__wired) return;
+      root.__wired = true;
+      const slides = Array.from(root.querySelectorAll('[data-shc-slide]'));
+      const dots = Array.from(root.querySelectorAll('[data-shc-dot]'));
+      if (!slides.length) return;
+
+      let current = 0;
+      const total = slides.length;
+      const INTERVAL = 4200;
+      let timer = null;
+
+      function go(idx) {
+        current = ((idx % total) + total) % total;
+        slides.forEach((s, i) => s.classList.toggle('active', i === current));
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+      function next() { go(current + 1); }
+      function start() {
+        stop();
+        timer = setInterval(next, INTERVAL);
+      }
+      function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+      dots.forEach((d, i) => {
+        d.addEventListener('click', () => { go(i); start(); });
+      });
+      // Pausa al hover
+      root.addEventListener('mouseenter', stop);
+      root.addEventListener('mouseleave', start);
+      // Pausa cuando no es visible
+      document.addEventListener('visibilitychange', () => {
+        document.hidden ? stop() : start();
+      });
+
+      start();
+    }
+    setupShowcase();
+    document.addEventListener('astro:page-load', setupShowcase);
+  })();
+</script>

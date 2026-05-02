@@ -2,10 +2,10 @@
   "hero": {
     "badgePartner": "★ Partner oficial Codeplex",
     "badgeSunat": "Autorizado SUNAT",
-    "tituloPre": "Cumple con ",
-    "tituloGradient": "SUNAT",
-    "tituloPost": " sin complicarte la vida.",
-    "descripcion": "Implementamos y acompañamos tu empresa con <b>ContaPlex</b>, <b>GestiónPlex</b> y <b>Facturación Electrónica</b> — los sistemas cloud de Codeplex, 100% válidos ante SUNAT.",
+    "tituloPre": "Software cloud para ",
+    "tituloGradient": "tu negocio",
+    "tituloPost": " en Perú.",
+    "descripcion": "Implementamos <strong>ContaPlex</strong>, <strong>GestiónPlex</strong> y <strong>Facturación Electrónica SUNAT</strong>. Operamos con grifos, restaurantes, comercio, almacenes y contabilidad — con asesoría local en Lima.",
     "ctaPrimario": "Solicitar demo gratis",
     "ctaSecundario": "Ver planes",
     "bullets": [
@@ -13,71 +13,52 @@
       "Capacitación incluida",
       "Soporte en Perú"
     ],
-    "dashboard": {
-      "url": "app.contaplex.pe/dashboard",
-      "eyebrow": "Vista demo · Panel contable",
-      "titulo": "Panel contable",
-      "tags": [
-        "✓ PLE validado",
-        "SIRE listo"
-      ],
-      "sidebar": [
-        "Dashboard",
-        "Ingresos",
-        "Gastos",
-        "Libros electrónicos",
-        "SIRE",
-        "PLE",
-        "Reportes",
-        "Empresas"
-      ],
-      "metricas": [
-        {
-          "label": "Ingresos",
-          "valor": "S/ 485,230",
-          "delta": "+12.4%"
-        },
-        {
-          "label": "Gastos",
-          "valor": "S/ 312,180",
-          "delta": "-3.1%"
-        },
-        {
-          "label": "Utilidad",
-          "valor": "S/ 173,050",
-          "delta": "+28.7%"
-        }
-      ],
-      "chart": {
-        "titulo": "Flujo mensual · S/",
-        "subtitulo": "Últimos 6 meses",
-        "meses": [
-          "Nov",
-          "Dic",
-          "Ene",
-          "Feb",
-          "Mar",
-          "Abr"
-        ]
+    "verticales": [
+      {
+        "key": "grifos",
+        "label": "Grifos",
+        "sub": "Islas, surtidores, vales y SCOP",
+        "img": "https://images.pexels.com/photos/9800009/pexels-photo-9800009.jpeg?auto=compress&cs=tinysrgb&w=1200"
       },
-      "floatingTop": {
-        "titulo": "SUNAT presentó",
-        "subtitulo": "Libro de Ventas · OK"
+      {
+        "key": "restaurantes",
+        "label": "Restaurantes",
+        "sub": "Mesas, comanda, pre-cuenta y delivery",
+        "img": "https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?auto=compress&cs=tinysrgb&w=1200"
       },
-      "floatingBottom": {
-        "eyebrow": "Facturación hoy",
-        "monto": "S/ 48,230",
-        "delta": "↑ 18% vs ayer"
+      {
+        "key": "comercio",
+        "label": "Comercio · POS",
+        "sub": "Ventas, inventario, código de barras",
+        "img": "https://images.pexels.com/photos/3962285/pexels-photo-3962285.jpeg?auto=compress&cs=tinysrgb&w=1200"
+      },
+      {
+        "key": "logistica",
+        "label": "Logística · Almacenes",
+        "sub": "Multi-almacén, kardex, transferencias",
+        "img": "https://images.pexels.com/photos/4481259/pexels-photo-4481259.jpeg?auto=compress&cs=tinysrgb&w=1200"
+      },
+      {
+        "key": "contabilidad",
+        "label": "Contabilidad",
+        "sub": "PLE · SIRE · Estados financieros",
+        "img": "https://images.pexels.com/photos/6863183/pexels-photo-6863183.jpeg?auto=compress&cs=tinysrgb&w=1200"
+      },
+      {
+        "key": "facturacion",
+        "label": "Facturación SUNAT",
+        "sub": "Factura, boleta, guía electrónica",
+        "img": "https://images.pexels.com/photos/4348401/pexels-photo-4348401.jpeg?auto=compress&cs=tinysrgb&w=1200"
       }
-    },
+    ],
     "metricsStrip": [
       {
         "text": "Partner",
-        "label": "autorizado Codeplex Software · Perú"
+        "label": "oficial Codeplex Software · Perú"
       },
       {
         "text": "SUNAT",
-        "label": "100% válido: SIRE, PLE, facturación electrónica"
+        "label": "100% compatible: SIRE, PLE, e-factura"
       },
       {
         "text": "Cloud",
@@ -85,7 +66,7 @@
       },
       {
         "text": "Lun · Sáb",
-        "label": "soporte en Perú, en español"
+        "label": "soporte local en español"
       }
     ],
     "marqueeItems": [
