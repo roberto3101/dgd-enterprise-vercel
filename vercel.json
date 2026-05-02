@@ -1,3 +1,48 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json"
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
+        { "key": "X-DNS-Prefetch-Control", "value": "on" }
+      ]
+    },
+    {
+      "source": "/_astro/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/imagenes/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=2592000, stale-while-revalidate=86400" }
+      ]
+    },
+    {
+      "source": "/(.*).(jpg|jpeg|png|gif|webp|avif|svg|ico)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=2592000, stale-while-revalidate=86400" }
+      ]
+    },
+    {
+      "source": "/llms.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    },
+    {
+      "source": "/sitemap-index.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/xml; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    }
+  ]
 }

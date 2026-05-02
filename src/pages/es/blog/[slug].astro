@@ -1,6 +1,7 @@
 ---
 import Principal from '@layout/Principal.astro';
 import PaginaPost from '@componentes/paginas/PaginaPost.astro';
+import Breadcrumbs from '@componentes/seo/Breadcrumbs.astro';
 import { cargarDatos } from '@helpers/idiomas';
 
 export async function getStaticPaths() {
@@ -15,7 +16,39 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const datos = await cargarDatos<any>('es', 'blog');
 const related = datos.posts.filter((p: any) => p.slug !== post.slug).slice(0, 3);
+
+const seoOverride = {
+  titulo: `${post.title} · Blog DGD`,
+  descripcion: post.excerpt,
+};
+
+const articleData = {
+  headline: post.title,
+  description: post.excerpt,
+  image: '/imagenes/abstract-navy-gold.webp',
+  datePublished: post.date,
+  dateModified: post.dateModified || post.date,
+  author: {
+    name: post.author || 'Equipo DGD',
+    jobTitle: post.authorRole || 'Consultor',
+  },
+  section: post.cat,
+  keywords: `${post.cat}, SUNAT, Perú, ${post.title}`,
+};
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/es/' },
+  { name: 'Blog', url: '/es/blog/' },
+  { name: post.title, url: `/es/blog/${post.slug}/` },
+];
 ---
-<Principal idioma="es">
+<Principal
+  idioma="es"
+  pageType="article"
+  seoOverride={seoOverride}
+  articleData={articleData}
+  breadcrumbs={breadcrumbs}
+>
+  <div class="container" style="padding-top:8px;"><Breadcrumbs items={breadcrumbs} /></div>
   <PaginaPost post={post} datos={datos} idioma="es" related={related} />
 </Principal>

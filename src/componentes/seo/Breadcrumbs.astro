@@ -1,0 +1,52 @@
+---
+/**
+ * Breadcrumbs UI — pareja del schema BreadcrumbList.
+ * Microdata (itemtype BreadcrumbList) + JSON-LD ya está en SeoHead.
+ */
+interface Props {
+  items: Array<{ name: string; url: string }>;
+}
+const { items } = Astro.props;
+---
+<nav class="breadcrumbs" aria-label="Breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+  <ol>
+    {items.map((it, i) => (
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        {i < items.length - 1 ? (
+          <a href={it.url} itemprop="item">
+            <span itemprop="name">{it.name}</span>
+          </a>
+        ) : (
+          <span itemprop="name" aria-current="page">{it.name}</span>
+        )}
+        <meta itemprop="position" content={String(i + 1)} />
+        {i < items.length - 1 && <span class="bc-sep" aria-hidden="true">/</span>}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+  .breadcrumbs {
+    padding: 12px 0;
+    font-size: 13px;
+    color: var(--ink-500);
+  }
+  .breadcrumbs ol {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+  }
+  .breadcrumbs li {
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .breadcrumbs a {
+    color: var(--ink-500);
+    text-decoration: none;
+    transition: color .15s;
+  }
+  .breadcrumbs a:hover { color: var(--gold-700); }
+  .breadcrumbs [aria-current="page"] {
+    color: var(--ink-900); font-weight: 600;
+  }
+  .bc-sep { color: var(--ink-300); user-select: none; }
+</style>

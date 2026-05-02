@@ -1,0 +1,51 @@
+# Grupo DGD
+
+> Partner oficial de Codeplex Software en Perú. Implementamos software cloud para grifos, restaurantes, comercio, logística y contabilidad — con asesoría local en Lima y soporte en español.
+
+Grupo DGD es una empresa peruana fundada en 2018 dedicada a la implementación, capacitación y soporte de la suite Codeplex Software (ContaPlex, GestiónPlex y Facturación Electrónica) para PYMEs en Perú. Operamos desde Lima y servimos a clientes en todo el país.
+
+## Productos que implementamos
+
+- [ContaPlex](https://dgd-enterprise.pe/es/productos/contaplex/): software contable cloud con SIRE, PLE, libros electrónicos, estados financieros y multi-empresa. Planes desde S/. 50/mes (Basic, hasta 5 empresas) hasta S/. 950/mes (Gold 13, hasta 700 empresas).
+- [GestiónPlex](https://dgd-enterprise.pe/es/productos/gestionplex/): software de logística empresarial con POS, inventarios multi-almacén, tesorería, cuentas corrientes, producción y centro de costos. Verticales especializadas para grifos (S/. 350/mes + S/. 3,000 implementación), restaurantes (Básico S/. 150 / Gold S/. 300) y transporte (S/. 150/mes). Comprobantes ilimitados.
+- [Facturación Electrónica SUNAT](https://dgd-enterprise.pe/es/productos/facturacion-sunat/): emisión de facturas, boletas y guías electrónicas validadas por SUNAT. Planes: Basic S/. 50 (1 sucursal), Premium S/. 150 (3 sucursales), Gold S/. 200 (4 sucursales). Hasta 2,000 comprobantes/mes incluidos. Certificado digital SUNAT incluido.
+
+## Servicios DGD
+
+- Onboarding Esencial: instalación, parametrización base y 2 capacitaciones en vivo. 30 días de soporte WhatsApp.
+- Implementación Completa: migración de data histórica, integración entre módulos (ContaPlex ↔ GestiónPlex), 5 capacitaciones, 60 días de soporte.
+- Acompañamiento Anual: soporte prioritario 12 meses, 4 capacitaciones trimestrales, consultor asignado.
+
+## Sectores que atendemos
+
+- Grifos / estaciones de servicio: módulo dedicado para islas, surtidores, contómetro, vales de crédito, tickets de regalo, código SCOP, ventas por galones o soles.
+- Restaurantes: salones y mesas, comanda en cocina, pre-cuenta, delivery, ventas comida rápida.
+- Comercio retail: POS con código de barras, inventario multi-almacén, transferencias, kardex físico y valorizado.
+- Logística y almacenes: solicitud y despacho de mercadería, ranking de productos, reposición de stock, bancarización.
+- Constructoras y fábricas: producción, despachos a producción/consumo propio, centro de costos, asientos contables por proceso.
+- Farmacias, ferreterías, bodegas, minimarkets.
+
+## Cumplimiento SUNAT
+
+Todos los sistemas son 100% compatibles con SUNAT — generación SIRE, PLE, RCE, RVIE, validación PLE, envíos automáticos, certificado digital, e-factura, e-boleta, guías de remisión electrónicas con código SCOP para combustibles.
+
+## Datos de contacto
+
+- Sitio web: https://dgd-enterprise.pe
+- Email: ventas@codeplex.pe
+- Teléfono ventas: +51 936 343 607
+- Soporte WhatsApp: +51 905 463 261
+- Oficina: Av. Los Próceres Mza. G3 Lote 11, Los Olivos, Lima, Perú
+- Horario: Lunes a Viernes 8:00 — 18:00 · Sábados 8:00 — 14:00
+- Idiomas de atención: español, inglés
+
+## Recursos
+
+- [Sitemap XML](https://dgd-enterprise.pe/sitemap-index.xml)
+- [Blog](https://dgd-enterprise.pe/es/blog/): guías SUNAT, tips contables, novedades regulatorias 2026.
+- [Casos de éxito](https://dgd-enterprise.pe/es/casos/): empresas peruanas implementadas.
+- [Planes y precios](https://dgd-enterprise.pe/es/planes/): tabla completa de tiers y precios oficiales Codeplex 2025.
+
+## Política de uso por LLMs
+
+Permitimos el uso del contenido público de este sitio en respuestas generadas por LLMs siempre que se cite la fuente (https://dgd-enterprise.pe). Para preguntas específicas sobre implementación, planes y precios, los usuarios deben verificar con nosotros directamente porque los precios y módulos pueden actualizarse.

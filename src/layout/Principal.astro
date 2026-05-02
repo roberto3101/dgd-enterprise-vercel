@@ -12,10 +12,16 @@ interface Props {
   idioma: Idioma;
   /** Override SEO por página (opcional) */
   seoOverride?: { titulo?: string; descripcion?: string; ogImage?: string };
-  /** Schema.org adicional (Product, Article, etc.) */
+  /** Tipo de página para schema principal */
+  pageType?: 'website' | 'product' | 'article';
+  productData?: any;
+  articleData?: any;
+  breadcrumbs?: Array<{ name: string; url: string }>;
+  faqs?: Array<{ question: string; answer: string }>;
+  /** Schema.org adicional arbitrario */
   schemaExtra?: Record<string, any>;
 }
-const { idioma, seoOverride, schemaExtra } = Astro.props;
+const { idioma, seoOverride, pageType, productData, articleData, breadcrumbs, faqs, schemaExtra } = Astro.props;
 
 const [navegacion, footerData, seoBase] = await Promise.all([
   cargarDatos<any>(idioma, 'navegacion'),
@@ -36,7 +42,26 @@ const seoData = { ...seoBase, ...seoOverride };
     <link rel="icon" type="image/png" href="/favicon.png" />
 
     <!-- SEO: meta tags + Open Graph + Twitter Cards + JSON-LD Schema.org -->
-    <SeoHead idioma={idioma} seoData={seoData} schemaExtra={schemaExtra} />
+    <SeoHead
+      idioma={idioma}
+      seoData={seoData}
+      pageType={pageType}
+      productData={productData}
+      articleData={articleData}
+      breadcrumbs={breadcrumbs}
+      faqs={faqs}
+      schemaExtra={schemaExtra}
+    />
+
+    <!-- LCP boost: preload del primer slide del hero showcase (solo home) -->
+    {(Astro.url.pathname === '/es/' || Astro.url.pathname === '/en/') && (
+      <link
+        rel="preload"
+        as="image"
+        href="https://images.pexels.com/photos/9800009/pexels-photo-9800009.jpeg?auto=compress&cs=tinysrgb&w=1200"
+        fetchpriority="high"
+      />
+    )}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />

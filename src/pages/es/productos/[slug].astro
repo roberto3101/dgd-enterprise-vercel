@@ -1,6 +1,7 @@
 ---
 import Principal from '@layout/Principal.astro';
 import PaginaProducto from '@componentes/paginas/PaginaProducto.astro';
+import Breadcrumbs from '@componentes/seo/Breadcrumbs.astro';
 
 export async function getStaticPaths() {
   const modulos = import.meta.glob<{ default: any }>('../../../datos/es/productos.json', { eager: true });
@@ -12,7 +13,44 @@ export async function getStaticPaths() {
 }
 
 const { producto } = Astro.props;
+
+const seoOverride = {
+  titulo: `${producto.name} — ${producto.tagline} · Grupo DGD`,
+  descripcion: producto.heroDesc || producto.tagline,
+};
+
+const productData = {
+  name: producto.name,
+  description: producto.heroDesc || producto.tagline,
+  image: '/imagenes/dashboard-mockup.webp',
+  brand: 'Codeplex Software',
+  offers: (producto.plans || []).map((p: any) => ({
+    name: `${producto.name} ${p.name}`,
+    price: String(p.price),
+    priceCurrency: 'PEN',
+    description: p.desc,
+  })),
+};
+
+const faqs = (producto.faq || []).map((f: any) => ({
+  question: f.q,
+  answer: f.a,
+}));
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/es/' },
+  { name: 'Productos', url: '/es/' },
+  { name: producto.name, url: `/es/productos/${producto.slug}/` },
+];
 ---
-<Principal idioma="es">
+<Principal
+  idioma="es"
+  pageType="product"
+  seoOverride={seoOverride}
+  productData={productData}
+  faqs={faqs}
+  breadcrumbs={breadcrumbs}
+>
+  <div class="container" style="padding-top:8px;"><Breadcrumbs items={breadcrumbs} /></div>
   <PaginaProducto producto={producto} idioma="es" />
 </Principal>
