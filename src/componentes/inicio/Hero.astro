@@ -138,21 +138,29 @@ const heroVideo = "https://videos.pexels.com/video-files/8419153/8419153-uhd_256
 
 <style>
   .hero-v2 { padding-top: 56px; padding-bottom: 56px; }
+  /* Hero usa un container más amplio que el resto del sitio para
+     aprovechar pantallas anchas (typical landing-page pattern). */
+  .hero-v2 > .container {
+    max-width: min(1500px, 96vw);
+  }
   .hero-grid-v2 {
-    display: grid; grid-template-columns: 1fr 1.18fr;
-    gap: 56px; align-items: center;
+    display: grid; grid-template-columns: 1fr 1.2fr;
+    gap: 64px; align-items: center;
     position: relative; z-index: 2;
   }
   @media (max-width: 1024px) {
     .hero-grid-v2 { grid-template-columns: 1fr; gap: 40px; }
+    .hero-v2 > .container { max-width: 100%; }
   }
 
+  .hero-copy { max-width: 620px; }
   .hero-copy h1 {
     font-size: clamp(38px, 5.4vw, 64px);
     line-height: 1.05;
     letter-spacing: -0.02em;
     margin: 6px 0 18px;
   }
+  @media (max-width: 1024px) { .hero-copy { max-width: 100%; } }
   .hero-desc {
     font-size: 17px;
     margin-top: 18px;
@@ -195,8 +203,8 @@ const heroVideo = "https://videos.pexels.com/video-files/8419153/8419153-uhd_256
   .hero-showcase {
     position: relative;
     aspect-ratio: 5 / 6;
-    max-width: 780px;
-    margin: 0 auto;
+    max-width: 920px;
+    margin: 0 0 0 auto; /* alinea a la derecha del column */
     width: 100%;
     border-radius: 24px;
     overflow: hidden;
