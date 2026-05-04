@@ -2,8 +2,14 @@
 import Principal from '@layout/Principal.astro';
 import PaginaBlog from '@componentes/paginas/PaginaBlog.astro';
 import { cargarDatos } from '@helpers/idiomas';
+import { obtenerPostsBlog } from '@helpers/cms';
+
+export const prerender = false;
+
 const datos = await cargarDatos<any>('en', 'blog');
+const postsCms = await obtenerPostsBlog('en');
+const datosMezclados = postsCms.length > 0 ? { ...datos, posts: postsCms } : datos;
 ---
 <Principal idioma="en">
-  <PaginaBlog datos={datos} idioma="en" />
+  <PaginaBlog datos={datosMezclados} idioma="en" />
 </Principal>

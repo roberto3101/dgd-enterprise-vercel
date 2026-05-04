@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://dgd-enterprise.pe',
-  output: 'static',
+  output: 'server',
   adapter: vercel(),
   i18n: {
     defaultLocale: 'es',

@@ -3,19 +3,23 @@ import Principal from '@layout/Principal.astro';
 import PaginaPost from '@componentes/paginas/PaginaPost.astro';
 import Breadcrumbs from '@componentes/seo/Breadcrumbs.astro';
 import { cargarDatos } from '@helpers/idiomas';
+import { obtenerPostBlog, obtenerPostsBlog } from '@helpers/cms';
 
-export async function getStaticPaths() {
-  const modulos = import.meta.glob<{ default: any }>('../../../datos/en/blog.json', { eager: true });
-  const datos = Object.values(modulos)[0].default;
-  return datos.posts.map((p: any) => ({
-    params: { slug: p.slug },
-    props: { post: p },
-  }));
-}
+export const prerender = false;
 
-const { post } = Astro.props;
-const datos = await cargarDatos<any>('en', 'blog');
-const related = datos.posts.filter((p: any) => p.slug !== post.slug).slice(0, 3);
+const idioma = 'en';
+const { slug } = Astro.params;
+if (!slug) return Astro.redirect('/en/blog', 302);
+
+const datos = await cargarDatos<any>(idioma, 'blog');
+const postCms = await obtenerPostBlog(idioma, slug);
+const postLocal = datos.posts.find((p: any) => p.slug === slug) ?? null;
+const post = postCms ?? postLocal;
+if (!post) return Astro.redirect('/en/blog', 302);
+
+const postsCms = await obtenerPostsBlog(idioma);
+const todos = postsCms.length > 0 ? postsCms : datos.posts;
+const related = todos.filter((p: any) => p.slug !== post.slug).slice(0, 3);
 
 const seoOverride = {
   titulo: `${post.title} · DGD Blog`,
@@ -27,7 +31,7 @@ const articleData = {
   description: post.excerpt,
   image: '/imagenes/abstract-navy-gold.webp',
   datePublished: post.date,
-  dateModified: post.dateModified || post.date,
+  dateModified: post.date,
   author: {
     name: post.author || 'DGD Team',
     jobTitle: post.authorRole || 'Consultant',
@@ -50,5 +54,5 @@ const breadcrumbs = [
   breadcrumbs={breadcrumbs}
 >
   <div class="container" style="padding-top:8px;"><Breadcrumbs items={breadcrumbs} /></div>
-  <PaginaPost post={post} datos={datos} idioma="en" related={related} />
+  <PaginaPost post={post} datos={{ ...datos, posts: todos }} idioma="en" related={related} />
 </Principal>
