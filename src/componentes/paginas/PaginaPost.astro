@@ -129,45 +129,59 @@ const ctaBtn = idioma === 'es' ? 'Agendar llamada' : 'Book a call';
       </aside>
 
       <div class="post-body">
-        <div id="intro" data-toc-section>
-          {bodyParagraphs.intro.map((p, i) => (<p class={i === 0 ? 'post-lead' : ''}>{p}</p>))}
-        </div>
+        {post.contenidoHtml ? (
+          <>
+            <p class="post-lead">{post.excerpt}</p>
+            <div class="post-contenido-cms" set:html={post.contenidoHtml} />
+            <div class="post-cta" style={`background:linear-gradient(135deg, ${color}, color-mix(in srgb, ${color} 50%, black));`}>
+              <h3 style="color:white;font-size:20px;margin-bottom:8px;">{ctaTitulo}</h3>
+              <p style="color:rgba(255,255,255,.85);margin-bottom:18px;font-size:15px;">{ctaDesc}</p>
+              <a class="btn" href={contactoHref} style={`background:white;color:${color};`}>{ctaBtn} <Icon name="arrow" size={16} /></a>
+            </div>
+          </>
+        ) : (
+          <>
+            <div id="intro" data-toc-section>
+              {bodyParagraphs.intro.map((p, i) => (<p class={i === 0 ? 'post-lead' : ''}>{p}</p>))}
+            </div>
 
-        <div id="contexto" data-toc-section>
-          <h2>{post.secciones.find((s: any) => s.id === 'contexto')?.title || 'Contexto'}</h2>
-          {bodyParagraphs.contexto.map(p => <p>{p}</p>)}
-          <blockquote style={`border-left:4px solid ${color};`}>{quoteTexto}</blockquote>
-        </div>
+            <div id="contexto" data-toc-section>
+              <h2>{post.secciones.find((s: any) => s.id === 'contexto')?.title || 'Contexto'}</h2>
+              {bodyParagraphs.contexto.map(p => <p>{p}</p>)}
+              <blockquote style={`border-left:4px solid ${color};`}>{quoteTexto}</blockquote>
+            </div>
 
-        <div id="pasos" data-toc-section>
-          <h2>{post.secciones.find((s: any) => s.id === 'pasos')?.title || 'Pasos'}</h2>
-          {bodyParagraphs.pasos.map(p => <p>{p}</p>)}
-          <ol class="post-steps">
-            {pasosItems.map(([title, desc]) => (
-              <li><b>{title}</b> — {desc}</li>
-            ))}
-          </ol>
-        </div>
+            <div id="pasos" data-toc-section>
+              <h2>{post.secciones.find((s: any) => s.id === 'pasos')?.title || 'Pasos'}</h2>
+              {bodyParagraphs.pasos.map(p => <p>{p}</p>)}
+              <ol class="post-steps">
+                {pasosItems.map(([title, desc]) => (
+                  <li><b>{title}</b> — {desc}</li>
+                ))}
+              </ol>
+            </div>
 
-        <div id="errores" data-toc-section>
-          <h2>{post.secciones.find((s: any) => s.id === 'errores')?.title || 'Errores'}</h2>
-          {bodyParagraphs.errores.map(p => <p>{p}</p>)}
-          <div class="post-errors">
-            {erroresItems.map((e, i) => (
-              <div class="post-error-item"><b>#{i + 1}</b> {e}</div>
-            ))}
-          </div>
-        </div>
+            <div id="errores" data-toc-section>
+              <h2>{post.secciones.find((s: any) => s.id === 'errores')?.title || 'Errores'}</h2>
+              {bodyParagraphs.errores.map(p => <p>{p}</p>)}
+              <div class="post-errors">
+                {erroresItems.map((e, i) => (
+                  <div class="post-error-item"><b>#{i + 1}</b> {e}</div>
+                ))}
+              </div>
+            </div>
 
-        <div id="cierre" data-toc-section>
-          <h2>{post.secciones.find((s: any) => s.id === 'cierre')?.title || 'Cierre'}</h2>
-          {bodyParagraphs.cierre.map(p => <p>{p}</p>)}
-          <div class="post-cta" style={`background:linear-gradient(135deg, ${color}, color-mix(in srgb, ${color} 50%, black));`}>
-            <h3 style="color:white;font-size:20px;margin-bottom:8px;">{ctaTitulo}</h3>
-            <p style="color:rgba(255,255,255,.85);margin-bottom:18px;font-size:15px;">{ctaDesc}</p>
-            <a class="btn" href={contactoHref} style={`background:white;color:${color};`}>{ctaBtn} <Icon name="arrow" size={16} /></a>
-          </div>
-        </div>
+            <div id="cierre" data-toc-section>
+              <h2>{post.secciones.find((s: any) => s.id === 'cierre')?.title || 'Cierre'}</h2>
+              {bodyParagraphs.cierre.map(p => <p>{p}</p>)}
+              <div class="post-cta" style={`background:linear-gradient(135deg, ${color}, color-mix(in srgb, ${color} 50%, black));`}>
+                <h3 style="color:white;font-size:20px;margin-bottom:8px;">{ctaTitulo}</h3>
+                <p style="color:rgba(255,255,255,.85);margin-bottom:18px;font-size:15px;">{ctaDesc}</p>
+                <a class="btn" href={contactoHref} style={`background:white;color:${color};`}>{ctaBtn} <Icon name="arrow" size={16} /></a>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   </div>
@@ -239,6 +253,27 @@ const ctaBtn = idioma === 'es' ? 'Agendar llamada' : 'Book a call';
   }
   .post-body { font-size:18px; line-height:1.75; color:var(--ink-700); }
   .post-body > div { margin-bottom:40px; }
+  .post-contenido-cms { margin-bottom: 40px; }
+  .post-contenido-cms h1, .post-contenido-cms h2, .post-contenido-cms h3 { color: var(--ink-900); font-weight: 700; line-height: 1.2; margin-top: 2.5rem; margin-bottom: 1rem; }
+  .post-contenido-cms h2 { font-size: 28px; }
+  .post-contenido-cms h3 { font-size: 22px; }
+  .post-contenido-cms p { margin-bottom: 1.1rem; }
+  .post-contenido-cms ul, .post-contenido-cms ol { margin: 1rem 0 1.5rem 1.5rem; padding-left: 1rem; }
+  .post-contenido-cms ul { list-style: disc; }
+  .post-contenido-cms li { margin-bottom: 0.5rem; }
+  .post-contenido-cms a { color: var(--ink-900); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+  .post-contenido-cms blockquote { border-left: 4px solid #d4af37; padding: 1rem 1.5rem; margin: 2rem 0; font-style: italic; background: rgba(212, 175, 55, 0.06); border-radius: 0 8px 8px 0; color: var(--ink-900); font-size: 1.05em; }
+  .post-contenido-cms .figura-post { margin: 2rem 0; }
+  .post-contenido-cms .figura-post img { width: 100%; height: auto; border-radius: 12px; display: block; }
+  .post-contenido-cms .figura-post figcaption { margin-top: 0.6rem; font-size: 0.85rem; color: var(--ink-500); text-align: center; font-style: italic; }
+  .post-contenido-cms img { max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0; }
+  .post-contenido-cms .video-embed { position: relative; width: 100%; aspect-ratio: 16/9; margin: 2rem 0; background: #000; border-radius: 12px; overflow: hidden; }
+  .post-contenido-cms .video-embed iframe, .post-contenido-cms .video-embed video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .post-contenido-cms code { background: rgba(0,0,0,0.06); padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.9em; }
+  @media (prefers-color-scheme: dark) {
+    .post-contenido-cms blockquote { background: rgba(212, 175, 55, 0.10); }
+    .post-contenido-cms code { background: rgba(255,255,255,0.10); }
+  }
   .post-body h2 { font-size:28px; margin-bottom:18px; color:var(--ink-900); }
   .post-body p { margin-bottom:14px; }
   .post-lead { font-size:20px !important; color:var(--ink-900) !important; font-weight:500; line-height:1.55 !important; margin-bottom:24px !important; }
