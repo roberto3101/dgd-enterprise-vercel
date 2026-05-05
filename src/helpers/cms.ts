@@ -51,9 +51,37 @@ const escaparHtml = (texto: string): string =>
 const aplicarInline = (linea: string): string =>
   escaparHtml(linea)
     .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" />')
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
     .replace(/\*([^*]+)\*/g, '<em>$1</em>')
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+
+const construirEmbedYoutube = (urlVideo: string): string | null => {
+  const c = urlVideo.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
+  if (!c) return null;
+  return `<div class="video-embed"><iframe src="https://www.youtube.com/embed/${c[1]}" loading="lazy" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`;
+};
+
+const construirEmbedVimeo = (urlVideo: string): string | null => {
+  const c = urlVideo.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+  if (!c) return null;
+  return `<div class="video-embed"><iframe src="https://player.vimeo.com/video/${c[1]}" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>`;
+};
+
+const renderizarLineaEspecial = (linea: string): string | null => {
+  const limpia = linea.trim();
+  const imagen = limpia.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+  if (imagen) {
+    const cap = imagen[1] ? `<figcaption>${imagen[1]}</figcaption>` : '';
+    return `<figure class="figura-post"><img src="${imagen[2]}" alt="${imagen[1]}" loading="lazy" />${cap}</figure>`;
+  }
+  if (limpia.startsWith('@youtube:')) return construirEmbedYoutube(limpia.slice(9).trim()) ?? null;
+  if (limpia.startsWith('@vimeo:')) return construirEmbedVimeo(limpia.slice(7).trim()) ?? null;
+  if (limpia.startsWith('@video:')) {
+    return `<div class="video-embed"><video controls preload="metadata"><source src="${limpia.slice(7).trim()}" /></video></div>`;
+  }
+  return null;
+};
 
 const generarIdSeccion = (texto: string): string =>
   texto.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
@@ -73,6 +101,13 @@ const renderizarMarkdownConSecciones = (markdown: string): { html: string; secci
   };
 
   for (const linea of lineas) {
+    const especial = renderizarLineaEspecial(linea);
+    if (especial) {
+      cerrarParrafo();
+      cerrarLista();
+      bloques.push(especial);
+      continue;
+    }
     const coincidenciaH2 = linea.match(/^## (.+)/);
     if (coincidenciaH2) {
       cerrarParrafo();
