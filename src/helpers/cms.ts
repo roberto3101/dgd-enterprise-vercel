@@ -213,8 +213,18 @@ export async function obtenerCategoriasBlog(_idioma: Idioma): Promise<CategoriaB
 }
 
 export function contarCategorias(posts: PostBlog[], categorias: CategoriaBlog[]): CategoriaBlog[] {
-  return categorias.map((c) => ({
-    ...c,
-    cantidad: posts.filter((p) => p.cat.toLowerCase() === c.nombre.toLowerCase()).length,
-  }));
+  const vistas = new Set<string>();
+  return categorias
+    .filter((c) => {
+      const clave = c.nombre.trim().toLowerCase();
+      if (!clave || vistas.has(clave)) return false;
+      vistas.add(clave);
+      return true;
+    })
+    .map((c) => ({
+      ...c,
+      cantidad: posts.filter((p) => p.cat.toLowerCase() === c.nombre.toLowerCase()).length,
+    }))
+    .filter((c) => c.cantidad > 0)
+    .sort((a, b) => b.cantidad - a.cantidad);
 }
