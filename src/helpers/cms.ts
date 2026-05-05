@@ -186,3 +186,35 @@ export async function obtenerPostBlog(idioma: Idioma, slug: string): Promise<Pos
   if (!crudo || crudo.idioma !== idioma) return null;
   return aPostBlog(crudo);
 }
+
+interface CategoriaCrudaCms {
+  id: string;
+  nombre: string;
+  slug: string;
+  descripcion?: string;
+  color?: string;
+  orden?: number;
+}
+
+export interface CategoriaBlog {
+  nombre: string;
+  slug: string;
+  color?: string;
+  cantidad: number;
+}
+
+export async function obtenerCategoriasBlog(_idioma: Idioma): Promise<CategoriaBlog[]> {
+  const datos = await consultar<CategoriaCrudaCms[] | { elementos: CategoriaCrudaCms[] }>(
+    `/publico/sitios/${CODIGO_SITIO}/categorias`,
+  );
+  if (!datos) return [];
+  const lista = Array.isArray(datos) ? datos : datos.elementos ?? [];
+  return lista.map((c) => ({ nombre: c.nombre, slug: c.slug, color: c.color, cantidad: 0 }));
+}
+
+export function contarCategorias(posts: PostBlog[], categorias: CategoriaBlog[]): CategoriaBlog[] {
+  return categorias.map((c) => ({
+    ...c,
+    cantidad: posts.filter((p) => p.cat.toLowerCase() === c.nombre.toLowerCase()).length,
+  }));
+}

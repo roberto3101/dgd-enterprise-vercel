@@ -2,13 +2,21 @@
 import Principal from '@layout/Principal.astro';
 import PaginaBlog from '@componentes/paginas/PaginaBlog.astro';
 import { cargarDatos } from '@helpers/idiomas';
-import { obtenerPostsBlog } from '@helpers/cms';
+import { obtenerPostsBlog, obtenerCategoriasBlog, contarCategorias } from '@helpers/cms';
 
 export const prerender = false;
 
 const datos = await cargarDatos<any>('es', 'blog');
 const postsCms = await obtenerPostsBlog('es');
-const datosMezclados = postsCms.length > 0 ? { ...datos, posts: postsCms } : datos;
+const categoriasCms = await obtenerCategoriasBlog('es');
+
+const datosMezclados = postsCms.length > 0
+  ? {
+      ...datos,
+      posts: postsCms,
+      categorias: ['Todos', ...contarCategorias(postsCms, categoriasCms).map((c) => c.nombre)],
+    }
+  : datos;
 ---
 <Principal idioma="es">
   <PaginaBlog datos={datosMezclados} idioma="es" />
