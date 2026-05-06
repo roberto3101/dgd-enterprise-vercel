@@ -4,6 +4,8 @@
   "descripcion": "Codeplex Software price list. VAT included. Updates included.",
   "ctaCotizar": "Get implementation quote",
   "ctaConsulta": "Talk to a consultant",
+  "ctaAdquirir": "Get plan",
+  "tablaCompararTitulo": "Detailed comparison",
   "monedaMes": "S/ {n} /mo",
   "monedaUnico": "S/ {n} one-time",
   "gratuito": "Free",

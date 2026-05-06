@@ -4,6 +4,8 @@
   "descripcion": "Lista de precios de Codeplex Software. Precios incluyen IGV. Incluye actualizaciones.",
   "ctaCotizar": "Cotizar implementación",
   "ctaConsulta": "Hablar con un consultor",
+  "ctaAdquirir": "Adquirir",
+  "tablaCompararTitulo": "Comparativa detallada",
   "monedaMes": "S/ {n} /mes",
   "monedaUnico": "S/ {n} pago único",
   "gratuito": "Gratuito",
