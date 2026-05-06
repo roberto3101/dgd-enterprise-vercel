@@ -6,6 +6,45 @@ import type { Idioma } from '@helpers/idiomas';
 interface Props { datos: any; idioma: Idioma; }
 const { datos, idioma } = Astro.props;
 const contactoHref = `/${idioma}/contacto/`;
+
+// Definimos las secciones que el usuario puede seleccionar arriba.
+// Cada seccion apunta a una familia y opcionalmente filtra variantes
+// especificas (ej. para Gestionplex separamos por tipo de negocio).
+type Seccion = {
+  id: string;
+  label: string;
+  icon: string;
+  familia: string;
+  variantes?: string[];
+};
+
+const labelComercial = idioma === 'en' ? 'Commercial' : 'Comercial';
+const labelGimnasios = idioma === 'en' ? 'Gyms' : 'Gimnasios';
+const labelGrifo = idioma === 'en' ? 'Gas station' : 'Grifo';
+const labelRestaurantes = idioma === 'en' ? 'Restaurants' : 'Restaurantes';
+const labelTransporte = idioma === 'en' ? 'Transport' : 'Transporte';
+const labelFacturacion = idioma === 'en' ? 'E-Invoicing' : 'Facturación';
+
+const secciones: Seccion[] = [
+  { id: 'contaplex',     label: 'Contaplex',         icon: 'calc',     familia: 'contaplex' },
+  { id: 'comercial',     label: labelComercial,      icon: 'shop',     familia: 'gestionplex',
+    variantes: ['comercial-100', 'comercial-150', 'comercial-200', 'comercial-300', 'comercial-450'] },
+  { id: 'grifo',         label: labelGrifo,          icon: 'zap',      familia: 'gestionplex', variantes: ['grifo'] },
+  { id: 'restaurantes',  label: labelRestaurantes,   icon: 'utensils', familia: 'gestionplex', variantes: ['restaurantes'] },
+  { id: 'transporte',    label: labelTransporte,     icon: 'send',     familia: 'gestionplex', variantes: ['transporte'] },
+  { id: 'facturacion',   label: labelFacturacion,    icon: 'receipt',  familia: 'facturacion-electronica' },
+];
+
+// Filtrar las que efectivamente tienen data
+const familiasPorSlug = Object.fromEntries(datos.familias.map((f: any) => [f.slug, f]));
+const seccionesActivas = secciones.filter((s) => {
+  const fam = familiasPorSlug[s.familia];
+  if (!fam) return false;
+  if (!s.variantes) return fam.variantes.length > 0;
+  return fam.variantes.some((v: any) => s.variantes!.includes(v.slug));
+});
+
+const seccionInicial = seccionesActivas[0]?.id ?? '';
 ---
 <section style="padding:72px 0 24px;">
   <div class="container" style="text-align:center;max-width:820px;">
@@ -20,24 +59,46 @@ const contactoHref = `/${idioma}/contacto/`;
   </div>
 </section>
 
-<section style="padding:0 0 48px;">
+<section class="selector-secciones-wrap">
   <div class="container">
-    <div class="fam-nav">
-      {datos.familias.map((f: any) => (
-        <a class="fam-nav-link" href={`#fam-${f.slug}`}>
-          <Icon name={f.icon} size={16} />
-          <span>{f.name}</span>
-        </a>
+    <div class="selector-secciones" role="tablist" aria-label={idioma === 'en' ? 'Plan category' : 'Categoría de planes'}>
+      {seccionesActivas.map((s, i) => (
+        <button
+          type="button"
+          class={`selector-btn ${i === 0 ? 'active' : ''}`}
+          data-target={s.id}
+          role="tab"
+          aria-selected={i === 0 ? 'true' : 'false'}
+          aria-controls={`seccion-${s.id}`}
+        >
+          <Icon name={s.icon} size={16} />
+          <span>{s.label}</span>
+        </button>
       ))}
     </div>
   </div>
 </section>
 
-{datos.familias.map((f: any) => (
-  <div id={`fam-${f.slug}`}>
-    <PlanesFamilia familia={f} textos={datos} contactoHref={contactoHref} idioma={idioma} />
-  </div>
-))}
+<div class="secciones-contenedor">
+  {seccionesActivas.map((s) => (
+    <div
+      id={`seccion-${s.id}`}
+      class={`seccion-panel ${s.id === seccionInicial ? 'visible' : ''}`}
+      data-section={s.id}
+      role="tabpanel"
+      hidden={s.id !== seccionInicial}
+    >
+      <PlanesFamilia
+        familia={familiasPorSlug[s.familia]}
+        textos={datos}
+        contactoHref={contactoHref}
+        idioma={idioma}
+        variantesFiltro={s.variantes}
+        ocultarEncabezado={false}
+      />
+    </div>
+  ))}
+</div>
 
 <CTAPanel titulo={datos.cta.titulo} descripcion={datos.cta.descripcion} ctaPrimario={datos.cta.primario} hrefPrimario={contactoHref} />
 
@@ -52,13 +113,125 @@ const contactoHref = `/${idioma}/contacto/`;
   .meta-pill svg { color: var(--brand-accent-2); }
   .planes-sectores { font-size: 12px; color: var(--ink-500); margin-top: 16px; letter-spacing: .04em; }
 
-  .fam-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-  .fam-nav-link {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 12px 20px; border-radius: 999px;
-    border: 1px solid var(--ink-200); background: var(--bg);
-    color: var(--ink-700); font-weight: 600; font-size: 14px;
-    transition: all .15s;
+  .selector-secciones-wrap {
+    position: sticky;
+    top: 64px;
+    z-index: 40;
+    padding: 16px 0;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--ink-200);
   }
-  .fam-nav-link:hover { background: var(--ink-900); color: var(--bg); border-color: transparent; transform: translateY(-1px); }
+  :root.dark .selector-secciones-wrap {
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+  }
+
+  .selector-secciones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 6px;
+    background: var(--ink-100);
+    border: 1px solid var(--ink-200);
+    border-radius: 14px;
+    max-width: max-content;
+    margin: 0 auto;
+  }
+
+  .selector-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--ink-700);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background .18s, color .18s, transform .18s;
+    font-family: inherit;
+  }
+  .selector-btn:hover {
+    background: color-mix(in srgb, var(--ink-900) 8%, transparent);
+    color: var(--ink-900);
+  }
+  .selector-btn.active {
+    background: var(--bg);
+    color: var(--ink-900);
+    box-shadow: var(--shadow-sm);
+  }
+  :root.dark .selector-btn.active {
+    background: var(--bg-card, var(--bg-alt));
+  }
+  .selector-btn svg { flex-shrink: 0; opacity: .7; }
+  .selector-btn.active svg { opacity: 1; color: var(--brand-accent-2); }
+
+  .secciones-contenedor { padding: 24px 0 48px; }
+
+  .seccion-panel { display: none; }
+  .seccion-panel.visible { display: block; animation: panelAparece .3s ease; }
+  @keyframes panelAparece {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 720px) {
+    .selector-secciones-wrap { top: 56px; padding: 10px 0; }
+    .selector-secciones {
+      max-width: 100%;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      padding: 5px;
+    }
+    .selector-btn {
+      padding: 9px 14px;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+  }
 </style>
+
+<script is:inline>
+  (function () {
+    function montar() {
+      const botones = document.querySelectorAll('.selector-btn');
+      const paneles = document.querySelectorAll('.seccion-panel');
+      if (!botones.length) return;
+
+      botones.forEach((btn) => {
+        if (btn.__armed) return;
+        btn.__armed = true;
+        btn.addEventListener('click', () => {
+          const objetivo = btn.getAttribute('data-target');
+          botones.forEach((b) => {
+            const activo = b.getAttribute('data-target') === objetivo;
+            b.classList.toggle('active', activo);
+            b.setAttribute('aria-selected', activo ? 'true' : 'false');
+          });
+          paneles.forEach((p) => {
+            const visible = p.getAttribute('data-section') === objetivo;
+            p.classList.toggle('visible', visible);
+            p.hidden = !visible;
+          });
+          // Llevar al usuario justo a los planes (offset por la barra sticky)
+          const wrap = document.querySelector('.selector-secciones-wrap');
+          if (wrap) {
+            const altura = wrap.getBoundingClientRect().bottom;
+            window.scrollBy({
+              top: 0,
+              left: 0,
+              behavior: 'smooth',
+            });
+          }
+        });
+      });
+    }
+    montar();
+    document.addEventListener('astro:page-load', montar);
+  })();
+</script>

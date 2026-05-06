@@ -7,27 +7,36 @@ interface Props {
   textos: any;
   contactoHref: string;
   idioma: Idioma;
+  variantesFiltro?: string[];
+  ocultarEncabezado?: boolean;
 }
-const { familia, textos, contactoHref, idioma } = Astro.props;
+const { familia, textos, contactoHref, idioma, variantesFiltro, ocultarEncabezado } = Astro.props;
 const fSlug = familia.slug;
 const ctaTexto = textos.ctaAdquirir || textos.ctaCotizar;
 const ctaDetalles = textos.ctaDetalles || (idioma === 'en' ? 'See details' : 'Ver detalles');
 
 const paletaTonos = ['azul', 'oscuro', 'rojo', 'verde', 'morado', 'naranja', 'cian', 'rosa'];
 
-// Aplanamos: todas las cards de la familia en una sola lista para
-// mostrarlas en una grid uniforme.
-const todasLasCards = familia.variantes.flatMap((variante: any) =>
+// Filtrado opcional de variantes (para que un selector externo pueda mostrar
+// solo el subconjunto que le interesa, ej. solo "Restaurantes" o solo "Grifo").
+const variantesAMostrar = variantesFiltro && variantesFiltro.length > 0
+  ? familia.variantes.filter((v: any) => variantesFiltro.includes(v.slug))
+  : familia.variantes;
+
+// Aplanamos: todas las cards en una sola lista para mostrarlas en una grid.
+const todasLasCards = variantesAMostrar.flatMap((variante: any) =>
   variante.planes.map((plan: any) => ({ plan, variante }))
 );
-const variantesConTablas = familia.variantes.filter((v: any) => v.tablaVolumen || v.extras);
+const variantesConTablas = variantesAMostrar.filter((v: any) => v.tablaVolumen || v.extras);
 ---
 <section class="familia" data-familia={fSlug}>
   <div class="container">
-    <header class="fam-head">
-      <div class="eyebrow"><Icon name={familia.icon} size={14} />{familia.subtitulo}</div>
-      <h2 class="fam-title">{familia.name}</h2>
-    </header>
+    {!ocultarEncabezado && (
+      <header class="fam-head">
+        <div class="eyebrow"><Icon name={familia.icon} size={14} />{familia.subtitulo}</div>
+        <h2 class="fam-title">{familia.name}</h2>
+      </header>
+    )}
 
     <div class={`planes-row planes-row-${Math.min(todasLasCards.length, 4)}`}>
       {todasLasCards.map(({ plan, variante }, idx) => {
