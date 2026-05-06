@@ -66,14 +66,9 @@ const variantesConTablas = familia.variantes.filter((v: any) => v.tablaVolumen |
                     </>
                   )}
                 </div>
-                {plan.limit && <p class="plan-limit">{plan.limit}</p>}
-                {variante.limite && !plan.limit && <p class="plan-limit">{variante.limite}</p>}
-                {variante.implementacion && (
-                  <p class="plan-impl">
-                    <Icon name="zap" size={12} stroke={2.5} />
-                    <span>{variante.implementacion}</span>
-                  </p>
-                )}
+                <p class="plan-limit">
+                  {plan.limit || variante.limite || ''}
+                </p>
               </div>
 
               <div class="plan-resumen">
@@ -87,6 +82,12 @@ const variantesConTablas = familia.variantes.filter((v: any) => v.tablaVolumen |
               </div>
 
               <div class="plan-detalles" hidden>
+                {variante.implementacion && (
+                  <div class="plan-impl-detalle">
+                    <span class="plan-impl-icono"><Icon name="zap" size={14} stroke={2.5} /></span>
+                    <span>{variante.implementacion}</span>
+                  </div>
+                )}
                 <ul class="plan-feat-list">
                   {todosItems.map((it: any) => {
                     const val = it.values[plan.key];
@@ -94,9 +95,11 @@ const variantesConTablas = familia.variantes.filter((v: any) => v.tablaVolumen |
                     const textoVal = typeof val === 'string' && val !== '' && val !== '—' ? val : null;
                     return (
                       <li class={incluido ? 'incl' : 'no-incl'}>
-                        {incluido
-                          ? <Icon name="check" size={16} stroke={2.5} />
-                          : <Icon name="x" size={16} stroke={2.5} />}
+                        <span class={`feat-icono ${incluido ? 'feat-incl' : 'feat-noincl'}`} aria-hidden="true">
+                          {incluido
+                            ? <Icon name="check" size={14} stroke={3} />
+                            : <Icon name="x" size={14} stroke={3} />}
+                        </span>
                         <span class="feat-text">
                           <span class="feat-name">{it.name}</span>
                           {textoVal && <span class="feat-value">{textoVal}</span>}
@@ -289,13 +292,16 @@ const variantesConTablas = familia.variantes.filter((v: any) => v.tablaVolumen |
     margin-bottom: 8px;
   }
   .plan-name {
-    font-size: clamp(24px, 2.4vw, 30px);
+    font-size: clamp(22px, 2.2vw, 28px);
     font-weight: 400;
     color: var(--tono-color);
     margin: 0 0 14px;
     letter-spacing: -0.01em;
-    line-height: 1.15;
-    min-height: 38px;
+    line-height: 1.18;
+    /* Suficiente para 2 lineas — todas las cards alinean su precio */
+    min-height: calc(28px * 1.18 * 2);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
   }
   :root.dark .plan-name { font-weight: 500; }
 
@@ -321,16 +327,11 @@ const variantesConTablas = familia.variantes.filter((v: any) => v.tablaVolumen |
     color: var(--ink-500);
     margin: 10px 0 0;
     line-height: 1.45;
+    /* Reservamos espacio uniforme para que todas las cards alineen
+       su zona de precio aunque el limite sea distinto */
+    min-height: 36px;
+    display: flex; align-items: center; justify-content: center;
   }
-  .plan-impl {
-    display: inline-flex; align-items: center; gap: 6px;
-    margin: 10px auto 0;
-    font-size: 12px; font-weight: 600;
-    padding: 5px 12px; border-radius: 999px;
-    background: color-mix(in srgb, var(--tono-color) 12%, transparent);
-    color: var(--tono-color);
-  }
-  .plan-impl svg { flex-shrink: 0; }
 
   .plan-resumen { padding: 18px 0; text-align: center; }
   .plan-resumen-text {
@@ -350,35 +351,81 @@ const variantesConTablas = familia.variantes.filter((v: any) => v.tablaVolumen |
     from { opacity: 0; transform: translateY(-4px); }
     to { opacity: 1; transform: translateY(0); }
   }
+  /* Caja "implementación" dentro de los detalles (texto largo) */
+  .plan-impl-detalle {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--tono-color) 10%, transparent);
+    border-left: 3px solid var(--tono-color);
+    font-size: 13px; line-height: 1.5;
+    color: var(--ink-700);
+  }
+  .plan-impl-detalle .plan-impl-icono {
+    flex-shrink: 0;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--tono-color);
+    color: #fff;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+
   .plan-feat-list {
     list-style: none;
     padding: 0; margin: 0;
     display: flex; flex-direction: column;
-    gap: 10px;
+    gap: 12px;
   }
   .plan-feat-list li {
     display: flex; align-items: flex-start;
-    gap: 10px;
+    gap: 12px;
     font-size: 14px;
     line-height: 1.45;
   }
   .plan-feat-list li.incl { color: var(--ink-900); }
   .plan-feat-list li.no-incl {
     color: var(--ink-500);
+  }
+  .plan-feat-list li.no-incl .feat-name {
     text-decoration: line-through;
-    text-decoration-color: color-mix(in srgb, var(--ink-500) 50%, transparent);
+    text-decoration-color: color-mix(in srgb, #dc2626 60%, transparent);
     text-decoration-thickness: 1px;
   }
-  .plan-feat-list svg { flex-shrink: 0; margin-top: 3px; }
-  .plan-feat-list li.incl svg { color: #16a34a; }
-  .plan-feat-list li.no-incl svg { color: #dc2626; }
-  .feat-text { display: flex; flex-direction: column; gap: 2px; }
+
+  /* Iconos circulares con tamaño y color uniformes */
+  .feat-icono {
+    flex-shrink: 0;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+  }
+  .feat-icono svg { width: 14px; height: 14px; display: block; }
+  .feat-incl {
+    background: color-mix(in srgb, #16a34a 16%, transparent);
+    color: #16a34a;
+  }
+  .feat-noincl {
+    background: color-mix(in srgb, #dc2626 16%, transparent);
+    color: #dc2626;
+  }
+  :root.dark .feat-incl {
+    background: color-mix(in srgb, #16a34a 22%, transparent);
+    color: #4ade80;
+  }
+  :root.dark .feat-noincl {
+    background: color-mix(in srgb, #dc2626 22%, transparent);
+    color: #f87171;
+  }
+
+  .feat-text { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
   .feat-name { font-weight: 500; }
   .feat-value {
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 600;
-    color: var(--brand-primary);
-    background: color-mix(in srgb, var(--brand-accent) 18%, transparent);
+    color: var(--ink-900);
+    background: color-mix(in srgb, var(--brand-accent) 22%, transparent);
     padding: 2px 8px; border-radius: 999px;
     align-self: flex-start;
   }
