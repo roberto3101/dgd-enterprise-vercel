@@ -8,12 +8,19 @@ interface Props {
   contactoHref: string;
   idioma: Idioma;
 }
-const { familia, textos, contactoHref } = Astro.props;
+const { familia, textos, contactoHref, idioma } = Astro.props;
 const fSlug = familia.slug;
 const ctaTexto = textos.ctaAdquirir || textos.ctaCotizar;
-const ctaDetalles = textos.ctaDetalles || (Astro.props.idioma === 'en' ? 'See details' : 'Ver detalles');
+const ctaDetalles = textos.ctaDetalles || (idioma === 'en' ? 'See details' : 'Ver detalles');
 
-const paletaTonos = ['azul', 'oscuro', 'rojo', 'verde', 'morado', 'naranja'];
+const paletaTonos = ['azul', 'oscuro', 'rojo', 'verde', 'morado', 'naranja', 'cian', 'rosa'];
+
+// Aplanamos: todas las cards de la familia en una sola lista para
+// mostrarlas en una grid uniforme.
+const todasLasCards = familia.variantes.flatMap((variante: any) =>
+  variante.planes.map((plan: any) => ({ plan, variante }))
+);
+const variantesConTablas = familia.variantes.filter((v: any) => v.tablaVolumen || v.extras);
 ---
 <section class="familia" data-familia={fSlug}>
   <div class="container">
@@ -22,146 +29,161 @@ const paletaTonos = ['azul', 'oscuro', 'rojo', 'verde', 'morado', 'naranja'];
       <h2 class="fam-title">{familia.name}</h2>
     </header>
 
-    {familia.variantes.map((v: any) => (
-      <div class="variante-bloque">
-        <h3 class="variante-titulo">{v.name}</h3>
-        {v.implementacion && (
-          <div class="var-impl">
-            <Icon name="zap" size={16} /><span>{v.implementacion}</span>
-          </div>
-        )}
-        {v.limite && <p class="var-limite">{v.limite}</p>}
+    <div class={`planes-row planes-row-${Math.min(todasLasCards.length, 4)}`}>
+      {todasLasCards.map(({ plan, variante }, idx) => {
+        const tono = paletaTonos[idx % paletaTonos.length];
+        const todosItems = (variante.grupos || []).flatMap((g: any) =>
+          g.items.map((it: any) => ({ ...it, grupo: g.title })),
+        );
+        const tieneVariosPlanes = variante.planes.length > 1;
+        const nombreCard = tieneVariosPlanes
+          ? `${variante.name} — ${plan.name}`
+          : variante.name;
+        return (
+          <article
+            class={`plan-card tono-${tono} ${plan.popular ? 'popular' : ''}`}
+            data-card-toggle
+            tabindex="0"
+            role="button"
+            aria-expanded="false"
+            aria-label={`${nombreCard} — click para ver detalles`}
+          >
+            <div class="plan-flag" aria-hidden="true"></div>
+            <div class="plan-inner">
+              {plan.popular && <span class="plan-pop">{textos.popularBadge}</span>}
 
-        <div class={`planes-row planes-row-${Math.min(v.planes.length, 4)}`}>
-          {v.planes.map((p: any, idx: number) => {
-            const tono = paletaTonos[idx % paletaTonos.length];
-            const todosItems = (v.grupos || []).flatMap((g: any) => g.items.map((it: any) => ({ ...it, grupo: g.title })));
-            return (
-              <article
-                class={`plan-card tono-${tono} ${p.popular ? 'popular' : ''}`}
-                data-card-toggle
-                tabindex="0"
-                role="button"
-                aria-expanded="false"
-                aria-label={`${p.name} — click para ver detalles`}
-              >
-                <div class="plan-flag" aria-hidden="true"></div>
-                <div class="plan-inner">
-                  {p.popular && <span class="plan-pop">{textos.popularBadge}</span>}
-
-                  <div class="plan-head">
-                    <h4 class="plan-name">{p.name}</h4>
-                    <div class="plan-price">
-                      {p.priceLabel ? (
-                        <span class="plan-price-free">{p.priceLabel}</span>
-                      ) : (
-                        <>
-                          <span class="plan-price-cur">S/</span>
-                          <span class="plan-price-num">{p.price}</span>
-                          <span class="plan-price-per">/mes</span>
-                        </>
-                      )}
-                    </div>
-                    {p.limit && <p class="plan-limit">{p.limit}</p>}
-                  </div>
-
-                  <div class="plan-resumen">
-                    <p class="plan-resumen-text">
-                      {todosItems.filter((it: any) => it.values[p.key] === true || (typeof it.values[p.key] === 'string' && it.values[p.key])).length}
-                      {' '}características incluidas
-                    </p>
-                  </div>
-
-                  <div class="plan-detalles" hidden>
-                    <ul class="plan-feat-list">
-                      {todosItems.map((it: any) => {
-                        const val = it.values[p.key];
-                        const incluido = val === true || (typeof val === 'string' && val !== '—' && val !== '');
-                        const textoVal = typeof val === 'string' && val !== '' ? val : null;
-                        return (
-                          <li class={incluido ? 'incl' : 'no-incl'}>
-                            {incluido
-                              ? <Icon name="check" size={16} stroke={2.5} />
-                              : <Icon name="x" size={16} stroke={2.5} />}
-                            <span class="feat-text">
-                              <span class="feat-name">{it.name}</span>
-                              {textoVal && <span class="feat-value">{textoVal}</span>}
-                            </span>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-
-                  <div class="plan-actions">
-                    <button type="button" class="btn-detalles" data-toggle-trigger>
-                      <span class="btn-detalles-label" data-label-cerrado>{ctaDetalles}</span>
-                      <span class="btn-detalles-label" data-label-abierto hidden>−</span>
-                    </button>
-                    <a class="btn-adquirir" href={contactoHref} onclick="event.stopPropagation();">
-                      {ctaTexto}
-                    </a>
-                  </div>
+              <div class="plan-head">
+                <div class="plan-eyebrow">{variante.subtitulo || familia.subtitulo}</div>
+                <h4 class="plan-name">{nombreCard}</h4>
+                <div class="plan-price">
+                  {plan.priceLabel ? (
+                    <span class="plan-price-free">{plan.priceLabel}</span>
+                  ) : (
+                    <>
+                      <span class="plan-price-cur">S/</span>
+                      <span class="plan-price-num">{plan.price}</span>
+                      <span class="plan-price-per">/mes</span>
+                    </>
+                  )}
                 </div>
-              </article>
-            );
-          })}
-        </div>
+                {plan.limit && <p class="plan-limit">{plan.limit}</p>}
+                {variante.limite && !plan.limit && <p class="plan-limit">{variante.limite}</p>}
+                {variante.implementacion && (
+                  <p class="plan-impl">
+                    <Icon name="zap" size={12} stroke={2.5} />
+                    <span>{variante.implementacion}</span>
+                  </p>
+                )}
+              </div>
 
-        {v.tablaVolumen && (
-          <div class="tabla-extra">
-            <h4 class="tabla-extra-title">{v.tablaVolumen.titulo}</h4>
-            <div class="tabla-scroll">
-              <table class="tabla-vol">
-                <thead>
-                  <tr>{v.tablaVolumen.headers.map((h: string) => <th>{h}</th>)}</tr>
-                </thead>
-                <tbody>
-                  {v.tablaVolumen.rows.map((r: string[]) => (
-                    <tr>{r.map((c: string, idx: number) => <td class={idx === 1 ? 'td-price' : ''}>{c}</td>)}</tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
+              <div class="plan-resumen">
+                <p class="plan-resumen-text">
+                  {todosItems.filter((it: any) => {
+                    const v = it.values[plan.key];
+                    return v === true || (typeof v === 'string' && v !== '' && v !== '—');
+                  }).length}
+                  {' '}{idioma === 'en' ? 'features included' : 'características incluidas'}
+                </p>
+              </div>
 
-        {v.extras && (
-          <div class="tabla-extra">
-            <h4 class="tabla-extra-title">{v.extras.titulo}</h4>
-            {v.extras.subtitulo && <p class="tabla-extra-sub">{v.extras.subtitulo}</p>}
-            <div class="tabla-scroll">
-              <table class="tabla-vol">
-                <thead>
-                  <tr>{v.extras.headers.map((h: string) => <th>{h}</th>)}</tr>
-                </thead>
-                <tbody>
-                  {v.extras.rows.map((r: string[]) => (
-                    <tr>{r.map((c: string) => <td>{c}</td>)}</tr>
-                  ))}
-                </tbody>
-              </table>
+              <div class="plan-detalles" hidden>
+                <ul class="plan-feat-list">
+                  {todosItems.map((it: any) => {
+                    const val = it.values[plan.key];
+                    const incluido = val === true || (typeof val === 'string' && val !== '—' && val !== '');
+                    const textoVal = typeof val === 'string' && val !== '' && val !== '—' ? val : null;
+                    return (
+                      <li class={incluido ? 'incl' : 'no-incl'}>
+                        {incluido
+                          ? <Icon name="check" size={16} stroke={2.5} />
+                          : <Icon name="x" size={16} stroke={2.5} />}
+                        <span class="feat-text">
+                          <span class="feat-name">{it.name}</span>
+                          {textoVal && <span class="feat-value">{textoVal}</span>}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+
+              <div class="plan-actions">
+                <button type="button" class="btn-detalles" data-toggle-trigger>
+                  <span data-label-cerrado>{ctaDetalles}</span>
+                  <span data-label-abierto hidden>{idioma === 'en' ? 'Hide details' : 'Ocultar detalles'}</span>
+                </button>
+                <a class="btn-adquirir" href={contactoHref} onclick="event.stopPropagation();">
+                  {ctaTexto}
+                </a>
+              </div>
             </div>
-            {v.extras.extra && (
-              <div class="extra-box">
-                <h5>{v.extras.extra.titulo}</h5>
-                <ul>{v.extras.extra.items.map((s: string) => <li><Icon name="check" size={14} stroke={2.5} />{s}</li>)}</ul>
+          </article>
+        );
+      })}
+    </div>
+
+    {variantesConTablas.length > 0 && (
+      <div class="extras-bloque">
+        {variantesConTablas.map((v: any) => (
+          <div class="extras-card">
+            <div class="extras-encabezado">
+              <span class="extras-variante">{v.name}</span>
+            </div>
+            {v.tablaVolumen && (
+              <div class="tabla-extra">
+                <h4 class="tabla-extra-title">{v.tablaVolumen.titulo}</h4>
+                <div class="tabla-scroll">
+                  <table class="tabla-vol">
+                    <thead>
+                      <tr>{v.tablaVolumen.headers.map((h: string) => <th>{h}</th>)}</tr>
+                    </thead>
+                    <tbody>
+                      {v.tablaVolumen.rows.map((r: string[]) => (
+                        <tr>{r.map((c: string, idx: number) => <td class={idx === 1 ? 'td-price' : ''}>{c}</td>)}</tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+            {v.extras && (
+              <div class="tabla-extra">
+                <h4 class="tabla-extra-title">{v.extras.titulo}</h4>
+                {v.extras.subtitulo && <p class="tabla-extra-sub">{v.extras.subtitulo}</p>}
+                <div class="tabla-scroll">
+                  <table class="tabla-vol">
+                    <thead>
+                      <tr>{v.extras.headers.map((h: string) => <th>{h}</th>)}</tr>
+                    </thead>
+                    <tbody>
+                      {v.extras.rows.map((r: string[]) => (
+                        <tr>{r.map((c: string) => <td>{c}</td>)}</tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                {v.extras.extra && (
+                  <div class="extra-box">
+                    <h5>{v.extras.extra.titulo}</h5>
+                    <ul>{v.extras.extra.items.map((s: string) => <li><Icon name="check" size={14} stroke={2.5} />{s}</li>)}</ul>
+                  </div>
+                )}
               </div>
             )}
           </div>
-        )}
+        ))}
       </div>
-    ))}
+    )}
   </div>
 </section>
 
 <style>
-  /* ============ FAMILIA + VARIANTES ============ */
+  /* ============ FAMILIA ============ */
   .familia { padding: 64px 0; border-top: 1px solid var(--ink-200); }
   .familia:first-of-type { border-top: 0; padding-top: 32px; }
-  /* Permitimos que esta seccion respire mas ancho que el container global */
   .familia > .container { max-width: min(1480px, 96vw); }
-  .fam-head { max-width: 760px; margin: 0 auto 48px; text-align: center; }
+
+  .fam-head { max-width: 760px; margin: 0 auto 56px; text-align: center; }
   .fam-title {
     font-size: clamp(32px, 4.4vw, 46px);
     margin: 10px 0 14px;
@@ -169,67 +191,23 @@ const paletaTonos = ['azul', 'oscuro', 'rojo', 'verde', 'morado', 'naranja'];
     color: var(--ink-900);
   }
 
-  .variante-bloque {
-    margin-bottom: 64px;
-    padding-top: 32px;
-    border-top: 1px dashed var(--ink-200);
-  }
-  .variante-bloque:first-child { border-top: 0; padding-top: 0; }
-  .variante-titulo {
-    font-size: clamp(22px, 2.8vw, 28px);
-    text-align: center;
-    margin-bottom: 18px;
-    letter-spacing: -0.01em;
-    color: var(--ink-900);
-  }
-
-  .var-impl {
-    max-width: 760px; margin: 0 auto 14px;
-    display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center;
-    padding: 12px 18px; border-radius: 12px;
-    background: color-mix(in srgb, var(--brand-accent) 12%, transparent);
-    color: var(--ink-900); font-size: 15px; font-weight: 600;
-  }
-  .var-impl svg { color: var(--brand-accent-2); flex-shrink: 0; }
-  .var-limite {
-    text-align: center; font-size: 14px; color: var(--ink-500);
-    margin: 0 auto 32px; max-width: 720px; line-height: 1.5;
-  }
-
-  /* ============ GRID DE CARDS ============ */
-  /* align-items: start permite que cada card se expanda solo cuando se hace
-     click sin estirar a las hermanas. */
+  /* ============ GRID UNIFICADA DE CARDS ============ */
   .planes-row {
     display: grid;
     gap: 28px;
     margin: 0;
     width: 100%;
     align-items: start;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
-  .planes-row-1 {
-    grid-template-columns: minmax(280px, 480px);
-    justify-content: center;
-  }
-  .planes-row-2 {
-    grid-template-columns: repeat(2, minmax(280px, 1fr));
-    max-width: 880px;
-    margin: 0 auto;
-  }
-  .planes-row-3 {
-    grid-template-columns: repeat(3, minmax(280px, 1fr));
-  }
-  .planes-row-4 {
-    grid-template-columns: repeat(4, minmax(260px, 1fr));
-    gap: 22px;
-  }
-  @media (max-width: 1280px) {
-    .planes-row-4 { grid-template-columns: repeat(3, minmax(260px, 1fr)); }
-  }
-  @media (max-width: 1100px) {
-    .planes-row-3, .planes-row-4 { grid-template-columns: repeat(2, 1fr); }
-  }
+  /* Sobrescritos para conteos pequeños y centrarlos */
+  .planes-row-1 { grid-template-columns: minmax(280px, 480px); justify-content: center; }
+  .planes-row-2 { grid-template-columns: repeat(2, minmax(280px, 1fr)); max-width: 880px; margin: 0 auto; }
+  .planes-row-3 { grid-template-columns: repeat(3, minmax(280px, 1fr)); }
+  .planes-row-4 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
   @media (max-width: 720px) {
-    .planes-row, .planes-row-2, .planes-row-3, .planes-row-4 {
+    .planes-row, .planes-row-1, .planes-row-2, .planes-row-3, .planes-row-4 {
       grid-template-columns: 1fr;
       max-width: 480px;
       margin: 0 auto;
@@ -257,8 +235,9 @@ const paletaTonos = ['azul', 'oscuro', 'rojo', 'verde', 'morado', 'naranja'];
   .plan-card.tono-verde   { --tono-color: #16a34a; }
   .plan-card.tono-morado  { --tono-color: #7c3aed; }
   .plan-card.tono-naranja { --tono-color: #ea580c; }
+  .plan-card.tono-cian    { --tono-color: #0891b2; }
+  .plan-card.tono-rosa    { --tono-color: #db2777; }
 
-  /* En modo oscuro suavizamos el tono "oscuro" para que no desaparezca */
   :root.dark .plan-card.tono-oscuro { --tono-color: #4b6f9c; }
 
   .plan-flag {
@@ -281,11 +260,9 @@ const paletaTonos = ['azul', 'oscuro', 'rojo', 'verde', 'morado', 'naranja'];
     background: var(--bg);
     border: 1px solid var(--ink-200);
     border-radius: 10px;
-    padding: 36px 28px 26px;
+    padding: 32px 26px 24px;
     box-shadow: 0 10px 28px rgba(15, 23, 42, .08);
     display: flex; flex-direction: column;
-    /* sin height: 100% para que cada card crezca solo cuando expande
-       y no arrastre a las hermanas */
     min-height: 100%;
     transition: box-shadow .25s;
   }
@@ -304,44 +281,58 @@ const paletaTonos = ['azul', 'oscuro', 'rojo', 'verde', 'morado', 'naranja'];
     box-shadow: 0 4px 12px rgba(0,0,0,.15);
   }
 
-  /* ===== Cabecera ===== */
-  .plan-head { text-align: center; padding-bottom: 24px; border-bottom: 1px solid var(--ink-100); }
-  .plan-name {
-    font-size: clamp(34px, 4.2vw, 44px);
-    font-weight: 300;
-    color: var(--tono-color);
-    margin: 0 0 16px;
-    letter-spacing: -0.01em;
-    line-height: 1.05;
+  .plan-head { text-align: center; padding-bottom: 20px; border-bottom: 1px solid var(--ink-100); }
+  .plan-eyebrow {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .1em;
+    color: color-mix(in srgb, var(--tono-color) 80%, var(--ink-500));
+    margin-bottom: 8px;
   }
-  :root.dark .plan-name { font-weight: 400; }
+  .plan-name {
+    font-size: clamp(24px, 2.4vw, 30px);
+    font-weight: 400;
+    color: var(--tono-color);
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    min-height: 38px;
+  }
+  :root.dark .plan-name { font-weight: 500; }
 
   .plan-price {
     display: flex; align-items: baseline; justify-content: center; gap: 4px;
     flex-wrap: wrap;
   }
-  .plan-price-cur { font-size: 18px; font-weight: 600; color: var(--ink-700); }
+  .plan-price-cur { font-size: 16px; font-weight: 600; color: var(--ink-700); }
   .plan-price-num {
-    font-size: clamp(38px, 4.6vw, 48px);
+    font-size: clamp(34px, 3.6vw, 42px);
     font-weight: 800;
     color: var(--ink-900);
     letter-spacing: -0.03em; line-height: 1;
   }
-  .plan-price-per { font-size: 14px; color: var(--ink-500); margin-left: 2px; }
+  .plan-price-per { font-size: 13px; color: var(--ink-500); margin-left: 2px; }
   .plan-price-free {
-    font-size: clamp(28px, 3.6vw, 36px);
+    font-size: clamp(24px, 2.6vw, 30px);
     font-weight: 800;
     color: var(--tono-color);
   }
   .plan-limit {
-    font-size: 13px;
+    font-size: 12.5px;
     color: var(--ink-500);
     margin: 10px 0 0;
     line-height: 1.45;
   }
+  .plan-impl {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin: 10px auto 0;
+    font-size: 12px; font-weight: 600;
+    padding: 5px 12px; border-radius: 999px;
+    background: color-mix(in srgb, var(--tono-color) 12%, transparent);
+    color: var(--tono-color);
+  }
+  .plan-impl svg { flex-shrink: 0; }
 
-  /* ===== Resumen ===== */
-  .plan-resumen { padding: 20px 0; text-align: center; }
+  .plan-resumen { padding: 18px 0; text-align: center; }
   .plan-resumen-text {
     font-size: 14px;
     color: var(--ink-700);
@@ -349,10 +340,9 @@ const paletaTonos = ['azul', 'oscuro', 'rojo', 'verde', 'morado', 'naranja'];
     margin: 0;
   }
 
-  /* ===== Detalles (toggle) ===== */
   .plan-detalles {
-    margin: 0 0 20px;
-    padding: 18px 0 4px;
+    margin: 0 0 18px;
+    padding: 16px 0 4px;
     border-top: 1px solid var(--ink-100);
     animation: planDetallesAbrir .28s ease;
   }
@@ -369,7 +359,7 @@ const paletaTonos = ['azul', 'oscuro', 'rojo', 'verde', 'morado', 'naranja'];
   .plan-feat-list li {
     display: flex; align-items: flex-start;
     gap: 10px;
-    font-size: 14.5px;
+    font-size: 14px;
     line-height: 1.45;
   }
   .plan-feat-list li.incl { color: var(--ink-900); }
@@ -393,21 +383,20 @@ const paletaTonos = ['azul', 'oscuro', 'rojo', 'verde', 'morado', 'naranja'];
     align-self: flex-start;
   }
 
-  /* ===== Acciones ===== */
   .plan-actions {
     display: flex;
     gap: 10px;
     margin-top: auto;
-    padding-top: 18px;
+    padding-top: 16px;
   }
   .btn-detalles {
     flex: 1;
-    padding: 12px 14px;
+    padding: 11px 12px;
     background: transparent;
     color: var(--tono-color);
     border: 2px solid var(--tono-color);
     border-radius: 4px;
-    font-size: 13.5px;
+    font-size: 12.5px;
     font-weight: 700;
     letter-spacing: .08em;
     text-transform: uppercase;
@@ -420,12 +409,12 @@ const paletaTonos = ['azul', 'oscuro', 'rojo', 'verde', 'morado', 'naranja'];
   }
   .btn-adquirir {
     flex: 1;
-    padding: 12px 14px;
+    padding: 11px 12px;
     background: var(--tono-color);
     color: #fff;
     text-align: center;
     border-radius: 4px;
-    font-size: 13.5px;
+    font-size: 12.5px;
     font-weight: 700;
     letter-spacing: .08em;
     text-transform: uppercase;
@@ -440,17 +429,38 @@ const paletaTonos = ['azul', 'oscuro', 'rojo', 'verde', 'morado', 'naranja'];
     box-shadow: 0 8px 20px color-mix(in srgb, var(--tono-color) 45%, transparent);
   }
 
-  /* ===== Tablas extras (volumen / extras) ===== */
-  .tabla-extra { margin-top: 36px; }
-  .tabla-extra-title { font-size: 20px; margin-bottom: 10px; color: var(--ink-900); }
-  .tabla-extra-sub { color: var(--ink-500); font-size: 15px; margin-bottom: 14px; }
+  /* ============ Bloque de tablas extras ============ */
+  .extras-bloque { margin-top: 56px; display: flex; flex-direction: column; gap: 32px; }
+  .extras-card {
+    padding: 28px;
+    border: 1px solid var(--ink-200);
+    border-radius: 16px;
+    background: var(--bg);
+  }
+  :root.dark .extras-card { background: var(--bg-alt); }
+  .extras-encabezado {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--ink-100);
+  }
+  .extras-variante {
+    font-size: 17px; font-weight: 700;
+    color: var(--ink-900);
+    letter-spacing: -0.01em;
+  }
+
+  .tabla-extra { margin-top: 12px; }
+  .tabla-extra:first-child { margin-top: 0; }
+  .tabla-extra-title { font-size: 18px; margin-bottom: 10px; color: var(--ink-900); }
+  .tabla-extra-sub { color: var(--ink-500); font-size: 14px; margin-bottom: 12px; }
   .tabla-scroll { overflow-x: auto; }
   .tabla-vol {
     width: 100%; min-width: 500px; border-collapse: collapse;
     border: 1px solid var(--ink-200); border-radius: 12px; overflow: hidden;
-    font-size: 15px;
+    font-size: 14.5px;
     background: var(--bg);
   }
+  :root.dark .tabla-vol { background: var(--bg-alt); }
   .tabla-vol thead th {
     background: var(--brand-primary); color: white;
     padding: 14px 16px; text-align: left; font-weight: 700; font-size: 14px;
@@ -463,8 +473,8 @@ const paletaTonos = ['azul', 'oscuro', 'rojo', 'verde', 'morado', 'naranja'];
   .tabla-vol .td-price { font-weight: 700; color: var(--brand-accent-2); }
 
   .extra-box {
-    margin-top: 20px;
-    padding: 20px 24px;
+    margin-top: 18px;
+    padding: 18px 22px;
     border-radius: 14px;
     background: color-mix(in srgb, var(--brand-accent) 10%, transparent);
     border: 1px solid color-mix(in srgb, var(--brand-accent) 30%, transparent);
@@ -489,7 +499,6 @@ const paletaTonos = ['azul', 'oscuro', 'rojo', 'verde', 'morado', 'naranja'];
       if (labelCerrado && labelAbierto) {
         labelCerrado.hidden = nuevo;
         labelAbierto.hidden = !nuevo;
-        labelAbierto.textContent = nuevo ? '− Ocultar detalles' : '−';
       }
     }
 
@@ -498,14 +507,11 @@ const paletaTonos = ['azul', 'oscuro', 'rojo', 'verde', 'morado', 'naranja'];
         if (card.__planToggleArmed) return;
         card.__planToggleArmed = true;
 
-        // Click sobre la card
         card.addEventListener('click', (evento) => {
-          // No alternar si el click vino del botón Adquirir (es un <a>)
           if (evento.target.closest('.btn-adquirir')) return;
           alternarDetalle(card);
         });
 
-        // Teclado: Enter o Espacio
         card.addEventListener('keydown', (evento) => {
           if (evento.key === 'Enter' || evento.key === ' ') {
             evento.preventDefault();
@@ -513,8 +519,6 @@ const paletaTonos = ['azul', 'oscuro', 'rojo', 'verde', 'morado', 'naranja'];
           }
         });
 
-        // El botón "Ver detalles" no necesita lógica propia: el click burbujea
-        // hasta la card. Solo evitamos navegación accidental.
         const trigger = card.querySelector('[data-toggle-trigger]');
         if (trigger) {
           trigger.addEventListener('click', (evento) => {
